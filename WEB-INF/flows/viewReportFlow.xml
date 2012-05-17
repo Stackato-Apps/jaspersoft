@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:ns0="http://www.w3.org/2001/XMLSchema-instance"
+      ns0:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
+      start-state="checkForParams">
+
+    <input name="reportUnit"/>
+    <input name="inhibitRequestParsing"/>
+    <input name="reportDepth"/>
+	
+	<on-start>
+		<set name="flowScope.isDashboard" value="requestParameters.viewAsDashboardFrame == 'true'"/> 
+		<set name="flowScope.reportViewPage" 
+			value="isDashboard ? 'modules/dashboard/dashboardDesignerViewFrame' : 'modules/viewReport/ViewReport'"/>
+		<set name="flowScope.showPagination" value="isDashboard"/>
+		<set name="flowScope.ignorePageMargins" value="isDashboard"/>
+	</on-start>
+
+    <action-state id="checkForParams">
+        <evaluate expression="viewReportActionBean"/>
+        <transition on="success" to="exportMode"/>
+    </action-state>
+
+    <decision-state id="exportMode">
+       <if test="flowScope.reportOutput == null or flowScope.reportOutput == '' or flowScope.reportOutput == 'html'" then="viewReport" else="exportReport"/>
+    </decision-state>
+
+
+    <view-state id="viewReport" view="${reportViewPage}">
+        <on-entry>
+            <set name="flowScope.prevForm" value="'viewReport'"/>
+            <evaluate expression="viewReportActionBean.prepareReportView"/>
+        </on-entry>
+        <transition on="refreshReport" to="runReport"/>
+        <transition on="back" to="done"/>
+        <transition on="backFromErrorPage" to="viewReport"/>
+        <transition on="backToListOfReports" to="backToListOfReports"/>
+    </view-state>
+
+	<view-state id="reportOutput" view="modules/viewReport/reportOutput">
+        <on-entry>
+            <evaluate expression="viewReportActionBean.prepareReportView"/>
+        </on-entry>
+    </view-state>
+
+
+    <action-state id="runReport">
+        <evaluate expression="viewReportActionBean"/>
+        <transition on="success" to="reportOutput"/>
+    </action-state>
+
+    <action-state id="exportReport">
+        <evaluate expression="viewReportActionBean.runReport"/>
+        <transition on="success" to="exportOptions"/>
+    </action-state>
+
+    <action-state id="navigate">
+        <evaluate expression="viewReportActionBean"/>
+        <transition on="ajaxPaginator" to="reportOutput"/>
+        <transition on="directPaginator" to="viewReport"/>
+    </action-state>
+
+    <action-state id="applyParameter">
+       <evaluate expression="viewReportActionBean.setInputValues"/>
+       <transition on="success" to="runReport"/>
+       <transition on="error" to="ajaxView"/>
+    </action-state>
+
+    <decision-state id="chooseInputControls">
+          <if test="not (flowScope.controlsDisplayView == null)" then="customControlsView" else="inputControlsView"/>
+    </decision-state>
+
+    <view-state id="customControlsView" view="${controlsDisplayView}"/>
+
+    <view-state id="inputControlsView" view="modules/inputControls/DefaultParametersForm"/>
+
+    <action-state id="revertToSavedInputs">
+       <evaluate expression="viewReportActionBean"/>
+       <transition on="success" to="chooseInputControls"/>
+    </action-state>
+
+    <action-state id="resetInputsToDefaults">
+       <evaluate expression="viewReportAction"/>
+       <transition to="chooseInputControls"/>
+    </action-state>
+
+    <action-state id="exportOptions">
+       <evaluate expression="reportExporter.exportOptions"/>
+       <transition on="success" to="${flowScope.exportOption}"/>
+    </action-state>
+
+    <view-state id="exportParams" view="modules/exporters/${flowScope.parameterDialogName}">
+       <on-entry>
+          <set name="flowScope.prevForm" value="'exportParams'"/>
+       </on-entry>
+       <transition on="submit" to="export">
+          <evaluate expression="reportExporter.bindAndValidate"/>
+       </transition>
+    </view-state>
+
+    <view-state id="export">
+       <on-entry>
+          <set name="flowScope.prevForm" value="'viewReport'"/>
+          <evaluate expression="reportExporter.export"/>
+       </on-entry>
+       <transition on="success" to="done"/>
+    </view-state>
+
+
+    <subflow-state id="drillReport" subflow="viewReportFlow">
+       <input name="reportUnit" value="requestParameters.reportUnit"/>
+       <input name="inhibitRequestParsing" value="false"/>
+       <input name="reportDepth" value="flowScope.reportDepth + 1"/>
+       <transition on="done" to="viewReport"/>
+       <transition on="cancel" to="viewReport"/>
+       <transition on="backToListOfReports" to="backToListOfReports"/>
+    </subflow-state>
+
+
+    <view-state id="ajaxView" view="ajax/ajaxresponse"/>
+
+    <end-state id="done" view="flowRedirect:searchFlow?lastMode=true"/>
+
+    <end-state id="cancel"/>
+
+    <end-state id="backToListOfReports" view="flowRedirect:searchFlow?lastMode=true"/>
+
+<!-- exceptions handling -->
+    <decision-state id="backFromError">
+        <if test="not (flowScope.prevForm == null or flowScope.prevForm == '')" then="${flowScope.prevForm}" else="done"/>
+    </decision-state>
+
+    <view-state id="errorPage" view="modules/system/errorPage"/>
+<!--<view-state id="accessDeniedPage" view="modules/system/AccessDeniedPage"/>-->
+
+    <global-transitions>
+ <!-- global view transitions -->
+       <transition on="applyParameter" to="applyParameter"/>
+       <transition on="resetToDefaults" to="resetInputsToDefaults"/>
+       <transition on="navigate" to="navigate"/>
+       <transition on="close" to="done"/>
+       <transition on="export" to="exportOptions"/>
+       <transition on="drillReport" to="drillReport"/>
+       <transition on="jiveRun" to="viewReport">
+         <set name="requestScope.needsInput" value="false"/>		
+       </transition>
+       <transition on="revertToSaved" to="revertToSavedInputs"/>
+       <transition on="backFromErrorPage" to="backFromError"/>
+       <!--<transition on-exception="org.springframework.security.AccessDeniedException" to="accessDeniedPage"/>-->
+       <transition on-exception="java.lang.Throwable" to="errorPage"/>
+    </global-transitions>
+
+
+<!-- end exceptions handling -->
+   <on-end>
+      <evaluate expression="viewReportActionBean.cleanSession"/>
+   </on-end>
+
+   <bean-import resource="spring-config.xml"/>
+   <bean-import resource="viewReportBeans.xml"/>
+
+</flow>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:cloud="http://schema.cloudfoundry.org/spring"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd
+http://schema.cloudfoundry.org/spring
+http://schema.cloudfoundry.org/spring/cloudfoundry-spring-0.8.xsd">
+  
+  <!-- Tiles 2 integration. -->
+  <bean class="com.jaspersoft.jasperserver.war.tiles2.SpringTilesConfigurer" />
+
+  <!-- pull in properties -->
+  <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <property name="locations">
+      <list>
+        <value>/WEB-INF/hibernate.properties</value>
+        <value>/WEB-INF/js.quartz.properties</value>
+        <value>/WEB-INF/js.spring.properties</value>
+        <value>/WEB-INF/js.scheduling.properties</value>
+        <value>/WEB-INF/mondrian.connect.string.properties</value>
+	<value>/WEB-INF/data-services.properties</value>
+      </list>
+    </property>
+    <property name="properties" ref="cloudProperties" />
+    <property name="localOverride" value="true"/>
+  </bean>
+
+    
+  <!-- define datasource for repository -->
+<!--  <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+    <property name="jndiName" value="java:comp/env/${metadata.hibernate.dataSource.jndiName}"/>
+  </bean>-->
+	<cloud:properties id="cloudProperties"/>
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${db.driverClassName}" />
+		<property name="url" value="${db.url}" />
+		<property name="username" value="${db.username}" />
+		<property name="password" value="${db.password}" />
+	</bean>
+  <!-- ************************** -->
+
+
+  <!-- repositoryService bean: moved from applicationContext.xml                         -->
+  <!-- the bean definition here is unchanged. bean was moved to accommodate non-standard -->
+  <!-- definition that is found for for import-export.                                   -->
+  <bean id="repositoryService" class="org.springframework.aop.framework.ProxyFactoryBean">
+    <!--<property name="proxyInterfaces"><value>com.jaspersoft.jasperserver.api.metadata.common.service.impl.hibernate.HibernateRepositoryService</value></property>-->
+    <property name="interceptorNames">
+      <list>
+        <idref bean="hibernateRepoServiceTransactionInterceptor"/>
+        <idref bean="hibernateRepoServiceSecurity"/>
+        <idref bean="permissionsPrefetcher"/>
+        <idref bean="hibernateRepositoryService"/>
+      </list>
+    </property>
+  </bean>
+
+  <!-- reportJobsPersistenceService bean: moved from appContext-report-scheduling.xml    -->
+  <!-- the bean definition here is unchanged. bean was moved to accommodate non-standard -->
+  <!-- definition that is found for for import-export.                                   -->
+  <bean id="reportJobsPersistenceService" class="org.springframework.aop.framework.ProxyFactoryBean">
+    <property name="interceptorNames">
+      <list>
+        <idref bean="reportJobsPersistenceTransactionInterceptor"/>
+        <idref bean="reportJobSecurity"/>
+        <idref bean="reportJobsPersistenceHibernateService"/>
+      </list>
+    </property>
+  </bean>
+
+  <bean id="hibernateCompositeDeleteListenerListeners" class="java.util.ArrayList">
+     <constructor-arg>
+        <list>
+            <ref bean="hibernateReportJobsUserDeleteListener"/>
+            <ref bean="hibernateLoggingServiceUserDeleteListener"/>
+            <ref bean="hibernateAccessEventDeleteListener"/>
+            <ref bean="hibernateRoleDeleteListener"/>
+            <ref bean="themeHibernateListener" />
+        </list>
+     </constructor-arg>
+    </bean>
+
+  <bean id="hibernateCompositeSaveOrUpdateListeners" class="java.util.ArrayList">
+        <constructor-arg>
+            <list>
+                <ref bean="themeHibernateListener" />
+            </list>
+        </constructor-arg>
+   </bean>
+
+
+</beans>

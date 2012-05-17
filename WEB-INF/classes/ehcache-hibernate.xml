@@ -1,0 +1,21 @@
+<ehcache>
+	<diskStore path="java.io.tmpdir/ehcache-hibernate"/>
+	
+	<defaultCache 
+		maxElementsInMemory="10000" 
+		eternal="false" 
+		overflowToDisk="true" 
+		timeToIdleSeconds="3600" 
+		timeToLiveSeconds="18000" 
+		diskPersistent="true" 
+		diskExpiryThreadIntervalSeconds="120"/>
+
+	<cache name="defaultRepoCache" 
+		maxElementsInMemory="10000" 
+		eternal="false" 
+		overflowToDisk="true" 
+		timeToIdleSeconds="36000" 
+		timeToLiveSeconds="180000" 
+		diskPersistent="true" 
+		diskExpiryThreadIntervalSeconds="120"/>
+</ehcache>

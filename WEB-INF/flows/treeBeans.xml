@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+    
+    <bean id="treeAction" class="com.jaspersoft.jasperserver.war.action.tree.TreeAction">
+        <property name="treeDataProviderFactory" ref="treeDataProviderFactory"/>
+        <property name="messageSource" ref="messageSource"/>
+        <property name="configurationBean" ref="configurationBean"/>
+    </bean>
+
+    <bean id="treeDataProviderFactory" class="com.jaspersoft.jasperserver.war.model.impl.TreeDataProviderFactoryImpl">
+        <property name="treeProvidersMap">
+            <map>
+                <entry key="repositoryTreeDataProvider" value-ref="repositoryTreeDavaProvider"/>
+                <entry key="repositoryTreeFoldersProvider" value-ref="repositoryTreeFoldersProvider"/>
+                <entry key="tenantTreeFoldersProvider" value-ref="tenantTreeFoldersProvider"/>
+                <entry key="testTreeFoldersProvider" value-ref="testTreeFoldersProvider"/>
+                <entry key="repositoryExplorerTreeDataProvider" value-ref="repositoryExplorerTreeDataProvider"/>
+                <entry key="repositoryExplorerTreeFoldersProvider" value-ref="repositoryExplorerTreeFoldersProvider"/>
+                <entry key="jrxmlTreeDataProvider" value-ref="jrxmlTreeDataProvider" />
+                <entry key="queryTreeDataProvider" value-ref="queryTreeDataProvider"/>
+                <entry key="inputControlResourceTreeDataProvider" value-ref="inputControlResourceTreeDataProvider"/>
+                <entry key="dataSourceTreeDataProvider" value-ref="dsTreeDataProvider"/>
+                <entry key="OLAPTreeDataProvider" value-ref="OLAPTreeDataProvider"/>
+                <entry key="MondrianTreeDataProvider" value-ref="MondrianTreeDataProvider"/>
+                <entry key="XMLATreeDataProvider" value-ref="XMLATreeDataProvider"/>
+                <entry key="olapSchemaTreeDataProvider" value-ref="olapSchemaTreeDataProvider"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="repositoryTreeDavaProvider" class="com.jaspersoft.jasperserver.war.model.impl.RepositoryTreeDataProviderImpl">
+        <property name="repositoryService" ref="${bean.repositoryService}"/>
+        <property name="repositoryServiceSecurityChecker" ref="${bean.repositoryServiceSecurityChecker}"/>
+    </bean>
+
+    <bean id="repositoryTreeFolderFilter" class="com.jaspersoft.jasperserver.war.model.impl.TypeInclusiveTreeDataFilterImpl">
+        <property name="includeTypesList">
+            <list>
+                <value>com.jaspersoft.jasperserver.api.metadata.common.domain.Folder</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="repositoryTreeFoldersProvider" class="com.jaspersoft.jasperserver.war.model.impl.RepositoryTreeDataProviderImpl">
+        <property name="repositoryService" ref="${bean.repositoryService}"/>
+        <property name="repositoryServiceSecurityChecker" ref="${bean.repositoryServiceSecurityChecker}"/>
+        <property name="filter" ref="repositoryTreeFolderFilter"/>
+    </bean>
+
+    <bean id="tenantTreeFoldersProvider" class="com.jaspersoft.jasperserver.war.model.impl.TenantTreeDataProviderImpl">
+        <property name="repositoryService" ref="${bean.repositoryService}"/>
+        <property name="repositoryServiceSecurityChecker" ref="${bean.repositoryServiceSecurityChecker}"/>
+        <property name="tenantService" ref="${bean.tenantService}"/>
+    </bean>
+
+    <!-- Only for testing -->
+    <bean id="testTreeFoldersProvider" class="com.jaspersoft.jasperserver.war.model.impl.TestTreeDataProviderImpl">
+        <property name="repositoryService" ref="${bean.repositoryService}"/>
+        <property name="repositoryServiceSecurityChecker" ref="${bean.repositoryServiceSecurityChecker}"/>
+        <!--<property name="filter" ref="adhocRepositorySaveAsFilter"/>-->
+        <property name="objectPermissionService" ref="${bean.objectPermissionService}"/>
+        <property name="themeService" ref="themeService"/>
+    </bean>
+
+    <import resource="repositoryExplorerBean.xml"/>
+
+</beans>

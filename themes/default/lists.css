@@ -1,0 +1,1600 @@
+/* lists 
+
+pods skin
+tim sheiner & christie rixford
+
+______________________________________________________________ 
+
+ LISTS
+______________________________________________________________ 
+
+In most cases, list markup is defined in /jsp/templates/list.jsp
+
+*/
+
+
+.horizontal li {
+	float:left;
+	margin: 0 .4em 0 0;
+	padding-right:.4em;
+}
+
+.horizontal .last {
+	border-right: none;
+}
+
+
+.horizontal.responsive .wrap.over,
+.horizontal.responsive .wrap.pressed {
+	text-decoration: underline;
+}
+
+.horizontal.path li {
+	border: none;
+	background: url(images/lists_sprite.png) right -345px no-repeat;
+	padding-left:0;
+}
+
+.horizontal.path .last {
+	background: none;
+}
+
+
+/* .list */
+
+.list .leaf,
+.list .node {
+	clear:both;
+	overflow:hidden;
+}
+
+.list li>.wrap {
+	margin-bottom:0;
+}
+
+.list .loading>.wrap>.icon {
+	background-image: url(images/list_node_animation.gif);
+	background-position: 0px 2px;
+	background-repeat: no-repeat;
+}
+
+.list .leaf.loading>.wrap>.icon {
+	background-position: 0px 0px;
+    width:16px;
+    height:16px;
+}
+
+.list[disabled] .button {
+	cursor: default;
+}
+
+
+
+
+/* .stepIndicator */
+
+.list.stepIndicator .node {
+	margin-left: 20px;
+}
+
+
+.hideRoot>.node>.collapsible,
+.twoColumn>.node>.collapsible {
+	margin-left: 0;
+}
+
+.hideRoot>.node>.wrap {
+	display: none !important;
+}
+
+
+ul.decorated li { 
+	background:url("images/lists_sprite.png") no-repeat scroll -32px -4px transparent;
+	margin:1em;
+	padding-left:15px;
+}
+
+.list.collapsible {
+	margin:0;
+}
+
+.collapsible .list {
+	margin-left: 2em;
+}
+
+.collapsible>li,
+.filters>li,
+.fields>li {
+	line-height: 2.5em;
+	white-space: nowrap;
+	background-repeat: no-repeat;	
+	margin: 0;
+	position: relative;
+}
+
+.collapsible.folders>li .collapsible>li {
+	line-height:1em;
+}
+
+.collapsible.folders>li .collapsible>li>.wrap {
+	margin-top:-5px;
+	padding-bottom:5px;
+}
+
+.collapsible.folders>li .collapsible>li.leaf>.wrap {
+	padding-top:5px;
+}
+
+.collapsible.folders>li .collapsible>li.folders.leaf>.wrap {
+	padding-top:0;
+}
+
+.collapsible.type_tables>li .collapsible>li,
+.collapsible.type_sets>li .collapsible>li {
+	line-height: 1.5em;
+}
+
+.collapsible.type_tables>li .collapsible>li>.wrap,
+.collapsible.type_sets>li .collapsible>li>.wrap {
+	margin-top:-4px;
+	padding-bottom:4px;
+}
+
+.collapsible>li>.wrap,
+.list.filters>li>.wrap,
+.list.fields>li>.wrap {
+	text-decoration: none;
+	padding:0 5px;
+	white-space: nowrap;
+	display: block;
+	position: relative;
+	overflow: hidden;
+	margin:0;
+}
+
+.collapsible>li>.wrap>.icon,
+.filters>li>.wrap>.icon,
+.stepIndicator .icon {
+	display: inline-block;
+	background-image: url(images/lists_sprite.png);
+	background-position: 7px 30px;
+	background-repeat: no-repeat;
+	height:20px;
+	width: 19px;
+	position: relative;
+	top:6px;
+	margin-right: 3px;
+}
+
+.list.collapsible>li>.header.wrap {
+	border: none;
+	background: #e0e0e0;
+	border-radius:0;
+	-moz-border-radius:0; 
+	-webkit-border-radius:0; 
+	border-bottom: 1px solid #CCC;
+	cursor: default;
+	color:#999;
+	margin: 0;	
+}
+
+
+/* iPads (portrait and landscape) */
+/* list styles */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px) {
+
+	.list.collapsible {
+		/*width:97%;*/
+		/*width:100%; */
+	}
+	
+	.collapsible.folders>li .collapsible>li {
+		line-height:2.5em;
+	}
+
+	.collapsible.folders>li .collapsible>li>.wrap {
+		margin-top:0px;
+		padding-bottom:0px;
+	}
+
+	li {
+		font-size:12px;
+	}
+}
+
+
+/* .setLeft */
+
+.responsive.setLeft .responsive {
+	margin-left: 0;
+}
+
+.responsive.setLeft .responsive .node .wrap {
+	padding-left: 20px;
+}
+.responsive.setLeft .responsive .node .leaf .wrap {
+	padding-left: 30px;
+}
+
+.responsive.setLeft .responsive .node .node .wrap {
+	padding-left: 40px;
+}
+
+.responsive.setLeft .responsive .node .node .leaf .wrap {
+	padding-left: 50px;
+}
+
+.responsive.setLeft .responsive .node .node .node .wrap {
+	padding-left: 60px;
+}
+
+.responsive.setLeft .responsive .node .node .node .leaf .wrap {
+	padding-left: 70px;
+}
+
+/* collapsible */
+
+.collapsible .selected {
+	font-weight: inherit;
+}
+
+.collapsible input {
+	margin:1px auto;
+}
+
+.node.closed .list,
+.node.loading .list {
+	display: none;
+}
+
+/* .flat */
+
+.list.flat .node>.wrap.header {
+	display:block;
+}
+
+
+.list.flat .node>.wrap {
+	display: none;
+}
+
+.list.flat .list {
+	margin-left: 0;
+}
+
+/* tabular */
+
+.tabular {
+	margin: 0;
+	list-style: none;
+}
+
+.list.tabular>li>.wrap,
+.list.tabular>li>.wrap>.column {
+	position:relative;
+}
+
+.list.tabular .column {
+	line-height: 2.5em;
+	overflow: hidden;
+	float:left;
+	position: relative;
+	margin:0;
+	padding:0;
+	word-wrap:break-word;
+}
+
+.list.tabular>li>.wrap>.column>h3 {
+	line-height: inherit;
+}
+
+.list.tabular>li>.wrap>.column>input {
+	width: 95%;
+}
+
+
+.list.tabular .icon {
+	float: left;
+}
+
+.list.tabular>li>.wrap {
+	border-top: 1px solid #efefef;
+	clear:both;
+	padding-left:20px;
+	overflow: hidden;
+}
+
+.list.tabular>li.first>.wrap {
+	border-top: none;
+}
+
+
+.list.tabular>.leaf>.header.wrap,
+.list.tabular>.node>.header.wrap {
+	background: #e0e0e0;
+	margin: 0;
+	height:2.5em;
+}
+
+.list.tabular .header.wrap>.icon {
+	display:none;
+}
+
+.list.column.simple {
+	border-right:1px solid #E0E0E0;
+	margin-right:45px;
+	overflow:auto;
+}
+
+.list.tabular>li>.wrap>.column>* {
+	margin-bottom: 0;
+}
+
+
+/* .tabular.twoColumn */
+
+.list.twoColumn .wrap .column.one {
+	width:48%;
+}
+
+.list.twoColumn .wrap .column.one {
+	overflow: hidden;
+	float: left;
+	margin-left: 7px;
+}
+
+.list.twoColumn .wrap .column.two {
+	width:auto;
+}
+
+/* .tabular.threeColumn */
+
+.list.threeColumn .wrap .column {
+	width:32%;
+}
+
+.list.threeColumn .wrap .column.one,
+.list.threeColumn .wrap .column.two {
+	overflow: hidden;
+	float: left;
+}
+
+.list.threeColumn .wrap .column.three {
+	width:auto;
+}
+
+/* .tabular.fourColumn */
+
+.list.tabular.fourColumn {
+	min-width: 700px;
+}
+
+/* iPads (portrait and landscape) */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+	
+	.list.tabular.fourColumn {
+		min-width:600px;
+	}
+}
+
+.list.tabular.fourColumn .column {
+	width:25%;
+}
+
+.list.tabular.fourColumn .column.one,
+.list.tabular.fourColumn .column.two,
+.list.tabular.fourColumn .column.three {
+	/* width:auto; */
+}
+
+.list.tabular.fourColumn .column.one {
+	margin-right:10px;
+}
+
+
+.list.tabular.fourColumn .column.four {
+	position:absolute;
+	right:15px;
+	left:auto;
+	top:2px;
+}
+
+
+/* .tabular.fiveColumn */
+
+.list.tabular.fiveColumn .leaf,
+.list.tabular.fiveColumn .node {
+	overflow: visible;
+}
+
+.list.tabular.fiveColumn .column {
+	display:inline-block;
+	height:auto;
+	line-height:normal;
+	vertical-align:top;
+	overflow: visible;
+}
+
+.list.tabular.fiveColumn .column .wrap {
+	border:none;
+	
+}
+
+.list.fiveColumn.tabular .header>.wrap {
+	font-size: 11px;
+	font-weight: normal;
+	background-color: #e0e0e0;
+	border: none;
+	margin: 0;
+}
+
+.list.fiveColumn.tabular>.header {
+	border-bottom: none;
+	min-height: 0;
+}
+
+
+.list.fiveColumn.tabular .header .wrap .column {
+	white-space: normal;
+}
+
+
+.list.fiveColumn .leaf>.wrap {
+	padding:5px 5px 5px 20px;
+	white-space:nowrap;
+}
+
+.list.fiveColumn .wrap>.column.one {
+	width:20%;
+}
+
+.list.fiveColumn .wrap>.column.two {
+	width:20%;
+}
+
+.list.fiveColumn .wrap>.column.three {
+	width:20%;
+}
+
+.list.fiveColumn .wrap>.column.four {
+	width:20%;
+}
+
+.list.fiveColumn .wrap>.column.five {
+	width:18%;
+}
+
+.list.fiveColumn .query {
+	max-height:5em;
+	overflow:hidden;
+	white-space:pre;
+}
+
+/* .list.tabular.filters */
+
+.list.tabular.filters.twoColumn>.leaf>.dialog.inlay.filter,
+.list.tabular.filters.twoColumn>.leaf.editMode>.wrap {
+    display: none;
+}
+
+.list.tabular.filters.twoColumn>.leaf.editMode>.panel.inlay,
+.list.tabular.filters.twoColumn>.leaf>.wrap {
+    display: block;
+}
+
+
+.list.tabular.filters.twoColumn .wrap {
+    background-color: transparent;
+}
+
+.list.tabular.filters.twoColumn .wrap>.column{
+    margin-right:2%;
+    min-width: 55px;
+    height: auto;
+}
+
+.list.tabular.filters.twoColumn .wrap>.column.one {
+    width:60%;
+}
+
+.list.tabular.filters.twoColumn .wrap>.column.two {
+    width:30%;
+    float: right;
+}
+
+/* iPads (portrait and landscape) */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+
+	.list.tabular.filters.twoColumn .wrap>.column.one {
+	    width:50%;
+	}
+	
+	.list.tabular.filters.twoColumn .wrap>.column.two {
+	    width:40%;
+	}
+	
+}
+
+.list.tabular.filters.twoColumn .wrap>.column.two>.lock {
+    margin-right: 3%;
+}
+
+.list.tabular.filters.twoColumn .wrap>.column.two>.actions {
+    position: absolute;
+    right: 0;
+    top:0;
+}
+
+.list.tabular.filters>.leaf>.wrap>.condition>.operation {
+    font-style: italic;
+}
+
+.list.tabular.filters>.leaf>.wrap>.condition>.value {
+    font-weight: bold;
+    white-space: normal;
+}
+
+.list.tabular.filters>.leaf>.condition>.wrap>.value.concatenator {
+    font-weight: normal;
+    font-style: italic;
+}
+
+
+
+/* .settings */
+
+.list.settings {
+	min-width: 675px;
+}
+
+.list.settings .node>.wrap {
+	border-top: 1px solid #FFF;
+	border-bottom:1px solid #E0E0E0;
+	background-color: #F0F0F0;
+	height:28px;
+	padding-left: 20px;
+}
+
+.list.settings .node.closed .description {
+	margin-bottom: 0
+}
+
+.list.settings .node>.wrap .title {
+	line-height: 28px;
+}
+
+.list.settings .node>.description {
+	border-bottom:1px solid #E0E0E0;
+	color:#999999;
+	padding:5px 0 10px 20px;
+}
+
+/* .filters */
+
+
+.list.filters .leaf>.wrap,
+.list.filters .node>.wrap {
+	overflow: hidden;
+	line-height: 2.5em;
+}
+
+.list.filters>.leaf.editMode {
+	border-bottom: 1px solid #E0E0E0;
+}
+
+.list.filters .wrap.header {
+	min-height: 0;
+	font-weight: bold;
+}
+
+.list.filters>li>.wrap,
+.list.filters>li.selected>.wrap,
+.list.filters>li.selected>.wrap.over,
+.list.filters>li.selected>.wrap.pressed,
+.list.filters>li.selected:focus>.wrap,
+.list.filters>li.selected:focus>.wrap.over,
+.list.filters>li.selected:focus>.wrap.pressed,
+.list.filters>li>.wrap.header,
+.list.filters>li>.wrap.over.header,
+.list.filters>li>.wrap.pressed.header,
+.list.filters>li>.wrap.separator,
+.list.filters>li>.wrap.over.separator,
+.list.filters>li>.wrap.pressed.separator {
+	border-top: 1px solid #fff;
+	border-bottom: 1px solid #E0E0E0;
+	background-color: #F0F0F0;
+}
+
+
+.list.filters>li>.wrap.over,
+.list.filters>li>.wrap.pressed {
+	background-color: #E0E0E0;
+}
+
+.list.filters>li>.wrap.pressed {
+	border-top-color: #BDBDBD;
+	border-bottom-color: #BDBDBD;
+	background-image: url(images/list_pressed_bkgd.png);
+	background-repeat: repeat-x;
+	background-position: top left;
+}
+
+.list.filters .selected .icon,
+.list.stepIndicator .selected .icon {
+	background-position:7px -301px;
+}
+
+.list.stepIndicator>li>.wrap {
+	background-color: transparent;
+}
+
+.list.filters .wrap.separator {
+	cursor:default;
+}
+
+.list.filters .node.open>.wrap .more {
+	display: none;
+}
+
+.list.filters .node.closed>.wrap .fewer {
+	display: none;
+}
+
+
+/* .folders */
+
+.folders .node>.wrap {
+	margin-left: 0;
+}
+
+.folders .node>.icon {
+	margin-right:5px;
+}
+
+.folders .node.open>.wrap>.icon {
+	background-position: 0px -148px;
+}
+
+.folders .node.closed>.wrap>.icon {
+	background-position: 0px -122px;
+}
+
+.folders .node.closed.specialContent>.wrap>.icon {
+	background-position: 0px -433px;
+}
+
+.folders .node.open.specialContent>.wrap>.icon {
+	background-position: 0px -468px;
+}
+
+.folders .leaf.domain>.wrap>.icon {
+	background-position: 0px -832px;
+}
+
+.folders .leaf.domain.topic>.wrap>.icon {
+	background-position: 0px -908px;
+}
+
+.folders .leaf.topic>.wrap>.icon {
+	background-position: 0px -866px;
+}
+
+.folders .leaf.olap>.wrap>.icon {
+	background-position: 0px -1065px;
+}
+
+
+/* .type_tables */
+
+.type_tables .node>.wrap>.icon {
+	width: 21px;
+}
+
+.type_tables .leaf>.wrap>.icon {
+	width: 8px;
+}
+
+
+.type_tables .wrap {
+	/* overflow: hidden; */
+}
+
+.type_tables .node>.wrap {
+	margin-left: 0;
+}
+
+.type_tables .node>.icon {
+	margin-right:5px;
+}
+
+.type_tables .node.open>.wrap>.icon,
+.type_tables .node.open>.wrap.pressed>.icon,
+.type_tables .node.open.selected>.wrap>.icon {
+	background-position: 0px -272px;
+}
+
+.type_tables .node.closed>.wrap>.icon,
+.type_tables .node.closed>.wrap.pressed>.icon,
+.type_tables .node.closed.selected>.wrap>.icon {
+	background-position: 0px -240px;
+}
+
+.type_tables .node.dataIsland.open>.wrap>.icon,
+.type_tables .node.dataIsland.open>.wrap.pressed>.icon,
+.type_tables .node.dataIsland.open.selected>.wrap>.icon {
+	background-position: 0px -503px;
+}
+
+.type_tables .node.dataIsland.closed>.wrap>.icon,
+.type_tables .node.dataIsland.closed>.wrap.pressed>.icon,
+.type_tables .node.dataIsland.closed.selected>.wrap>.icon {
+	background-position: 0px -537px;
+}
+
+.type_tables .node.constant.open>.wrap>.icon,
+.type_tables .node.constant.open>.wrap.pressed>.icon,
+.type_tables .node.constant.open.selected>.wrap>.icon {
+	background-position: 0px -577px;
+}
+
+.type_tables .node.constant.closed>.wrap>.icon,
+.type_tables .node.constant.closed>.wrap.pressed>.icon,
+.type_tables .node.constant.closed.selected>.wrap>.icon {
+	background-position: 0px -621px;
+}
+
+.type_tables .node.derived.open>.wrap>.icon,
+.type_tables .node.derived.open>.wrap.pressed>.icon,
+.type_tables .node.derived.open.selected>.wrap>.icon {
+	background-position: 0px -704px;
+}
+
+.type_tables .node.derived.closed>.wrap>.icon,
+.type_tables .node.derived.closed>.wrap.pressed>.icon,
+.type_tables .node.derived.closed.selected>.wrap>.icon {
+	background-position: 0px -663px;
+}
+
+.type_tables .leaf>.wrap>.icon {
+	background-position: 0px -370px;
+}
+
+.type_tables .leaf.calculated>.wrap>.icon {
+	background-position: 0px -745px;
+	width:17px;
+}
+
+
+/* type_messages */
+
+.list.type_messages .subject {
+	font-weight: normal;
+}
+
+.list.type_messages .unread .subject {
+	font-weight: bold;
+}
+
+.list.type_messages.tabular.fourColumn .column.four {
+	top:0;
+}
+
+
+/* .type_sets */
+
+.type_sets .node>.wrap>.icon {
+	width: 19px;
+}
+
+.type_sets .leaf>.wrap>.icon {
+	width: 12px;
+}
+
+.type_sets .node>.wrap {
+	margin-left: 0;
+}
+
+.type_sets .node>.icon {
+	margin-right:5px;
+}
+
+.type_sets .node.open>.wrap>.icon,
+.type_sets .node.open>.wrap.pressed>.icon  {
+	background-position: 0px -177px;
+}
+
+.type_sets .node.closed>.wrap>.icon,
+.type_sets .node.closed>.wrap.pressed>.icon {
+	background-position: 0px -208px;
+}
+
+.type_sets .leaf>.wrap>.icon {
+	background-position: 0px -398px;
+}
+
+
+
+
+/* fields */
+
+.list.fields {
+	padding-bottom: 5px;
+}
+
+.list.fields>li>.wrap,
+.list>li.fields>.wrap,
+.list.fields li>.wrap {
+	margin:3px 2% 0 2px;
+	border:1px solid #ccc;
+	border-radius:4px;
+	-moz-border-radius:4px; 
+	-webkit-border-radius:4px; 
+}
+
+/* iPads (portrait and landscape) */
+/* SHORT-TERM FIX FOR WIDTH PROBLEM. HOPE THERE IS A BETTER SOLUTION */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+
+	#selFieldsPanel>#fieldsTreeRoot,
+	#sourceFieldsTree,
+	#destinationFieldsTree {
+		width:100%;
+	}
+	
+	#selFieldsPanel #fieldsTreeRoot * li>ul,
+	#sourceFieldsTree * li>ul,
+	#destinationFieldsTree * li>ul{
+		width:88%;
+	}
+
+}
+
+.list.fields>.leaf>.wrap,
+.fields.leaf>.wrap,
+.list.fields .leaf>.wrap {
+	padding-left:9px;
+}
+
+.fields>.node>.wrap>.icon,
+.fields.node>.wrap>.icon,
+.fields .node>.wrap>.icon {
+	background-image: url(images/disclosure_indicators_sprite.png);
+	height: 16px;
+	width:15px;
+	margin-right:5px;
+	top:3px;
+}
+
+.fields.tabular>.node>.wrap>.icon,
+.fields.tabular.node>.wrap>.icon,
+.fields.tabular .node>.wrap>.icon {
+	top:5px;
+}
+
+
+.fields>.leaf>.wrap>.icon,
+.fields.leaf>.wrap>.icon,
+.fields .leaf>.wrap>.icon {
+	display: none;
+}
+
+
+.list.fields .node.closed>.wrap>.icon {
+	background-position: 0px -205px;
+}
+
+.list.fields .node.closed>.wrap>.icon.over {
+	background-position: 0px -229px;
+}
+
+.list.fields .node.closed>.wrap>.icon.pressed {
+	background-position: 0px -257px;
+}
+
+.list.fields .node.open>.wrap>.icon {
+	background-position: 0px -286px;
+}
+
+.list.fields .node.open>.wrap>.icon.over {
+	background-position: 0px -310px;
+}
+
+.list.fields .node.open>.wrap>.icon.pressed {
+	background-position: 0px -336px;
+}
+
+.dimension .collapsible > li > .wrap > .icon,
+.measure .collapsible > li > .wrap > .icon {
+    background-image: url("images/adhoc_datatree_icons_sprite.png");
+}
+
+.dimension .list.folders .leaf>.wrap>.icon {
+	background-position: 0px -329px;
+}
+
+.dimension .list.folders .node.closed>.wrap>.icon {
+	background-position: 0px -255px;
+}
+
+.dimension .list.folders .node.open>.wrap>.icon {
+	background-position: 0px -293px;
+}
+
+.attribute .list.folders .leaf>.wrap>.icon {
+	background-position: 0px -70px;
+}
+
+.attribute .list.folders .node.closed>.wrap>.icon {
+	background-position: 0px 2px;
+}
+
+.attribute .list.folders .node.open>.wrap>.icon {
+	background-position: 0px -34px;
+}
+
+.measure .list.folders .node.closed>.wrap>.icon {
+	background-position: 0px -107px;
+}
+
+.measure .list.folders .node.open>.wrap>.icon {
+	background-position: 0px -144px;
+}
+
+.measure .list.folders .leaf>.wrap>.icon {
+	background-position: 0px -178px;
+}
+
+.measure .list.folders .leaf.calculatedField>.wrap>.icon {
+	background-position: 0px -218px;
+}
+
+.list.twoColumn.fields .leaf .column.two input {
+	width:100%;
+	margin-top:5px;
+}
+
+.list.fields>.leaf.ascending>.wrap>.icon,
+.list.fields>.leaf.descending>.wrap>.icon {
+	background-image: url(images/sort_indicators_sprite.png);
+	background-repeat: no-repeat;
+	height: 13px;
+	width: 13px;
+	margin-right:5px;
+	display: inline-block;
+	top:2px;
+}
+
+.list.fields>.leaf.ascending>.wrap>.icon {
+	background-position: 0px 4px;
+}
+
+.list.fields>.leaf.ascending>.wrap>.icon.over,
+.list.fields>.leaf.ascending.selected>.wrap>.icon {
+	background-position: 0px -20px;
+}
+
+.list.fields>.leaf.ascending>.wrap>.icon.pressed {
+	background-position: 0px -48px;
+}
+
+.list.fields>.leaf.descending>.wrap>.icon {
+	background-position: 0px -76px;
+}
+
+.list.fields>.leaf.descending>.wrap>.icon.over,
+.list.fields>.leaf.descending.selected>.wrap>.icon {
+	background-position: 0px -100px;
+}
+
+.list.fields>.leaf.descending>.wrap>.icon.pressed {
+	background-position: 0px -126px;
+}
+
+
+/* .linkedResources */
+
+.list.linkedResources .icon {
+	display: none;
+}
+
+.list.linkedResources .wrap>.column.one,
+.list.linkedResources .wrap>.column.two,
+.list.linkedResources .wrap>.column.three {
+	overflow:hidden;
+	padding-right:5px;
+}
+
+.list.linkedResources.twoColumn .wrap>.column.one {
+	width:65%;
+}
+
+.list.linkedResources.twoColumn .wrap>.column.two {
+	width:30%;
+}
+
+.list.linkedResources.threeColumn .wrap>.column.one {
+	width:50%;
+}
+
+.list.linkedResources.threeColumn .wrap>.column.two {
+	width:20%
+}
+
+.list.linkedResources.threeColumn .wrap>.column.three {
+	width: 15%;
+	text-align: right;
+}
+
+.list.linkedResources .wrap,
+.list.linkedResources .header.wrap {
+	padding-left:20px;
+	line-height: 2.5em;
+	border-top:none;
+	position: relative;
+}
+
+.list.linkedResources .wrap .wrap {
+	padding-left:0;
+}
+
+/* .name-value */
+
+.list.name-value .icon {
+	display: none;
+}
+
+.list.name-value .column .warning {
+	display:none;
+}
+
+.list.name-value .column.error {
+	height:auto;
+}
+
+.list.name-value .column.error .warning {
+	display:block;
+	line-height: normal;
+}
+
+
+
+.list.name-value .column.one,
+.list.name-value .column.two {
+	width: 35%;
+}
+
+.list.name-value .column.three {
+	width: auto;
+}
+
+.list.name-value #name,
+.list.name-value #value {
+	width: 95%;
+}
+
+/* iPads (portrait and landscape) */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+	
+	.list.name-value #name,
+	.list.name-value #value {
+		width: 80%;
+	}
+}
+
+
+.list.name-value .column.two,
+.list.name-value .column.three {
+	overflow:hidden;
+	margin-right:5px;
+}
+
+
+.list.name-value .column.three {
+	text-align:right;
+}
+
+
+.list.name-value .wrap,
+.list.name-value .header.wrap {
+	padding-left:20px;
+}
+
+.list.name-value .wrap .wrap {
+	padding-left:0;
+}
+
+
+
+/* .resources */
+
+.list.tabular.resources {
+	/* min-width:550px; */
+    max-width: 840px;
+    border-right:1px dotted #E0E0E0;
+    height:auto;
+}
+
+.list.tabular.resources. .first{
+	border-top: none;
+}
+
+.list.tabular.resources .resources {
+    border-right:none;
+}
+
+.list.resources .wrap {
+	white-space: nowrap;
+	overflow: auto;
+	padding: 5px 5px 5px 20px;
+}
+
+.responsive .stripe.wrap {
+	background-color: #F2F8FE;
+}
+
+.list.tabular.resources .column {
+	display: inline-block;
+	vertical-align: top;
+	float:left;
+	height: auto;
+	line-height: normal;
+}
+
+.list.resources .column.one {
+	width:40px;
+}
+
+.list.resources.twoColumn .column.one {
+	width:20px;
+}
+
+.list.resources .icon.disclosure {
+	left:25px;
+	top:-2px;
+}
+
+.list.resources .column.two {
+	white-space: normal;
+	width: 50%;
+}
+
+.list.resources .column.two * {
+	margin-bottom: .2em;
+}
+
+
+.list.resources .column.three {
+	margin-left:20px;
+	width:28%;
+}
+
+.list.resources .column.four {
+	width:10%;
+}
+
+.list.resources .column.four * {
+	text-align: right;
+}
+
+.list.resources .list {
+	margin-left: 4em;
+}
+
+.list.resources.twoColumn .column.two {
+	width:80%;
+}
+
+.resourceName {
+	cursor: default;
+}
+
+
+.wrap.dragging.resources>.column {
+    position: relative;
+    overflow: hidden;
+    z-index: 20;
+}
+
+#repoBrowse .wrap.dragging.resources>.column.two {
+    width:auto;
+}
+
+
+.wrap.dragging.resources>.column.one,
+.wrap.dragging.resources>.column.three,
+.wrap.dragging.resources>.column.four,
+.wrap.dragging.resources>.column>.resourceDescription,
+.wrap.dragging.resources>.column>.resourcePath {
+	display:none;
+}
+
+#repoSearch .list.resources {
+	
+}
+
+#repoSearch .list.resources .column.two {
+	width:70%;
+}
+
+
+#repoSearch .list.resources .column.three {
+	white-space:normal;
+	width:12%;
+}
+
+#repoSearch .list.resources .column.four {
+	left:auto;
+	position:absolute;
+	right:1%;
+	top:5px;
+	width:8%;
+	white-space: normal;
+}
+
+#repoBrowse .list.resources {
+	max-width: none;
+	border-right: none;
+}
+
+#repoBrowse .list.resources .column.two {
+	white-space:normal;
+	width:70%;
+}
+
+#repoBrowse .list.resources .column.three {
+	left:auto;
+	position:absolute;
+	right:11%;
+	top:2px;
+	white-space:normal;
+	width:10%;
+}
+
+#repoBrowse .list.resources .column.four {
+	left:auto;
+	position:absolute;
+	right:1%;
+	top:2px;
+	width:8%;
+	white-space: normal;
+}
+
+/* iPads (portrait and landscape) */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+	
+	#repoBrowse .list.resources .column.two {
+		width:68%;
+	}
+	
+	#repoBrowse .list.resources .column.four {
+		width:10%;
+	}
+	
+	#manage_roles .list.twoColumn .wrap .column.one {
+		width:88%;
+	}
+}
+
+#repoBrowse .list.resources .wrap {
+	padding: 2px 0 2px 20px;
+}
+
+
+#repoBrowse .resourceName {
+	display:inline-block;
+	margin:0;
+	width:60%;
+	font-size:1em;
+}
+
+#repoBrowse .resourceDescription {
+	float:right;
+	margin:0;
+	width:38%;
+	padding-left:5px;
+	min-height: 1em;
+}
+
+#repoBrowse .node .twoColumn .resourceDescription {
+	float:none;
+}
+
+
+
+#repoBrowse .resourcePath {
+	float:left;
+	width:45%;
+}
+
+.list.resources .icon {
+	background-image:url("images/disclosure_indicators_sprite.png");
+}
+
+.list.resources .node.closed>.wrap .disclosure.icon {
+	background-position: 0px -205px;
+}
+
+.list.resources .node.closed>.wrap.pressed .disclosure.icon,
+.list.resources .node.closed.selected>.wrap .disclosure.icon {
+	background-position: 0px -358px;
+}
+
+.list.resources .node.closed>.wrap .disclosure.icon.over {
+	background-position: 0px -229px;
+}
+
+.list.resources .node.closed>.wrap .disclosure.icon.pressed {
+	background-position: 0px -257px;
+}
+
+.list.resources .node.open>.wrap .disclosure.icon {
+	background-position: 0px -286px;
+}
+
+.list.resources .node.open>.wrap.pressed .disclosure.icon,
+.list.resources .node.open.selected>.wrap .disclosure.icon {
+	background-position: 0px -378px;
+}
+
+
+.list.resources .node.open>.wrap .disclosure.icon.over {
+	background-position: 0px -310px;
+}
+
+.list.resources .node.open>.wrap .disclosure.icon.pressed {
+	background-position: 0px -336px;
+}
+
+/* .disclosure.button */
+
+.list.resources>.node>.wrap>.column>.disclosure.icon {
+	visibility: visible;
+}
+
+.list.resources>.leaf>.wrap>.column>.disclosure.icon {
+	visibility: hidden;
+}
+/*
+
+/* .scheduled.button */
+
+.list.resources>.scheduled>.wrap>.column>.scheduled.icon {
+	visibility: visible;
+}
+
+.list.resources .wrap>.column>.scheduled.icon {
+	visibility: hidden;
+}
+
+.list.resources .scheduled>.wrap .scheduled.icon {
+	background-position: 0px -406px;
+}
+
+.list.resources .scheduled>.wrap .scheduled.icon.over {
+	background-position: 0px -432px;
+}
+
+.list.resources .scheduled>.wrap .scheduled.icon.pressed {
+	background-position: 0px -458px;
+}
+
+/* .list.buttonSet */
+.list.buttonSet,
+.list.buttons {
+	float:left;
+	clear: none;
+}
+
+
+.list.buttonSet .node,
+.list.buttonSet .leaf,
+.list.buttons .leaf,
+.list.buttons .node  {
+	float:inherit;
+	clear:inherit;
+}
+
+.list.buttonSet .leaf.separator
+.list.buttons .leaf.separator {
+	width: 20px;
+	height:1px;
+}
+
+/* iPads (portrait and landscape) */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+
+	.list.buttonSet .leaf.separator {
+		width:0;
+	}
+	
+	.list.column.simple {
+		width:542px;
+	}
+}
+
+
+/* .list.inputControls */
+
+.list.inputControls {
+	min-width: 200px;
+}
+
+.list.inputControls .leaf {
+	margin:2px 5px 20px 20px;
+}
+
+
+.row>.content>.body>.list.inputControls .leaf {
+	clear:none;
+	float:left;
+}
+
+.list.inputControls [multiple=multiple]  {
+	max-height:100px;
+}
+
+.dialog .list.inputControls {
+	width:auto;
+}
+
+.list.inputControls label .wrap {
+	font-weight:bold;
+}
+
+.list.inputControls fieldset .wrap {
+	font-weight:normal;
+}
+
+.list.inputControls fieldset legend {
+	font-weight:bold;
+	margin-bottom:3px;
+	margin-left:-5px;
+}
+
+.list.inputControls fieldset label {
+	margin-bottom:3px;
+}
+
+.list.inputControls fieldset {
+	padding-left:5px;
+}
+
+.list.inputControls input {
+	width:95%;
+}
+
+
+/* .list.locations */
+
+.locationSelector {
+	height: 100%;
+}
+
+.list.locations {
+	height: 100%;
+	position: relative;
+}
+
+.list.locations>.leaf {
+	padding-bottom:10px;
+}
+
+
+#fromLocal #fileUpload {
+	margin-left:20px;
+}
+
+/* .list.type_attributes */
+
+.list.type_attributes {
+	margin: 5px auto;
+}
+
+.list.type_attributes .node {
+	display: block;
+	margin-bottom: 15px;
+}
+
+.list.type_attributes .leaf{
+	display: inline;
+}
+
+/* .list.measures */
+
+.list.measures .leaf {
+	line-height: 1.5em;
+}
+
+.list.measures .icon {
+	display: inline-block;
+	background-image: url(images/lists_sprite.png);
+	background-repeat: no-repeat;
+	height:12px;
+	width: 11px;
+	position: relative;
+	top:2px;
+}
+
+.list.measures .icon.natural {
+	background-position: left -942px;
+}
+
+.list.measures .icon.numeric.ascending {
+	background-position: left -989px;
+}
+
+.list.measures .icon.numeric.descending{
+	background-position: left -965px;
+}
+
+/* .list.palette */
+
+.list.palette>.leaf.button {
+	float: left;
+	clear: none;
+	border: 1px solid #ccc;
+	margin:3px;
+	padding:5px;
+	line-height: normal;
+	border-radius:8px;
+	-moz-border-radius:8px; 
+	-webkit-border-radius:8px; 
+}
+
+.list.palette>.leaf.button.over {
+	border-width: 2px;
+	margin: 2px;
+}
+
+.list.palette>.leaf.button.pressed {
+	border-width: 2px;
+	border-color: #0061A2;
+	margin: 2px;
+}
+
+.list.palette>.leaf.button.selected,
+.list.palette>.leaf.button.selected.over,
+.list.palette>.leaf.button.selected.pressed {
+	border-width: 2px;
+	border-color: #217EB5;
+	margin: 2px;
+	cursor: default;
+}
+
+.list.palette>.leaf.button.selected>.wrap {
+	background-color: transparent;
+	color: #666;
+}
+
+
+
+.list.palette .leaf>.wrap {
+	padding:0;
+	font-weight: bold;
+	margin-bottom: 2px;
+}
+
+
+.list.palette .leaf.chip {
+	height: 15px;
+	width: 15px;
+	display: inline-block;
+	float: none;
+	margin: 0;
+	border: none;
+	padding: 0;
+}

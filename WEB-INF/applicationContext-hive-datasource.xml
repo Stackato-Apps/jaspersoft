@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<!-- define a custom data source -->
+	<bean id="HiveDataSource"
+		class="com.jaspersoft.jasperserver.api.engine.jasperreports.util.CustomDataSourceDefinition">
+		<property name="factory" ref="customDataSourceServiceFactory" />
+		<property name="name" value="HiveDataSource" />
+		<property name="serviceClassName"
+			value="com.jaspersoft.hadoop.hive.HiveDataSourceService" />
+		<property name="validator">
+			<bean class="com.jaspersoft.hadoop.hive.HiveDataSourceValidator" />
+		</property>
+		<property name="propertyDefinitions">
+			<list>
+				<map>
+					<entry key="name" value="jdbcURL" />
+					<entry key="default" value="jdbc:hive://localhost:10000/default" />
+				</map>
+			</list>
+		</property>
+		<property name="queryExecuterMap">
+			<map>
+				<entry key="HiveQL"
+					value="com.jaspersoft.hadoop.hive.HiveQueryExecuterFactory" />
+			</map>
+		</property>
+	</bean>
+
+</beans>

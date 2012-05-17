@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+  xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:aop="http://www.springframework.org/schema/aop"
+  xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+    http://www.directwebremoting.org/schema/spring-dwr
+    http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+	<dwr:configuration>
+	    <dwr:convert type="bean" class="com.jaspersoft.jasperserver.war.cascade.EventEnvelope">
+                    <dwr:include method="controlName"/>
+                    <dwr:include method="controlValue"/>
+                    <dwr:include method="resourceUriPrefix"/>
+                    <dwr:include method="controlType"/>
+                    <dwr:include method="optionsList"/>
+                    <dwr:include method="selections"/>
+                    <dwr:include method="visible"/>
+                    <dwr:include method="disabled"/>
+                    <dwr:include method="permanent"/>
+                    <dwr:include method="wrappersUUID"/>
+                    <dwr:include method="mandatory"/>
+            </dwr:convert>
+
+            <dwr:convert type="bean" class="com.jaspersoft.jasperserver.war.cascade.EventOption">
+                    <dwr:include method="selected"/>
+                    <dwr:include method="label"/>
+                    <dwr:include method="value"/>
+            </dwr:convert>
+
+            <dwr:convert type="exception" class="java.lang.SecurityException"></dwr:convert>
+	</dwr:configuration>
+	
+	<!-- Bean interface for HTTP access, session scope -->
+	<bean id="CascadeDirector" class="com.jaspersoft.jasperserver.war.cascade.CascadeDirector" scope="session">
+		<property name="delegator">
+			<ref bean="ControlLogicDelegator"/>
+		</property>
+		<dwr:remote javascript="RemoteCascadeDirector">
+			<dwr:include method="initialize" />
+			<dwr:include method="handleEvents" />
+			<dwr:include method="autoPopulate" />
+		</dwr:remote>
+		<aop:scoped-proxy/>
+	</bean>
+	
+	
+	<!-- Control Logic Delegator -->
+	<bean id="ControlLogicDelegator" class="com.jaspersoft.jasperserver.war.cascade.ControlLogicDelegator">
+		<!--assign available control logic types -->
+		<property name="controlLogicPool">
+			<map>
+				<entry key="TokenControlLogic" value-ref="${bean.tokenControlLogic}"/>
+				<entry key="BeanControlLogic" value-ref="BeanBusinessLogic"/>
+			</map>
+		</property>
+		<property name="controlLogicMap">
+			<map>
+				<entry key="BeanExampleReport" value="BeanControlLogic"/>
+			</map>
+		</property>
+		<property name="defaultControlLogic">
+			<value>TokenControlLogic</value>
+		</property>
+		<!-- cache manager -->
+		<property name="delegatorCacheManager">
+			<ref bean="DelegatorCacheManager"/>
+		</property>
+	</bean>
+	
+	
+	<!-- Delegator Cache Manager -->
+	<bean id="DelegatorCacheManager" class="com.jaspersoft.jasperserver.war.cascade.cache.DelegatorCacheManagerImpl">
+	<!-- seconds before a user cache is invalid -->
+		<property name="userCacheTimeout" value="120"/><!--FIXME:short time for testing -->
+		<!-- seconds between server cleanup process checks for invalid user sessions -->
+		<property name="cacheCleanTriggerTime" value="360"/><!--FIXME:short time for testing -->
+	</bean>
+
+        <bean id="FilterCore" class="com.jaspersoft.jasperserver.war.cascade.token.FilterCore">
+            <property name="builtInParameterProviders" ref="builtInParameterProviders"/>
+        </bean>
+	
+	<!-- token control logic, singleton -->
+	<bean id="TokenControlLogic" class="com.jaspersoft.jasperserver.war.cascade.token.TokenControlLogic">
+		<property name="engine">
+			<ref bean="engineService"/>
+	        </property>
+		<property name="repositoryService">
+			<ref bean="${bean.repositoryService}"/>
+	        </property>
+		<property name="dataSourceServiceFactories">
+			<ref bean="dataSourceServiceFactories"/>
+	        </property>
+		<property name="filterResolver">
+                    <ref bean="${bean.filterResolver}"/>
+	        </property>
+	</bean>
+
+	<!-- Example Bean control logic, singleton -->
+	<bean id="BeanBusinessLogic" class="com.jaspersoft.jasperserver.war.cascade.example.BeanControlLogic"/>
+	
+	<!-- query manipulator -->
+	<bean id="CascadeQueryManipulator" class="com.jaspersoft.jasperserver.war.cascade.token.QueryFilter">
+		<property name="filterResolver">
+                    <ref bean="${bean.filterResolver}"/>
+	        </property>
+        </bean>
+	
+</beans>
+
+
+
+

@@ -1,0 +1,1041 @@
+/*
+theme.css
+
+intended scope:
+- global page styles
+- styles for the decorator
+- utility styles
+- typography
+- colors 
+- global ipad-specific styles
+
+pods skin
+tim sheiner & christie rixford
+
+*/
+
+/* global page styles */
+
+	html, body {
+  		width:100%;
+  		height:100%;
+        margin: 0;
+        padding:0;
+  	}
+  	
+/* END global page styles */
+
+/*__________________________________________________________ 
+
+ TYPOGRAPHY 
+______________________________________________________________ 
+*/
+
+
+/* Fonts
+-------------------------------------------------------------- */
+body,
+textarea,
+.body,
+.title>.path,
+input,
+select { 
+  font-size: 11px;
+  line-height:1.182em; /* 11 x 1.182 = 13 */
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-weight: normal;
+}
+
+.jumbo,
+h1 {
+	font-size: 18px; /* 11 x 1.636 = 18 */
+	line-height:1.818em; /* 11 x 1.818 = 20 */
+}
+
+.wrapper.table .caption,
+.data.table .caption,
+.larger,
+h2 {
+	font-size:16px; /* 11 x 1.454 = 16 */
+	line-height:1.636em;
+}
+
+.large,
+h3,
+.menu,
+.searchLockup>input,
+.message,
+.list.settings .node>.wrap .title,
+#calculatedField .operator,.resourceName,
+.fsection,
+ul.decorated {
+	font-size:12px;/* 11 x 1.091 = 12 */
+	line-height:1.272em;/* 11 x 1.272 = 14 */
+}
+
+.default,h4,body,
+.message.warning { 
+  font-size: 11px;
+  line-height:1.182em; /* 11 x 1.182 = 13 */
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-weight: normal;
+}
+
+
+.small,
+h5,
+.panel.widget .title,
+.hint,
+.panel.tooltip .message.label,
+.pane.filter .message  {
+	font-size:10px;/* 11 x 0.909 = 10 */
+	line-height:1.091em;
+}
+
+.mini,
+h6,
+#about,
+#copyright {
+	font-size:9px;/* 11 x 0.818 = 9 */
+	line-height:0.909em;
+}
+
+.micro {
+	font-size:8px;/* 11 x 0.727 = 8 */
+	line-height:0.818em;
+}
+
+.emphasis,
+button,
+.buttons>.tab>.button,
+.title,
+.menu.primaryNav,
+#metaLinks #userID,
+.fields .node>.wrap,
+.panel.info.system .message,
+.wrapper.table .caption .placeholder,
+.data.table .header,
+.data.table .summary .value,
+.overlay .group .header,
+.control.path .last,
+.list.stepIndicator .selected>.wrap,
+#calculatedField .operator,
+.filters .fieldName,
+.tabSet.horizontal.buttons .selected .button,
+.list.folders .node.activeTheme,
+.tabSet.text .selected.tab>.wrap,
+#reportContainer a  {
+	font-weight: bold;
+}
+
+/* Headings
+-------------------------------------------------------------- */
+
+h1,h2,h3,h4,h5,h6 { font-weight: bold; clear:both;}
+
+h1 {margin-bottom: 1.3em;}
+h2,h3,h4 {margin-bottom: 0.7em;}
+h5,h6 {margin-bottom: 0.5em;}
+
+
+/* Text elements
+-------------------------------------------------------------- */
+
+p           { margin-bottom: 1em;}
+
+a           { color: inherit; text-decoration: none; cursor: pointer; }
+a:focus, 
+a:hover,
+a:active 	{ text-decoration:underline;}
+
+a.disabled,
+a.disabled:hover,
+a.disabled.over,
+a.disabled:active,
+a.disabled.pressed {
+	cursor: default;
+	text-decoration: none;
+}
+
+.selected a:focus, 
+.selected a:hover,
+.selected a.over,
+.selected a:active,
+.selected a.pressed 	{ color:inherit;}
+
+/*
+abbr, 
+acronym     { border-bottom: 1px dotted #666; }
+*/
+address     { margin: 0 0 1.5em; font-style: italic; }
+del         { color:#666; }
+
+pre 		{ margin: 1.5em 0; white-space: pre; }
+pre,code,tt { font: 1em 'andale mono', 'lucida console', monospace; line-height: 1.5; }
+
+
+
+/* Colors
+-------------------------------------------------------------- */
+
+/* .white, */
+.palette01,
+.button.action.over,
+.button.up.over,
+.button.up.primary.over,
+.button.up.pressed,
+.button.up.primary.pressed,
+.button.down.over,
+.button.down.pressed,
+.button.capsule.down.over,
+.button.capsule.down.pressed,
+.tabSet.horizontal.buttons .button.over,
+.tabSet.horizontal.buttons .button.pressed,
+.menu .wrap.over,
+.menu .wrap.pressed,
+.button.up.primary,
+.button.action.jumbo.over,
+.button.action.jumbo.pressed,
+.menu.primaryNav .up,
+.menu.primaryNav .wrap,
+.menu.primaryNav .up.over,
+.menu.primaryNav .up.pressed,
+.menu.primaryNav .wrap.over,
+.menu.primaryNav .wrap.pressed,
+.tabSet.buttons.vertical .button,
+.tabSet.buttons .selected .button,
+.tabSet.buttons .button.over,
+#metaLinks li,
+#metaLinks a,
+#metaLinks a:hover,
+#metaLinks a:active,
+a#about:hover,
+a#about:active,
+.list.collapsible>li>.selected>.wrap,
+.selected>.wrap .resourceName,
+.selected>.wrap  .resourceDescription,
+.selected>.wrap  .resourcePath,
+.pressed .resourceName,
+.pressed .resourceDescription,
+.pressed .resourcePath,
+.list.collapsible>li>.wrap.pressed,
+.list.collapsible .selected>.wrap {
+	color:#fff;
+}
+
+.palette01_bkgd,
+.pane .body,
+.panel,
+body {
+	background-color:#fff;
+}
+
+#metaLinks li {
+	border-color: #fff;
+}
+
+.list>li>.wrap.over {
+	background-color:#EfEfEf;
+}
+
+/* .gray12 */
+.palette02 {
+	color:#E0E0E0;
+}
+
+.palette02_bkgd,
+.list.tabular>.leaf>.header>.wrap,
+.list.tabular>.node>.header>.wrap {
+	background-color:#E0E0E0;
+}
+
+
+/* .gray20 */
+.palette03,
+.disabled,
+.button.disabled,
+[disabled],
+.button[disabled], 
+.button.primary[disabled] {
+	color:#aaa;
+}
+
+.palette03_bkgd
+ {
+	background-color:#ccc;
+}
+
+/* .gray40 */
+.palette04,
+.horizontal,
+.sub.header,
+.control.path,
+.tabSet.buttons .disabled .button,
+.list.twoColumn>.node>.wrap,
+.hint,
+.filters .fieldName,
+.filters .condition {
+	color:#999;
+}
+
+.palette04_bkgd,
+.list.doesNotHaveFocus .selected>.wrap {
+	background-color:#999;
+}
+
+/* .gray60 */
+.palette05,
+.tabSet.text>.tab>.wrap,
+.tabSet.text>.tab>.wrap.over,
+.tabSet.text>.label>.wrap,
+.button,
+.header,
+.foundItem,
+#metaLinks,
+.group legend.label,
+legend,
+label,
+.label,
+.label.wrap,
+legend.label>.wrap,
+.control>.wrap,
+.control.path>.step.last>.wrap,
+.control.path>.step.last>.wrap.over,
+.control.path>.step.last>.wrap.pressed,
+.tabular,
+.list.settings .node>.wrap .title,
+.list.inputSet,
+#serverError h3,
+ul.decorated {
+	color:#666;
+}
+
+
+.palette05_bkgd {
+	background-color:#666;
+}
+
+/* .gray80 */
+.palette06,
+body,
+.title>.path,
+.menu li,
+*[readonly=readonly],
+.group>legend,
+.resourceDescription {
+	color:#333;
+}
+
+.palette06_bkgd {
+	background-color:#333;
+}
+
+/* .black */
+.palette07 {
+	color:#000;
+}
+
+.palette07_bkgd {
+	background-color:#000;
+}
+
+
+/* selection colors */
+
+.palette08,
+.button.action.primary.disabled,
+.button.action.primary.jumbo.disabled,
+.button.action.primary[disabled],
+.button.action.primary.jumbo[disabled],
+.tabSet.buttons.vertical [disabled]  { 
+	color:#43B9F9; 
+}
+
+.palette08_bkgd { 
+	background-color:#43B9F9; 
+}
+
+
+/* .sky */
+.palette09,
+.launcher {
+	color:#4698be;
+}
+
+.palette09_bkgd {
+	background-color:#4698be;
+}
+
+.palette10,
+#metaLinks a:active,
+a#about:active {
+	color:#8CD9FE;
+}
+
+.palette10_bkgd {
+	background-color:#8CD9FE;
+}
+
+
+
+/* .royal */
+.palette11,
+.textAccent02,
+.tabSet.text .selected.tab>.wrap,
+.tabSet.text .selected.tab>.wrap.over,
+.tabSet.text .selected.tab>.wrap.pressed,
+.list.filters>li.selected>.wrap,
+.list.filters>.leaf>.wrap.pressed,
+.list.stepIndicator .selected>.wrap,
+.panel.info.system .message,
+.resourceName,
+.fsection,
+#reportContainer a  {
+	color:#217EB5;
+}
+
+
+.palette11_bkgd,
+.list>li>.wrap.pressed,
+.list>li.selected>.wrap,
+.list>li.selected>.wrap.over {
+	background-color:#217EB5;
+}
+
+/* .cerulean */
+.palette12,
+.tabSet.text>.tab>.wrap.pressed,
+.control.path .step .wrap.pressed,
+a:active,
+#reportContainer a:active {
+	color:#0061a2;
+}
+
+.palette12_bkgd,
+.menu.vertical li>.wrap.pressed,
+.list.responsive>li>.wrap.pressed {
+	background-color:#0061a2;
+}
+
+/* nav element colors */
+
+/* .orange */
+.palette13,
+.textAccent,
+#needHelp,
+.tabSet.horizontal.buttons .selected>.button>.wrap,
+.button.action.jumbo {
+	color:#FC870E;
+}
+
+.palette13_bkgd,
+.menu.vertical li>.wrap.over {
+	background-color:#FC870E; 
+}
+
+/* .orange2 */
+.palette14,
+#needHelp:active {
+	color:#FB5B0D;
+}
+
+.palette14_bkgd,
+.menu.vertical li>.wrap.pressed {
+	background-color:#FB5B0D; 
+}
+
+/* .orange3 */
+.palette15,
+.button.capsule.down {
+	color:#7A3E10;
+}
+
+.palette15_bkgd {
+	background-color:#7A3E10;
+}
+
+
+/* .orange4 */
+.palette16,
+.button.capsule.down.disabled,
+.button.capsule.down[disabled],
+.resourcePath {
+	color:#DC5717;
+}
+
+.palette16_bkgd {
+	background-color:#DC5717;
+}
+
+
+
+/* .red */
+.palette17,
+.warning,
+.errorMessage,
+.invalid>.wrap {
+	color:#f00;
+}
+
+.palette17_bkgd {
+	background-color:#f00;
+}
+
+.transparent {
+	background-color: transparent;
+}
+
+
+
+
+
+
+/*
+______________________________________________________________ 
+
+ DECORATOR STYLES 
+______________________________________________________________ 
+
+Styles for objects that appear on every page in the application by virtue
+of being loaded in decorator.jsp
+
+*/
+
+body {
+	background:#93C5E0 url(images/body_bkgnd.png) left top repeat-x;
+	position:relative;
+}
+
+body.noDecoration {
+    background:none;
+	position:relative;
+}
+
+#systemConfirm {
+	position: absolute;
+	top:10px;
+	left: 500px;
+	right:220px;	
+	z-index: 5;
+}
+
+.dimmer {
+	position: absolute;
+	top:0;
+	left:0;
+	right:0;
+	bottom: 0;
+	background-color: #000;
+	opacity:.6;
+}
+
+#logo {
+	position: absolute;
+	top:12px;
+	left:28px;
+	width:141px;
+	height:28px;
+	background:url(images/logo.png) 0 0;
+	border:none;
+}
+
+#globalSearch {
+	position: absolute;
+	top:18px;
+	left:195px;
+	height:28px;
+	z-index: 2;
+}
+
+#globalSearch {
+	width:250px;
+}
+
+#loginPage .userCountExceeded {
+    display:none;
+}
+
+#userCountExceeded {
+	position: absolute;
+	top: 14px;
+	left: 470px;
+}
+
+#metaLinks {
+	position:absolute;
+	right:10px;
+	top:20px;
+	z-index: 2;
+}
+
+#metaLinks li {
+	border-right: 1px solid #fff;
+}
+
+#metaLinks li.last {
+	border-right: none;
+}
+ 
+#copyright {
+	margin:4px auto 0;
+	text-align: center;
+}
+
+#about {
+	position:absolute;
+	left: 22px;
+	margin-top:4px;
+}
+
+#userName {
+	font-weight: bold;
+}
+
+
+#frame {
+	background-color:#e7e7e7;
+	margin-bottom:32px;
+	margin-top:64px;
+	margin-left:22px;
+}
+					
+#frame>.corner {}
+
+#frame>.edge.rl {}
+
+#frame>.edge.tb {}
+
+#frame>.corner.top {
+	display:none;
+}
+
+#frame>.corner.bottom {
+	display:none;
+}
+
+#frame>.corner.left {
+	display:none;
+}
+
+#frame>.corner.right {
+	display:none;
+}
+
+#frame>.edge.rl.left {
+	display:none;
+}
+
+#frame>.edge.rl.right {
+	display:none;
+}
+
+#frame>.edge.tb.top {
+	display:none;
+}
+
+#frame>.edge.tb.bottom {
+	display:none;
+} 
+
+
+#frame>.content {
+/* set coordinates to visual (0,0,0,0) of #frame background,
+   as this object used as reference for positioning
+   child objects */
+	bottom:-11px;
+	left:0px;
+	right:0px;
+	top:-9px;
+}
+
+#frame>.content>.header {
+	height:37px;
+	-moz-border-radius: 10px 10px 0px 0px;
+	-webkit-border-radius: 10px 10px 0px 0px;
+	border-radius: 10px 10px 0px 0px;
+	background: -webkit-gradient(linear, left top, left bottom, from(#3fb8fa), to(#2881bb));
+	background: -moz-linear-gradient(top,#3fb8fa,#2881bb);
+}
+
+/* MODIFIED FOR IPAD */
+#frame>.content>.header>.cosmetic {
+	height:37px;
+}
+
+#frame>.content>.footer {
+	border:none;
+}
+
+#display {
+	position:absolute;
+	left:0;
+	right:0;
+	bottom:0;
+	overflow: hidden;
+}
+
+
+
+/*
+______________________________________________________________ 
+
+ JIF SCRIPTING CLASSES 
+______________________________________________________________ 
+
+Scripting classes represent a kind of API for the JIF interactive and layout logic.
+
+Some of the selectors in this group are used as flags for the framework interactive logic to embue 
+objects with specific behavior or layout.  
+
+Others are the selectors that are assigned to objects automatically.
+
+*/
+
+.centered_horz {
+	/* note: any object assigned this class will 
+	automatically be assigned margin-left: -(this.width/2)
+	*/
+	position: absolute;
+}
+
+.centered_vert {
+	/* note: any object assigned this class will 
+	automatically be assigned margin-top: -(this.height/2)
+	*/
+	position: absolute;
+}
+
+.sizer {
+	/* an object with this class can be dragged to size its parent, if, 
+	   and only if, the parent has class .sizeable
+	*/
+}
+
+.sizeable {
+	/* an object with this class can be resized, if, 
+	   and only if, it contains a child with class .sizer
+	*/
+}
+
+.mover {
+	/* an object with this class can be dragged to move its parent, if, 
+	   and only if, the parent has class .moveable
+	*/
+	cursor: move;
+}
+
+.moveable {
+	/* an object with this class can be dragged, if, 
+	   and only if, it has a child with class .moveable upon which a mouseMove event occurs
+	*/
+}
+
+.draggable {
+	/* an object with this class can be dragged directly
+	*/
+}
+
+.wrap.dragging,
+.overlay.col.dragging,
+.overlay.group.dragging,
+.overlay.xtab.gr.dragging,
+.overlay.xtab.m.dragging,
+.overlay.legend.dragging,
+.dragMultiple.dragging .wrap {
+	/* an object being dragged gets the .dragging class applied
+	*/
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	background-color:#217EB5 !important;
+	border:1px solid #CCCCCC !important;
+	color:white !important;
+	float:left;
+	line-height:2em;
+	height: 2em;
+	margin:3px 2% 0 2px;
+	opacity:0.7 !important;
+	padding:0 9px;
+	width:auto !important;
+}
+
+.copy {
+    cursor:url("images/cursor_copy.cur"), default !important;
+}
+
+.copy .dropTarget {
+    cursor:url("images/cursor_copy.cur"), default !important;
+}
+
+
+.dropTarget {
+	/* an object that is a valid drop target during a drag gets this class applied
+	   when the dragged object is on top of it
+	*/
+	background-color:#A9CADD !important;
+}
+
+.button {
+	/* an object with this class will have get its class attribute modified by mouse events:
+		- onMouseOver, .over added
+		- onMouseDown, .over removed, .pressed added
+		- onMouseOut, .over || .pressed removed
+	   in addition, onMouseUp will trigger a generic event for the object caught by the buttonHandler
+	*/
+}
+
+.over {
+	/* added to the class attribute of element.button onMouseOver
+	*/
+}
+
+.pressed {
+	/* added to the class attribute of element.button onMouseDown
+	*/
+}
+
+.noBubble {
+	/* an object with this class will get mouse events, but will not permit those events
+	   to bubble up the DOM
+	*/
+}
+
+.button.toggle {
+	/* this element will always have either class attribute .up or .down; value switched onMouseUp
+	*/
+}
+
+.up {
+	/* assigned automatically to .button.toggle
+	*/
+}
+
+.down {
+	/* assigned automatically to .button.toggle
+	*/
+}
+
+.button.minimize {
+	/* a special button understood to toggle the visible state of its parent container
+	   from a regular size to a .minimized state
+	*/
+}
+
+.minimized {
+	/* assigned or removed from a container by a mouseUp on the container's .button.minimize child
+	*/
+}
+
+.node {
+	/* a list element understood to be a parent of another list; always has either .open or .closed
+	   as part of its class attribute
+	*/
+}
+
+.open {
+	/* assigned automatically to li.node
+	*/
+}
+
+.closed {
+	/* assigned automatically to li.node
+	*/
+}
+
+.leaf{
+	/* a list element that does not contain another list
+	*/
+}
+
+.selected {
+	/* assigned to the currently selected list element
+	*/
+}
+
+.editMode {
+	/* assigned automatically to forms based on a user event, this flag is then
+	   used to conditionally hide or show form objects as appropriate
+	*/
+}
+
+.hidden {
+	/* rather than set the display value inline, scripts use this
+	   selector to hide or show objects based on user events
+	*/
+	display:none !important;
+}
+
+
+
+
+/*
+______________________________________________________________ 
+
+ UTILITY STYLES 
+______________________________________________________________ 
+
+*/
+
+	
+.rndCorners-all {
+	border-radius:8px;
+	-moz-border-radius:8px; 
+	-webkit-border-radius:8px;
+}
+
+.rndCorners-top {
+	-moz-border-radius: 8px 8px 0px 0px;
+	-webkit-border-radius: 8px 8px 0px 0px;
+	border-radius: 8px 8px 0px 0px;
+}
+
+.rndCorners-topLeft {
+	-moz-border-radius: 8px 0px 0px 0px;
+	-webkit-border-radius: 8px 0px 0px 0px;
+	border-radius: 8px 0px 0px 0px;
+}
+
+.rndCorners-topRight {
+	-moz-border-radius: 0px 8px 0px 0px;
+	-webkit-border-radius: 0px 8px 0px 0px;
+	border-radius: 0px 8px 0px 0px;
+}
+
+.rndCorners-right {
+	-moz-border-radius: 0px 8px 8px 0px;
+	-webkit-border-radius: 0px 8px 8px 0px;
+	border-radius: 0px 8px 8px 0px;
+}
+
+.rndCorners-left {
+	-moz-border-radius: 8px 0px 0px 8px;
+	-webkit-border-radius: 8px 0px 0px 8px;
+	border-radius: 8px 0px 0px 8px;
+}
+
+.rndCorners-bottom {
+	-moz-border-radius: 0px 0px 8px 8px;
+	-webkit-border-radius: 0px 0px 8px 8px;
+	border-radius: 0px 0px 8px 8px;
+}
+
+.rndCorners-bottomLeft {
+	-moz-border-radius: 0px 0px 0px 8px;
+	-webkit-border-radius: 0px 0px 0px 8px;
+	border-radius: 0px 0px 0px 8px;
+}
+
+.rndCorners-bottomRight {
+	-moz-border-radius: 0px 0px 8px 0px;
+	-webkit-border-radius: 0px 0px 8px 0px;
+	border-radius: 0px 0px 8px 0px;
+}
+
+.offLeft, .offLeft span,.wrap.offLeft,.wrap.header.offLeft {
+/* visually hide something but leave it available to screen reader */
+	position: absolute !important;
+	left: -9999px;
+	width:9999px;
+	z-index: -5;
+}
+
+.centering {
+/* only centers if object has explicit width */
+	margin:0 auto;
+	position:relative;
+}
+
+#reportViewer.noDecoration .header div.title {
+	visibility:hidden;
+}
+
+.noDecoration #metaLinks {
+	display:none;
+}
+
+/*
+______________________________________________________________
+
+ FIREFOX STYLES
+______________________________________________________________
+
+*/
+
+/* the styles below target ONLY firefox. implemented in v4.2 due to FF 3.5 lack of gradient support */
+@-moz-document url-prefix() {
+	
+	#frame>.content>.header {
+		background-image: url(images/frame_header_sprite.png);
+		background-position: right -144px;
+		background-repeat: repeat-x;
+		border:none;
+	}
+
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+	html, body {
+        overflow:hidden;
+  	}
+  	
+	#copyright {
+		margin:4px 20px;
+		text-align: right;
+	}
+	
+	#frame {
+		margin-bottom:0;
+		margin-top:37px;
+		margin-left:0;
+		margin-right:0;
+	}
+	
+	#frame>.content {
+		bottom:0;
+		left:0;
+		right:0;
+		top:0;
+	}
+	
+	#frame>.content>.header {
+		-webkit-border-radius: 0;
+		-moz-border-radius: 0;
+		border-radius: 0;
+	}
+	
+	#logo {
+		left:12px;
+		top:6px;
+		width:120px;
+		height:24px;
+		border:none;
+		background:url(images/logo_small.png) 0 0;
+	}
+	
+	#globalSearch {
+		top:7px;
+		left: auto;
+		right:-32px;
+		width:200px;
+	}
+	
+	#metaLinks {
+		right:180px;
+		top:11px;
+	}
+	
+	#loginPage #metaLinks {
+		right:8px;
+	}
+	
+	#mainNavigation {
+		top:-36px;
+		left:130px;
+		z-index:2;
+	}
+}
+
+/* Fixing highlighting on touch for iPad */
+#mainNavigation, input, .button, .leaf, .list, .column, .content {
+   -webkit-tap-highlight-color: rgba(0,0,0,0);
+}

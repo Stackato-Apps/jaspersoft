@@ -1,0 +1,941 @@
+/*
+.buttons css
+pods theme
+tim sheiner and christie rixford
+*/
+
+
+/* .button style solution from the filament group
+http://www.filamentgroup.com/lab/update_styling_the_button_element_with_css_sliding_doors_now_with_image_spr/
+*/
+
+
+/* SHARED .button STYLES: */
+
+.button {
+	position: relative;
+	border: 0;
+	padding: 0;
+	cursor: pointer;
+	overflow: visible; /* removes extra side padding in IE */
+	background-repeat: no-repeat;
+	background-color: transparent;
+}
+
+.button.disabled,
+.button[disabled] {
+	cursor:default;
+}
+
+.button::-moz-focus-inner {
+	padding:0;
+	border: none; /* overrides extra padding in Firefox */
+}
+
+.button .wrap {
+	position: relative;
+	display: block !important;
+	white-space: nowrap;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+/* Safari and Google Chrome only */
+
+	/*to address discrepancy in rendering between PC and Mac WebKit*/
+
+	.button {
+		margin-top: -1px;
+		margin-bottom: -1px;
+	}
+
+	.button>.wrap {
+  		margin-top:-1px;
+	}
+
+	.tabSet.horizontal .button>.wrap {
+		margin-top:0;
+	}
+	
+	#resultsList .button {
+		margin-top:0px;
+	}
+}
+
+.button .icon,
+.button .indicator {
+	display: inline-block;
+	background-repeat: no-repeat;
+}
+
+.button .indicator {
+	background-image: url(images/disclosure_indicators_sprite.png);
+	width:9px;
+	height: 24px;
+	right:0;
+	top:0;
+	position: absolute;
+}
+
+.button .icon {
+	width:20px;
+	height:24px;
+	position: absolute;
+	top:0;
+	left:0;
+}
+
+.button.capsule.first .icon {
+	left:12px;
+}
+
+.button.disabled .icon,
+.button[disabled] .icon {
+	opacity:.4;
+}
+
+
+/* .button.action */
+
+.action {
+	padding: 0 15px 0 0;
+	margin-right:5px;
+	text-align: center;
+	display: inline-block;
+	text-decoration: none;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	background: -webkit-gradient(linear, left top, left bottom, from(#e7e7e7), to(#c1c1c1));
+	background: -moz-linear-gradient(top,#e7e7e7,#c1c1c1);}
+
+.action>.wrap {
+	padding:0 0 0 15px;
+	line-height: 32px;
+	font-size: 11px;
+	background-position: left 0;}
+
+.action.over {
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	background: -webkit-gradient(linear, left top, left bottom, from(#e4e0e0), to(#5a5a5b));
+	background: -moz-linear-gradient(top,#e4e0e0,#5a5a5b);
+}
+
+/* This is new because I cold NOT figure out where the orange on mouse over comes from */
+.action.primary.over {
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	background: -webkit-gradient(linear, left top, left bottom, from(#faac1f), to(#f9771d));
+	background: -moz-linear-gradient(top,#faac1f,#f9771d);
+}
+
+.action.over>.wrap {}
+
+.action.pressed {
+	background: -webkit-gradient(linear, left top, left bottom, from(#e4e0e0), to(#5a5a5b));
+	background: -moz-linear-gradient(top,#e4e0e0,#5a5a5b);
+	-moz-box-shadow: inset 0px 3px 3px #4f4f4f;
+	-webkit-box-shadow: inset 0px 3px 3px #4f4f4f;
+	box-shadow: inset 0px 3px 3px #4f4f4f;}
+
+/* This is new because I cold NOT figure out where the orange on mouse press comes from */
+.action.primary.pressed {
+	background: -webkit-gradient(linear, left top, left bottom, from(#faac1f), to(#f9771d));
+	background: -moz-linear-gradient(top,#faac1f,#f9771d);
+	-moz-box-shadow: inset 0px 3px 3px #4f4f4f;
+	-webkit-box-shadow: inset 0px 3px 3px #4f4f4f;
+	box-shadow: inset 0px 3px 3px #4f4f4f;
+}
+
+.action.pressed>.wrap {}
+
+.action.disabled,
+.action[disabled] {
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	background: -webkit-gradient(linear, left top, left bottom, from(#e7e7e7), to(#c1c1c1));
+	background: -moz-linear-gradient(top,#e7e7e7,#c1c1c1);
+}
+
+.action.disabled>.wrap,
+.action[disabled]>.wrap {
+	background-position: left 0px;
+}
+
+.action.primary {
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	background: -webkit-gradient(linear, left top, left bottom, from(#3fb8fa), to(#2881bb));
+	background: -moz-linear-gradient(top,#3fb8fa,#2881bb);
+}
+
+.action.primary>.wrap {
+	padding-left:15px
+}
+
+
+/* action.jumbo */
+
+.action.jumbo {
+	padding: 0 34px 0 0;
+	margin-right:5px;
+	margin-left:5px;
+	text-align: center;
+	text-decoration:none;
+	background-color:#ffffff;
+	background-image:none;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	-moz-box-shadow: 0px 4px 4px #4f4f4f;
+	-webkit-box-shadow: 0px 4px 4px #4f4f4f;
+	box-shadow: 0px 4px 4px #4f4f4f;
+}
+
+.action.jumbo>.wrap {
+	font-size:22px;
+	height:180px;
+	left:2px;
+	line-height:40px;
+	padding:0 0 0 25px;
+	min-width: 222px;
+	margin-top:0;
+}
+
+.action.jumbo>.icon {
+	background-image: url(images/home_icons_sprite.png);
+	width:222px;
+	height:130px;
+	position: absolute;
+	top:50%;
+	left:50%;
+	margin-left:-111px;
+	margin-top:-50px;
+}
+
+
+.action.jumbo.over {
+	background-color: #fc870e;
+}
+
+.action.jumbo.over>.wrap {
+}
+
+.action.jumbo.pressed {
+	background-color: #fc870e;
+	-moz-box-shadow: 0px 0px 0px;
+	-webkit-box-shadow: 0px 0px 0px ;
+	box-shadow: 0px 0px 0px;
+}
+
+.action.jumbo.pressed>.wrap {
+}
+
+.action.jumbo.disabled,
+.action.jumbo[disabled] {
+	background-color: #ffffff;
+}
+
+.action.jumbo.disabled>.wrap,
+.action.jumbo[disabled]>.wrap {
+}
+
+
+/* .action.square.button */
+
+.action.square {
+	text-align: center;
+	width:34px;
+}
+
+.action.square>.wrap {
+	height: 32px;
+	width: 20px;
+	background-position: left top;
+	padding:0;
+	text-indent:-5000px;
+}
+
+.action.square>.wrap>.icon {
+	display: block;
+	height: 32px;
+	width: 34px;
+	background-image: url(images/button_action_square_icons_sprite.png);
+	background-repeat: no-repeat;
+}
+
+.action.square.over {
+	background: -webkit-gradient(linear, left top, left bottom, from(#e4e0e0), to(#5a5a5b));
+	background: -moz-linear-gradient(top,#e4e0e0,#5a5a5b);
+}
+
+.action.square.over>.wrap {}
+
+.action.square.pressed {
+	background: -webkit-gradient(linear, left top, left bottom, from(#e4e0e0), to(#5a5a5b));
+	background: -moz-linear-gradient(top,#e4e0e0,#5a5a5b);
+	-moz-box-shadow: inset 0px 3px 3px #4f4f4f;
+	-webkit-box-shadow: inset 0px 3px 3px #4f4f4f;
+	box-shadow: inset 0px 3px 3px #4f4f4f;
+}
+
+.action.square.pressed>.wrap {}
+
+
+/* .button.options */
+
+.button.options {
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	padding: 0 15px 0 0;
+	margin-right:5px;
+	text-align: center;
+	background-color:#e4e4e4;
+}
+
+.button.options>.wrap {
+  padding: 0 0 0 15px;
+  line-height: 21px;
+}
+
+.button.options.over {
+	background-color: #adadad;
+}
+
+.button.options.pressed {
+	background-color: #adadad;
+	-moz-box-shadow: inset 0px 3px 3px #4f4f4f;
+	-webkit-box-shadow: inset 0px 3px 3px #4f4f4f;
+	box-shadow: inset 0px 3px 3px #4f4f4f;
+}
+
+
+/* .button.capsule */
+/* metrics */
+
+.button.capsule {
+	padding: 0 15px 0 0;
+ 	margin:4px 5px 4px auto;
+ 	text-align: center;
+ 	border:1px solid #8f8f8f;
+ 	-moz-border-radius: 20px;
+	-webkit-border-radius: 20px;
+	border-radius: 20px;
+	border-right:1px solid #8f8f8f;
+}
+
+.button.capsule .wrap {
+  padding: 0 0 0 15px;
+  line-height: 24px;
+  height: 24px;
+  min-width: 20px;
+}
+
+.button.capsule .icon {
+	left:6px;
+}
+
+.button.capsule.mutton .wrap {
+  padding-right: 10px;
+}
+
+.buttonSet .button.capsule.first {
+	padding-right: 0px;
+	margin-right:0;
+	-moz-border-radius: 20px 0px 0px 20px;
+	-webkit-border-radius: 20px 0px 0px 20px;
+	border-radius: 20px 0px 0px 20px;
+	border-right:none;
+}
+
+.buttonSet .button.capsule.middle {
+	margin-right:0;
+	padding-right:5px;
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+	border-radius: 0px;
+	border-right:none;
+}
+
+.buttonSet .button.capsule.middle .wrap,
+.buttonSet .button.capsule.last .wrap {
+	padding-left:5px;
+}
+
+.buttonSet .button.capsule.first .wrap {
+	border-left:none;
+	padding-left:15px;
+	padding-right:3px;
+}
+
+.buttonSet .button.capsule.last {
+	padding-right:12px;
+	-moz-border-radius: 0px 20px 20px 0px;
+	-webkit-border-radius: 0px 20px 20px 0px;
+	border-radius: 0px 20px 20px 0px;
+	border-right:1px solid #8f8f8f;
+}
+
+.buttonSet {
+	margin:0;
+	display: inline-block;
+	position: relative;
+}
+
+.buttons .button.capsule {
+	padding-right:10px;
+}
+
+.buttons .button.capsule .wrap {
+	padding-left:10px;
+}
+
+.buttons .button.capsule .icon {
+	left:8px;
+}
+
+
+/* sprite positions */
+
+.button.capsule .indicator {
+	background-position: 0px -44px;
+}
+
+.button.capsule.over .indicator,
+.button.capsule.pressed .indicator {
+	background-position: 0px -78px;
+}
+
+.button.capsule.up {
+}
+
+.button.capsule.up .wrap  {
+  background-position: left top;
+}
+
+.button.capsule.up.over {
+	background: -webkit-gradient(linear, left top, left bottom, from(#fdc457), to(#fa7c10));
+	background: -moz-linear-gradient(top,#fdc457,#fa7c10);
+}
+
+.button.capsule.up.over .wrap {
+}
+
+.button.capsule.up.pressed {
+	background-color:#ff720a;
+	-moz-box-shadow: inset 0px 3px 3px #9f4d09;
+	-webkit-box-shadow: inset 0px 3px 3px #9f4d09;
+	box-shadow: inset 0px 3px 3px #9f4d09;
+}
+
+.button.capsule.up.pressed .wrap {}
+
+.button.capsule.down,
+.button.capsule.down.over {
+	background-color:#ff720a;
+	-moz-box-shadow: inset 0px 3px 3px #9f4d09;
+	-webkit-box-shadow: inset 0px 3px 3px #9f4d09;
+	box-shadow: inset 0px 3px 3px #9f4d09;
+}
+
+.button.capsule.down .wrap,
+.button.capsule.down.over .wrap {
+}
+
+.button.capsule.disabled {
+}
+
+.button.capsule.disabled .wrap {
+}
+
+.button.capsule.down.pressed {
+	background: -webkit-gradient(linear, left top, left bottom, from(#fdc457), to(#ff720a));
+	background: -moz-linear-gradient(top,#fdc457,#ff720a);
+	-moz-box-shadow: inset 0px 3px 3px #9f4d09;
+	-webkit-box-shadow: inset 0px 3px 3px #9f4d09;
+	box-shadow: inset 0px 3px 3px #9f4d09;
+}
+
+.button.capsule.down.pressed .wrap {}
+
+
+/* grouped capsule .buttons */
+
+.button.capsule.up.first {
+}
+
+.button.capsule.up.first.over {
+}
+
+.button.capsule.up.middle,
+.button.capsule.up.middle .wrap,
+.button.capsule.up.last .wrap {
+}
+
+.button.capsule.up.middle.over,
+.button.capsule.up.middle.over .wrap,
+.button.capsule.up.last.over .wrap {
+}
+
+.button.capsule.up.middle.pressed .wrap,
+.button.capsule.up.last.pressed .wrap,
+.button.capsule.down.middle .wrap,
+.button.capsule.down.last .wrap,
+.button.capsule.down.middle.over .wrap,
+.button.capsule.down.last.over .wrap {
+}
+
+.button.capsule.up.first.pressed,
+.button.capsule.up.middle.pressed,
+.button.capsule.down.first,
+.button.capsule.down.first.over,
+.button.capsule.down.middle,
+.button.capsule.down.middle.over {
+}
+
+.button.capsule.down.middle.pressed .wrap,
+.button.capsule.down.last.pressed .wrap {
+}
+
+.button.capsule.down.first.pressed,
+.button.capsule.down.middle.pressed {
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+/* Safari and Google Chrome only */
+
+	/*to address discrepancy in rendering between PC and Mac WebKit
+	  - not entitely satisfactory because does not preserve identical appearance to FF in Mac case
+	*/
+	.button.capsule.middle>.wrap,
+	.button.capsule.last>.wrap {
+		margin-left:-3px;
+		padding-left: 8px !important;
+	}
+}
+
+
+/*.button.minimize */
+
+.button.minimize {
+	height: 16px;
+	width: 16px;
+	display: block;
+	background-image: url(images/disclosure_indicators_sprite.png);
+	background-repeat: no-repeat;
+	background-position: 0 -489px;
+	top:10px;
+	left: 0;
+	z-index: 10;
+	text-indent: -9999px;
+}
+
+.button.minimize.over {
+	background-position: 0 -522px;
+}
+
+.button.minimize.pressed {
+	background-position: 0 -555px;
+}
+
+.minimized .button.minimize {
+
+}
+
+
+/* .button.disclosure */
+
+.button.disclosure {
+	height: 16px;
+	width: 16px;
+	display: inline-block;
+	background-image: url(images/disclosure_indicators_sprite.png);
+	background-repeat: no-repeat;
+	vertical-align: middle;
+}
+
+.closed .button.disclosure,
+.minimized .button.disclosure {
+	background-position: 0px -205px;
+}
+
+.closed .button.disclosure.over,
+.minimized .button.disclosure.over {
+	background-position: 0px -229px;
+}
+
+.closed .button.disclosure.pressed,
+.minimized .button.disclosure.pressed {
+	background-position: 0px -257px;
+}
+
+.button.disclosure,
+.button.disclosure.down {
+	background-position: 0px -286px;
+}
+
+.button.disclosure.over,
+.button.disclosure.down.over {
+	background-position: 0px -310px;
+}
+
+.button.disclosure.pressed,
+.button.disclosure.down.pressed {
+	background-position: 0px -336px;
+}
+
+
+/* .button.scheduled */
+
+.button.scheduled {
+	height: 16px;
+	width: 16px;
+	display: inline-block;
+	background-image: url(images/disclosure_indicators_sprite.png);
+	background-repeat: no-repeat;
+	background-position: 0 -406px;
+	z-index: 10;
+	position: relative;
+}
+
+.button.scheduled.over {
+	background-position: 0 -432px;
+}
+
+.button.scheduled.pressed {
+	background-position: 0 -458px;
+}
+
+
+/* .button.picker */
+
+.button.picker {
+	height: 16px;
+	width: 16px;
+	display: inline;
+	background-image: url(images/disclosure_indicators_sprite.png);
+	background-repeat: no-repeat;
+	background-position: -1px -589px;
+	z-index: 10;
+}
+
+.button.picker.over {
+	background-position: 0 -618px;
+}
+
+.button.picker.pressed {
+	background-position: 0 -653px;
+}
+
+
+/* .button.search */
+
+#globalSearch .button.search {
+	height:29px;
+	width: 41px;
+	margin-top:-2px;
+	margin-right:-3px;
+}
+
+#globalSearch .button.search.up,
+#globalSearch .button.search.disabled {
+	background-position: 0px -75px;
+}
+
+#globalSearch .button.search.over {
+	background-position: -63px -75px;
+}
+
+#globalSearch .button.search.pressed {
+	background-position: -131px -76px;
+}
+
+.button.search {
+	height:24px;
+	width: 35px;
+	background-image: url(images/search_sprite.png);
+	background-repeat: no-repeat;
+}
+
+.button.search.up,
+.button.search.disabled {
+	background-position: 0px -124px;
+}
+
+.button.search.over {
+	background-position: -64px -124px;
+}
+
+.button.search.pressed {
+	background-position: -132px -124px;
+}
+
+
+/* .move.button */
+
+.move.right .icon {
+	background-position: 7px 9px;
+}
+
+.move.left .icon {
+	background-position: 8px -44px;
+}
+
+.move.toRight .icon {
+	background-position: 9px -150px;
+}
+
+.move.toLeft .icon {
+	background-position: 8px -97px;
+}
+
+.move.upward .icon {
+	background-position: 8px -217px;
+}
+
+.move.downward .icon {
+	background-position: 8px -270px;
+}
+
+.move.toTop .icon {
+	background-position: 8px -336px;
+}
+
+.move.toBottom .icon {
+	background-position: 8px -387px;
+}
+
+.move.right.over .icon,
+.move.right.pressed .icon {
+	background-position: -46px 9px;
+}
+
+.move.left.over .icon,
+.move.left.pressed .icon {
+	background-position: -46px -44px;
+}
+
+.move.toRight.over .icon,
+.move.toRight.pressed .icon  {
+	background-position: -46px -150px;
+}
+
+.move.toLeft.over .icon,
+.move.toLeft.pressed .icon {
+	background-position: -46px -97px;
+}
+
+.move.upward.over .icon,
+.move.upward.pressed .icon {
+	background-position: -46px -217px;
+}
+
+.move.downward.over .icon,
+.move.downward.pressed .icon {
+	background-position: -46px -270px;
+}
+
+.move.toTop.over .icon,
+.move.toTop.pressed .icon {
+	background-position: -46px -336px;
+}
+
+.move.toBottom.over .icon,
+.move.toBottom.pressed .icon {
+	background-position: -46px -387px;
+}
+
+
+/* .action.join.button */
+
+.action.join.left .icon {
+	background-position: 4px -693px;
+}
+
+.action.join.right .icon {
+	background-position: 4px -723px;
+}
+
+.action.join.inner .icon {
+	background-position: 4px -752px;
+}
+
+.action.join.full .icon {
+	background-position: 4px -780px;
+}
+
+.action.join.left.over .icon,
+.action.join.left.pressed .icon {
+	background-position: -32px -693px;
+}
+
+.action.join.right.over .icon,
+.action.join.right.pressed .icon {
+	background-position: -32px -723px;
+}
+
+.action.join.inner.over .icon,
+.action.join.inner.pressed .icon  {
+	background-position: -32px -752px;
+}
+
+.action.join.full.over .icon,
+.action.join.full.pressed .icon  {
+	background-position: -32px -780px;
+}
+
+/* domain designer buttons */
+#add.square>.wrap>.icon {
+	background-position: 6px -655px;
+}
+
+#add.square.over>.wrap>.icon,
+#add.square.pressed>.wrap>.icon {
+	background-position: -33px -655px;
+}
+
+#addToSet.square>.wrap>.icon {
+	background-position: 6px -615px;
+}
+
+#addToSet.square.over>.wrap>.icon,
+#addToSet.square.pressed>.wrap>.icon {
+	background-position: -33px -615px;
+}
+
+
+/* .button.action */
+
+.footer .action {
+	margin-bottom: 50px;
+	position:relative;
+	z-index:1;
+}
+
+
+/* .button.options */
+
+.filter .button.options {
+	margin-left:20px;
+	margin-right: 10px;
+	border-width: 0;
+}
+
+.filter .button.options>.wrap {
+	border-width: 0;
+}
+
+/*
+______________________________________________________________
+
+ FIREFOX STYLES
+______________________________________________________________
+
+*/
+
+/* the styles below target ONLY firefox. implemented in v4.2 due to FF 3.5 lack of gradient support */
+@-moz-document url-prefix() {
+
+	/* action primary buttons */
+	.action.primary,
+	.action.primary.disabled,
+	.action.primary[disabled]	{
+		background-image: url(images/button_action_primary_sprite.png);
+		background-position:left 0px;
+	}
+	
+	.action.primary>.wrap {
+		background:none;
+	}
+	
+	.action.primary.over {
+		background-image: url(images/button_action_primary_sprite.png);
+		background-position: left -104px; 
+	}
+	
+	.action.primary.pressed {
+		background-image: url(images/button_action_primary_sprite.png);
+		background-position: left -208px; 
+	}
+	
+	/* action buttons*/
+	.action { 
+		background-image: url(images/button_action_sprite.png);
+		background-position: left 0px;  
+		display: inline-block;
+		text-decoration: none;
+	}
+	
+	.action>.wrap {
+		background:none;
+	}
+	
+	.action.over,
+	.action.square.over { 
+		background-image: url(images/button_action_sprite.png);  
+		background-position: left -104px; 	
+	}
+	
+	.action.pressed,
+	.action.square.pressed { 
+		background-image: url(images/button_action_sprite.png);
+		background-position: left -208px; 
+	}
+	
+	.action.disabled,
+	.action[disabled] {
+		background-image: url(images/button_action_sprite.png);
+		background-position: left 0px; 
+	}
+	
+	.action.disabled>.wrap,
+	.action[disabled]>.wrap {
+		background:none;
+	}
+	
+	/* action.jumbo */
+
+	.action.jumbo { 
+		background-image: none;
+	}
+	
+	.action.jumbo>.wrap {
+		background:none;
+	}
+	
+	/* capsule buttons */
+	
+	.buttonSet .button.capsule.first {
+		-moz-border-radius: 20px 0px 0px 20px;
+		
+	}
+}
+
+/* iPads (portrait and landscape) */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+
+	.action.jumbo {
+		margin-top:5px;
+		margin-left:44px;
+		margin-right:0;
+		margin-bottom:44px;
+	}
+	
+	/* hide global search button */
+	#globalSearch .button.search,
+	#secondarySearchBox .button.search {
+		display:none;
+	}
+	
+	.button.minimize {
+		height: 24px;
+		width: 24px;
+	}
+}

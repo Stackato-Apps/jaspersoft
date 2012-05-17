@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+    <bean id="hibernateLoggingService" class="com.jaspersoft.jasperserver.api.engine.common.service.impl.HibernateLoggingService">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="securityContextProvider" ref="${bean.securityContextProvider}"/>
+        <property name="maximumAge" value="60"/>
+        <property name="objectMappingFactory" ref="mappingResourceFactory"/>
+        <property name="userHandler"><ref bean="${bean.standardUserPersistenceHandler}"/></property>
+    </bean>
+
+    <bean id="loggingService" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="target" ref="hibernateLoggingService"/>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="log*">PROPAGATION_REQUIRES_NEW</prop>
+                <prop key="purge*">PROPAGATION_REQUIRES_NEW</prop>
+                <prop key="update*">PROPAGATION_REQUIRED</prop>
+                <prop key="delete*">PROPAGATION_REQUIRED</prop>
+                <prop key="get*">PROPAGATION_REQUIRED</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="logPurgerJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="loggingService"/>
+        <property name="targetMethod" value="purge"/>
+    </bean>
+
+    <bean id="logPurgerTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="logPurgerJob"/>
+        <property name="cronExpression" value="0 0 2 * * ?"/>
+        <property name="volatility" value="true"/>
+    </bean>
+
+    <bean id="heartbeatBean" class="com.jaspersoft.jasperserver.war.common.HeartbeatBean" init-method="init">
+        <property name="enabled" value="true"/>
+        <property name="askForPermission" value="false"/>
+        <property name="permissionGranted" value="true"/>
+        <property name="tenantService" ref="${bean.hibernateTenantService}"/>
+        <property name="repositoryService" ref="unsecureRepositoryService"/>
+        <property name="engineService" ref="engineService"/>
+        <property name="localesList" ref="userLocalesList"/>
+        <property name="maxCacheSize" value="100"/>
+        <property name="cacheSaveInterval" value="600000"/><!-- ten minutes -->
+        <property name="dataSource" ref="dataSource"/>
+        <property name="url" value="https://www.jaspersoft.com/heartbeat/heartbeat.php"/>
+        <property name="productName" value="${property.productName}"/>
+        <property name="productVersion" value="${property.productVersion}"/>
+        <property name="contributor" ref="${bean.heartbeatContributor}"/>
+    </bean>
+
+    <bean id="nullFactoryBean" class="com.jaspersoft.jasperserver.war.common.NullFactoryBean"/>
+
+    <!--<bean id="nullBean" factory-bean="nullFactoryBean"/>-->
+
+    <bean id="heartbeatJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="heartbeatBean"/>
+        <property name="targetMethod" value="call"/>
+    </bean>
+
+    <bean id="heartbeatTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+        <property name="jobDetail" ref="heartbeatJob"/>
+        <!-- run on startup -->
+        <property name="startDelay" value="0"/>
+        <!-- once a week -->
+        <property name="repeatInterval" value="604800000"/>
+        <!-- once a day --><!--
+        <property name="repeatInterval" value="86400000"/> -->
+        <!-- once every hour --><!--
+        <property name="repeatInterval" value="3600000"/> -->
+        <!-- once a minute --><!--
+        <property name="repeatInterval" value="60000"/> -->
+        <!-- once a second --><!--
+        <property name="repeatInterval" value="1000"/> -->
+    </bean>
+
+    <bean id="maintenanceSchedulerTriggers" class="java.util.ArrayList">
+        <constructor-arg>
+            <list>
+                <ref bean="logPurgerTrigger"/>
+                <ref bean="heartbeatTrigger"/>
+                <ref bean="accessEventPurgerTrigger"/>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <bean id="maintenanceScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" lazy-init="false" destroy-method="destroy" depends-on="SchemaValidator">
+        <property name="waitForJobsToCompleteOnShutdown" value="true"/>
+        <property name="schedulerName" value="JasperServerMaintenanceScheduler"/>
+        <property name="quartzProperties">
+            <props>
+                <prop key="org.quartz.jobStore.class">org.quartz.simpl.RAMJobStore</prop>
+                <prop key="org.quartz.threadPool.threadCount">2</prop>
+                <prop key="org.quartz.threadPool.threadPriority">2</prop>
+            </props>
+        </property>
+        <property name="triggers" ref="${bean.maintenanceSchedulerTriggers}"/>
+    </bean>
+
+	<bean name="hibernateLoggingServiceUserDeleteListener"
+		class="com.jaspersoft.jasperserver.api.engine.common.service.impl.LoggingServiceUserDeleteListener"/>
+
+</beans>

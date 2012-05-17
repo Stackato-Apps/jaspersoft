@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<!-- Backing action for edit query flow -->
+	
+	<!-- README README README -->
+	<!-- This file is overwritten by the pro version -->
+	<!-- README README README -->
+
+	<bean id="editQueryAction" class="com.jaspersoft.jasperserver.war.action.EditQueryAction">
+		<property name="repository">
+			<ref bean="${bean.repositoryService}"/>
+		</property>
+		<property name="queryLanguages">
+			<list>
+				<value>sql</value>
+				<value>hql</value>
+				<value>domain</value>
+                <value>HiveQL</value>
+			</list>
+		</property>
+		<property name="queryLanguagesRequestAttrName" value="queryLanguages"/>
+		<property name="validator" ref="queryValidator"/>
+        <property name="dataSourceTreeDataProvider" ref="dsTreeDataProvider" />
+        <property name="messages" ref="messageSource"/>
+        <property name="configuration" ref="configurationBean"/>
+        <property name="customDataSourceFactory" ref="customDataSourceServiceFactory"/>
+	</bean>
+	<bean id="queryValidator" class="com.jaspersoft.jasperserver.war.validation.QueryValidator">
+		<property name="repository">
+		   <ref bean="${bean.repositoryService}"/>
+		</property>
+	</bean>
+
+    <import resource="repositoryExplorerBean.xml"/>
+
+</beans>

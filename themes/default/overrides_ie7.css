@@ -1,0 +1,739 @@
+/*
+overrides ie7
+
+intended scope:
+- one file for all overrides required to deal with IE7 standards implementation
+
+
+pods skin
+tim sheiner & christie rixford
+*/		
+
+html {
+	overflow:auto; /* hides disabled vertical scrollbar */
+}
+
+.dimmer {
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
+	filter: alpha(opacity=60);
+}
+
+
+/* tweaks to theme.css */
+
+#frame>.content {
+ 	background: none;
+}
+
+#frame>.content>.header {
+	overflow:visible;
+}
+
+
+#frame>.content>.header>.cosmetic {
+	background-image: url(images/frame_header_sprite.png);
+}
+
+.toolbar {
+	clear: left;
+}
+
+/* tweaks to containers.css */
+
+.primaryNav.menu .wrap {
+	height:35px;
+}
+
+.menu.vertical .leaf.separator {
+	height: auto;
+	margin-bottom: -10px;
+}
+
+.menu.vertical .wrap {
+	height: 2em;
+}
+
+.header>.title {
+	display:inline;
+} 
+
+.pane>.content>.header .icon,
+.pane>.content>.header .title,
+.pane>.content>.header .buttonSet {
+	float:left;
+	line-height: 20px;
+} 
+
+.pane>.content {
+	float:none;
+}
+
+.column>.content {
+	position: static;
+} 
+
+.panel.dialog .content {
+	min-width: 100px;
+}
+
+.system.info .message {
+	margin: 0 10px;
+}
+
+.panel.dialog>.content>.header>.cosmetic {
+	background-image: url(images/panel_dialog_header_sprite.png);
+}
+
+.panel.widget>.content>.header>.cosmetic {
+	background-image: url(images/panel_widget_header_sprite.png);
+}
+
+
+/* tweaks to dataDisplay.css */
+
+.data.table .transparent .value,
+.data.table .transparent .label {
+ 	border:none;
+}
+
+
+/* tweaks to dialogSpecific.css */
+
+.login {
+	width:250px;
+}
+
+.selectFile #fromLocal #fileUpload {
+	width:auto;
+	margin-bottom: 0;
+}
+
+.selectFile #fromRepo {
+	top:75px;
+}
+
+.selectFile #fromRepo label {
+	position: absolute;
+	top:0;
+	bottom:0;
+	left:20px;
+	right: 0;
+}
+
+.selectFile>.content>.body {
+	overflow: hidden;
+}
+
+.addOrganization,
+.addUser,
+.addRole {
+	width: 350px;
+}
+
+.dialog.customURL.noParams>.content>.body {
+	bottom:auto;
+}
+
+#calculatedField .list.inputSet {
+	width: 100%;
+}
+
+#calculatedField.swap .list.inputSet .leaf {
+	width: 100%;
+}
+
+.calculatedField .argument, 
+.calculatedField .operator {
+	float:none;
+	top:-3px;
+}
+
+.calculatedField.swap .argument.one {
+	margin-left:0;
+}
+
+.calculatedField.swap .operator {
+	margin-left:0;
+}
+
+#calculatedField #calculatedFieldOptions .leaf .control {
+	white-space: nowrap;
+	
+}
+
+.pane.inputControls .inputControls.list {
+	width: auto;
+}
+
+.pane.inputControls .inputControls.list input,
+.pane.inputControls .inputControls.list select {
+	width: auto !important;
+}
+
+.pane.inputControls .inputControls.list .text .wrap,
+.pane.inputControls .inputControls.list .select .wrap {
+	display: block;
+}
+
+
+
+/* tweaks to layout.css */
+
+.twoColumn>.column.primary {
+	right:20px;
+}
+
+
+.threeColumns_equal .column.tertiary {
+	right:20px; /*width of scrollbar */
+	left:67%;
+	width:auto;
+}
+
+#stepDisplay {
+	max-width: 900px;
+}
+
+
+/* tweaks to buttons.css */
+
+.button.action>.wrap,
+.tabSet.vertical.buttons>.tab>.button>.wrap, 
+.tabSet.horizontal.buttons>.tab>.button>.wrap,
+.button.capsule>.wrap,
+.button.options>.wrap {
+  font-size: 11px;
+}
+
+.button.action>.wrap {
+	height:32px;
+	background-image: url(images/button_action_sprite.png);
+}
+
+.button.action.primary>.wrap {
+	background-image: url(images/button_action_primary_sprite.png);
+}
+
+.button.action.jumbo>.wrap {
+	height:180px;
+	background-image: url(images/button_action_jumbo_sprite.png);
+	font-size: 22px; 
+}
+
+
+.button.options>.wrap {
+	height:21px;
+	background-image: url(images/button_options_sprite.png);
+}
+
+.filter .button.options {
+	left:30px;
+	top:5px;
+}
+
+.button.capsule>.wrap {
+	height:26px;
+	background-image: url(images/button_capsule_sprite.png);
+}
+
+.button.move>.wrap {
+	background-image: url(images/button_action_sprite.png);
+}
+
+.list.buttonSet .node, .list.buttonSet .leaf {
+	clear:none;
+	float:left;
+}
+
+.move.right[disabled] .icon,
+.move.right.disabled .icon {
+	background-position: -86px 9px;
+}
+
+.move.left[disabled] .icon,
+.move.left.disabled .icon {
+	background-position: -86px -44px;
+}
+
+.move.toRight[disabled] .icon,
+.move.toRight.disabled .icon  {
+	background-position: -86px -150px;
+}
+
+.move.toLeft[disabled] .icon,
+.move.toLeft.disabled .icon {
+	background-position: -86px -97px;
+}
+
+.move.upward[disabled] .icon,
+.move.upward.disabled .icon {
+	background-position: -86px -217px;
+}
+
+.move.downward[disabled] .icon,
+.move.downward.disabled .icon {
+	background-position: -86px -270px;
+}
+
+.move.toTop[disabled] .icon,
+.move.toTop.disabled .icon {
+	background-position: -86px -336px;
+}
+
+.move.toBottom[disabled] .icon,
+.move.toBottom.disabled .icon {
+	background-position: -86px -387px;
+}
+
+.action.join.left[disabled] .icon,
+.action.join.left.disabled .icon {
+	background-position: -91px -693px;
+}
+
+.action.join.right[disabled] .icon,
+.action.join.right.disabled .icon {
+	background-position: -91px -723px;
+}
+
+.action.join.inner[disabled] .icon,
+.action.join.inner.disabled .icon {
+	background-position: -91px -752px;
+}
+
+.action.join.full[disabled] .icon,
+.action.join.full.disabled .icon {
+	background-position: -91px -780px;
+}
+
+#add.square[disabled]>.wrap>.icon,
+#add.square.disabled>.wrap>.icon {
+	background-position: -88px -655px;
+}
+
+#addToSet.square[disabled]>.wrap>.icon,
+#addToSet.square.disabled>.wrap>.icon  {
+	background-position: -88px -615px;
+}
+
+#designer .toolbar #presentation.button[disabled] .icon {
+    background-position: -70px 5px;
+}
+
+#designer .toolbar  #explorer.button[disabled] .icon {
+    background-position: -70px 5px;
+}
+
+#designer .toolbar  #save.button[disabled] .icon {
+    background-position: -70px -31px;
+}
+
+#designer .toolbar  #execute.button[disabled] .icon {
+    background-position: -70px -108px;
+}
+
+#designer .toolbar  #redo.button[disabled] .icon {
+    background-position: -70px -232px;
+}
+
+#designer .toolbar  #undo.button[disabled] .icon {
+    background-position: -70px -194px;
+}
+
+#designer .toolbar  #undoAll.button[disabled] .icon {
+    background-position: -70px -277px;
+}
+
+#designer .toolbar  #pivot.button[disabled] .icon {
+    background-position: -70px -318px;
+}
+
+#designer .toolbar  #sort.button[disabled] .icon {
+    background-position: -70px -364px;
+}
+
+#designer .toolbar  #controls.button[disabled] .icon {
+    background-position: -70px -152px;
+}
+
+#designer .toolbar  #styles.button[disabled] .icon {
+    background-position: -70px -68px;
+}
+
+#designer .toolbar  #options.button[disabled] .icon {
+    background-position: -70px -407px;
+}
+
+
+
+
+/* tweaks to controls.css */
+
+.checkBox input[type="checkbox"],
+.radio input[type="radio"] {
+	position: absolute;
+	left:0;
+	top:-4px !important;
+}
+
+.tabSet.horizontal.buttons>.tab>.button>.wrap {
+  background-image: url(images/tabs_horizontal_sprite.png);
+  text-decoration: none;
+}
+
+.tabSet.horizontal.buttons>a:hover {
+  text-decoration: none;
+}
+
+.tabSet.vertical.buttons>.tab>.button>.wrap {
+  background-image: url(images/tabs_vertical_sprite.png);
+  zoom: 1;
+}
+
+.tabSet.vertical.buttons>.tab>.button {
+  clear:left;
+  margin: 0;
+  height:28px;
+  float: none;
+  zoom:1;
+  width:100%;
+}
+
+.tabSet.vertical .tab {
+	zoom: 1;
+}
+
+.tabSet.vertical .tab .wrap {
+	height:28px;	
+}
+
+.header>.searchLockup {
+	position:absolute;
+	margin-left:20px;
+	left:auto;
+}
+
+.control.searchLockup>.right {
+	z-index: 2;
+}
+
+.button.picker {
+	left:2px;
+}
+
+.control.picker {
+	vertical-align: top;
+}
+
+.control.combo>select {
+	display: block;
+}
+
+.control.pickWells > .control.combo.availableValues > select,
+.control.pickWells > .control.select.selectedValues > select {
+	left:0;
+	right:0;
+	
+}
+
+.control.pickWells > .control.select.selectedValues > select {
+	top:0;
+	height: 105px;
+	margin-top: 20px;
+}
+
+.leaf.editMode .control.input.text,
+.leaf.editMode .control.picker {
+	width:150px;
+}
+
+.leaf.editMode .control.combo {
+	width:185px;
+}
+
+textarea {
+	overflow: auto;
+}
+
+
+/* tweaks to lists.css */
+
+.list.responsive.filters .leaf>.wrap,
+.list.responsive.filters .node>.wrap {
+	line-height: 1.5em;
+	height: 2.5em;
+}
+
+.list.tabular.filters.twoColumn>.leaf>.wrap {
+    height: auto;
+}
+
+.list.tabular.threeColumn .column {
+	line-height: normal;
+}
+
+
+.list.tabular.threeColumn .column.two>p,
+.list.tabular.threeColumn .column.three>p  {
+	padding-top:3px;
+}
+
+.list.tabular.threeColumn .column>.wrap {
+	line-height: 1.5em;
+	height: 2.5em;
+}
+
+
+
+#repoBrowse .resourceDescription {
+	position: absolute;
+	top:0;
+	left:60%;
+}
+
+#repoBrowse .node .twoColumn .resourceDescription {
+	position: relative;
+}
+
+
+#repoBrowse .resourcePath {
+	word-wrap: break-word;
+}
+
+
+.list.locations {
+	position: static;
+}
+
+.list.tabular.filters>.leaf>.wrap>.condition>.operation {
+    margin:0 5px;
+}
+
+.list.tabular.twoColumn.filters .wrap>.column.two>.actions,
+.list.tabular.twoColumn.filters .wrap>.column.two>.lock {
+	height: 2.5em;
+	display: inline-block;
+}
+
+
+.list.palette>.leaf.chip {
+	float:left;
+	clear: none;
+}
+
+.list.palette>.leaf>.list.palette {
+	min-width:60px;
+}
+
+.list.palette>.leaf.button {
+	min-width: 60px;
+}
+
+.collapsible>li {
+	line-height: 2em;
+}
+
+#entitiesList .wrap.button {
+	height: 2em;
+	padding-top: .5em;
+	padding-bottom: 0;
+	margin-bottom: 0;
+	vertical-align: middle;
+}
+
+.list.collapsible .wrap {
+	padding-bottom: 3px;
+}
+
+
+.list.collapsible.type_tables .node>.wrap>.icon,
+.list.collapsible.type_sets .node>.wrap>.icon {
+	top:2px;
+}
+
+.list.collapsible.folders .wrap {
+	padding-bottom: 6px;
+}
+
+.list.collapsible.folders .wrap>.icon {
+	top:4px;
+}
+
+
+
+.list.inputControls {
+	width:250px;
+}
+
+.list.filters>li>.wrap>.icon {
+	top:4px;
+}
+
+.list.filters .leaf>.wrap {
+	height:2.5em;
+	line-height:normal;
+}
+
+.list.filters .wrap>.more.launcher,
+.list.filters .wrap>.fewer.launcher, {
+	position:relative;
+	top:-3px;
+}
+
+
+.list.filters>.leaf.editMode {
+	padding-bottom: 10px;
+}
+
+.fields>.node>.wrap>.icon,
+.fields.node>.wrap>.icon,
+.fields .node>.wrap>.icon {
+	top:1px;
+}
+
+
+/* tweaks to pageSpecific.css */
+/* adhoc */
+#designer #mainTableContainer .overlay {
+	background-color: transparent;
+}
+
+#designer #mainTableContainer .overlay.legend {
+	background-color: white;
+	 -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
+	filter: alpha(opacity=10);
+}
+
+#designer #mainTableContainer .overlay.legend.over {
+	background-color: blue;
+}
+
+
+#designer #mainTableContainer .overlay.legend.over,
+#designer #mainTableContainer .overlay.legend.pressed,
+#designer #mainTableContainer .overlay.legend.selected,  
+#designer #mainTableContainer .overlay.over,
+#designer #mainTableContainer .overlay.pressed,
+#designer #mainTableContainer .overlay.selected {
+	background-color: #217EB5;
+	 -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+	filter: alpha(opacity=30);
+}
+
+.overlay.col.dragging {
+	 -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)" !important;
+	filter: alpha(opacity=70) !important;
+}
+
+
+#locateJRXML .list.locations {
+	position: absolute;
+	top:0;
+	bottom:0;
+	left:0;
+	right: 0;
+}
+
+/* dashboard designer */
+
+.componentContainer>.overlay.button {
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    background-color: #eee;
+}
+
+.componentContainer>.overlay.pressed,
+.componentContainer.selected>.overlay {
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+	filter: alpha(opacity=70);
+	background-color: #eee;
+	border:2px dashed #217EB5;
+}
+
+.componentContainer.control.picker {
+	width:150px !important;
+}
+
+/* login page */
+#loginPage #buttons .primary {
+	float: left;
+}
+
+.pane.settings .control.checkBox .wrap {
+	left:20px;
+	position: relative;
+}
+
+.pane.settings .control.input.text .wrap {
+	left:110px;
+	position: relative;
+}
+
+.pane.settings .control.input.text>input,
+.pane.settings .control>select {
+	top:0;
+	left:0;
+	position: absolute;
+	width:100px;
+}
+
+/* scheduler */
+#scheduler_jobSetUp #calendarRecurrence .list > .leaf {
+	width:200px;
+}
+
+#scheduler_jobSetUp #fixedRepeat {
+    top: 2px !important;
+}
+
+
+.row.inputs.oneColumn .primary.column {
+	max-width: 590px;
+}
+
+.row.inputs.twoColumn_equal .column {
+	max-width: 440px;
+}
+
+/* messges */
+
+#messages #messageFilter {
+	position: relative;
+	top:3px;
+	left:5px;
+}
+
+/* logSettings */
+
+#logSettings .column.three select {
+	width: 100px;
+	margin-left:10px;
+}
+
+/* OLAP crosstab */
+
+.levels .level a,
+.members .member a {
+	color: #666 !important;
+}
+
+.olap .displayManager {
+	margin:5px;
+}
+
+.tokens .button {
+	display: inline !important;
+}
+
+.displayManager .tokens {
+	overflow: hidden;
+}
+
+.measure.draggable {
+	padding-left:15px;
+}
+
+.tokens>.measure>.handle {
+	position:absolute;
+	left:5px;
+	top:5px;
+}

@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:sec="http://www.springframework.org/schema/security"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+                http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd
+                http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-2.0.xsd">
+
+    <bean id="restServiceRegistry" class="com.jaspersoft.jasperserver.rest.MapRESTServiceRegistry">
+        <property name="services">
+            <map>
+                <entry key="login" value-ref="restLoginService"/>
+                <entry key="resources" value-ref="restResourcesService"/>
+                <entry key="job" value-ref="restJobSchedService"/>
+                <entry key="resource" value-ref="restResourceService"/>
+                <entry key="report" value-ref="restReportService"/>
+                <entry key="jobsummary" value-ref="restJobSummarySchedService"/>
+                <entry key="user" value-ref="restUserService"/>
+                <entry key="role" value-ref="RoleServiceTX"/>
+                <entry key="permission" value-ref="PermissionServiceTX"/>
+                <entry key="attribute" value-ref="restProfileAttributeService"/>
+
+            </map>
+        </property>
+    </bean>
+
+    <bean id="restAbstractService" class="com.jaspersoft.jasperserver.rest.RESTAbstractService" abstract="true">
+        <property name="restUtils" ref="${bean.restUtils}"/>
+    </bean>
+
+    <bean id="restLoginService" class="com.jaspersoft.jasperserver.rest.services.RESTLogin"/>
+    <bean id="restResourcesService" class="com.jaspersoft.jasperserver.rest.services.RESTResources"
+          parent="restAbstractService"/>
+    <bean id="restResourceService" class="com.jaspersoft.jasperserver.rest.services.RESTResource"
+          parent="restAbstractService"/>
+    <bean id="restReportService" class="com.jaspersoft.jasperserver.rest.services.RESTReport"
+          parent="restAbstractService"/>
+    <bean id="restJobSchedService" class="com.jaspersoft.jasperserver.rest.services.RESTJob"
+          parent="restAbstractService"/>
+    <bean id="restJobSummarySchedService" class="com.jaspersoft.jasperserver.rest.services.RESTJobSummary"
+          parent="restAbstractService"/>
+    <bean id="restUserService" class="com.jaspersoft.jasperserver.rest.services.RESTUser" parent="restAbstractService"/>
+    <bean id="restRoleService" class="com.jaspersoft.jasperserver.rest.services.RESTRole" parent="restAbstractService"/>
+    <bean id="restProfileAttributeService" class="com.jaspersoft.jasperserver.rest.services.RESTAttribute"
+          parent="restAbstractService"/>
+
+
+    <bean id="restUtils" class="com.jaspersoft.jasperserver.rest.utils.Utils">
+        <property name="specialRoles">
+            <map>
+                <entry key="SUPERUSER" value="ROLE_SUPERUSER"/>
+                <entry key="ADMINISTRATOR" value="ROLE_ADMINISTRATOR"/>
+            </map>
+        </property>
+    </bean>
+
+    <!-- PERMISSIONS -->
+    <bean id="PermissionServiceTarget" class="com.jaspersoft.jasperserver.rest.services.RESTPermission" parent="restAbstractService">
+        <property name="rolesToDisablePermissionEditForEveryone">
+            <util:list>
+                <value>ROLE_SUPERUSER</value>
+            </util:list>
+        </property>
+        <property name="rolesToDisablePermissionEditForNonSuperuser">
+            <util:list>
+                <value>ROLE_ADMINISTRATOR</value>
+            </util:list>
+        </property>
+    </bean>
+    <bean id="PermissionServiceTX" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="target" ref="PermissionServiceTarget"/>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="doGet*">PROPAGATION_REQUIRED,readOnly</prop>
+                <prop key="doPost*">PROPAGATION_REQUIRED</prop>
+                <prop key="doPut*">PROPAGATION_REQUIRED</prop>
+                <prop key="doDelete*">PROPAGATION_REQUIRED</prop>
+                <prop key="*">PROPAGATION_SUPPORTS</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- ROLES -->
+    <bean id="RoleServiceTarget" class="com.jaspersoft.jasperserver.rest.services.RESTRole"
+          parent="restAbstractService"/>
+    <bean id="RoleServiceTX" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="target" ref="RoleServiceTarget"/>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="doGet*">PROPAGATION_REQUIRED,readOnly</prop>
+                <prop key="doPost*">PROPAGATION_REQUIRED</prop>
+                <prop key="doPut*">PROPAGATION_REQUIRED</prop>
+                <prop key="doDelete*">PROPAGATION_REQUIRED</prop>
+                <prop key="*">PROPAGATION_SUPPORTS</prop>
+            </props>
+        </property>
+    </bean>
+
+
+    <bean id="addRESTServiceRegistry" class="com.jaspersoft.jasperserver.api.common.util.spring.GenericBeanUpdaterDefinition">
+        <property name="order" value="10"/>
+        <property name="beanName" value="restServiceRegistry"/>
+        <property name="propertyName" value="services"/>
+        <property name="operation" value="append"/>
+    </bean>
+
+
+    <!--  REMOTE SERVICES COMMON CONFIGURATION -->
+    <bean id="remoteServiceConfiguration" class="com.jaspersoft.jasperserver.remote.DefaultServicesConfiguration">
+        <property name="exportParametersMap" ref="exportParametersMap"/>
+        <property name="exportersMap" ref="remoteExportersMap"/>
+        <property name="tempFolder" value="/temp"/>
+        <property name="roleToAccessTempFolder" value="ROLE_ADMINISTRATOR"/>
+    </bean>
+
+    <bean id="remoteManagementServices" class="com.jaspersoft.jasperserver.remote.ManagementServices">
+        <property name="repository" ref="${bean.repositoryService}"/>
+        <property name="engine">
+            <ref bean="engineService"/>
+        </property>
+        <property name="runReportEngine">
+            <ref bean="engineService"/>
+        </property>
+        <property name="handlerRegistry" ref="remoteResourceHandlerRegistry"/>
+        <property name="auditContext" ref="${bean.auditContext}"/>
+        <property name="serviceConfiguration" ref="remoteServiceConfiguration"/>
+        <property name="messageSource" ref="messageSource"/>
+        <property name="resourceActionResolver" ref="remoteResourceActionResolver"/>
+        <property name="reportSchedulerService" ref="${bean.reportSchedulerService}"/>
+        <property name="userAndRoleManagementService" ref="${bean.userAndRoleManagementService}"/>
+        <property name="profileAttributeService" ref="profileAttributeService"/>
+        <property name="objectPermissionService" ref="${bean.objectPermissionService}"/>
+        <property name="userAuthorityService" ref="${bean.userAuthorityService}"/>
+    </bean>
+
+    <!-- Definition of the exporters implementation... -->
+    <bean id="remotePdfExporter" class="com.jaspersoft.jasperserver.remote.exporters.PdfExporter" scope="prototype">
+        <property name="exportParams" ref="pdfExportParameters"/>
+    </bean>
+    <bean id="remoteHtmlExporter" class="com.jaspersoft.jasperserver.remote.exporters.HtmlExporter" scope="prototype"/>
+
+    <bean id="remoteXlsExporter" class="com.jaspersoft.jasperserver.remote.exporters.XlsExporter" scope="prototype">
+        <property name="exportParams" ref="xlsExportParameters"/>
+    </bean>
+    <bean id="remoteRtfExporter" class="com.jaspersoft.jasperserver.remote.exporters.RtfExporter" scope="prototype"/>
+    <bean id="remoteCsvExporter" class="com.jaspersoft.jasperserver.remote.exporters.CsvExporter" scope="prototype">
+        <property name="exportParams" ref="csvExportParameters"/>
+    </bean>
+    <bean id="remoteXmlExporter" class="com.jaspersoft.jasperserver.remote.exporters.XmlExporter" scope="prototype"/>
+
+
+    <util:map id="remoteExportersMap">
+        <entry key="pdf" value-ref="remotePdfExporter"/>
+        <entry key="html" value-ref="remoteHtmlExporter"/>
+        <entry key="xls" value-ref="remoteXlsExporter"/>
+        <entry key="rtf" value-ref="remoteRtfExporter"/>
+        <entry key="csv" value-ref="remoteCsvExporter"/>
+        <entry key="xml" value-ref="remoteXmlExporter"/>
+        <!--
+        <entry key="odt" value-ref="odtExporter"/>
+                <entry key="txt" value-ref="txtExporter"/>        
+        <entry key="docx" value-ref="docxExporter"/>
+        <entry key="ods" value-ref="odsExporter"/>
+        <entry key="xlsx" value-ref="xlsxExporter"/>
+        -->
+    </util:map>
+
+    <util:map id="exportParametersMap">
+        <entry key="pdf" value-ref="pdfExportParameters"/>
+        <entry key="xls" value-ref="xlsExportParameters"/>
+        <entry key="csv" value-ref="csvExportParameters"/>
+        <!--
+        <entry key="txt" value-ref="txtExportParameters"/>
+        <entry key="ods" value-ref="odsExportParameters"/>
+        <entry key="xlsx" value-ref="xlsExportParameters"/>
+        -->
+    </util:map>
+
+    <!-- Default implementation of the resource action resolver -->
+    <bean id="remoteResourceActionResolver" class="com.jaspersoft.jasperserver.remote.DefaultResourceActionResolver">
+    </bean>
+
+    <bean id="remoteResourceHandlerRegistry" class="com.jaspersoft.jasperserver.remote.MapResourceHandlerRegistry">
+        <property name="handlers">
+            <map>
+                <entry key="folder">
+                    <ref bean="folderHandler"/>
+                </entry>
+                <entry key="img">
+                    <ref bean="fileHandler"/>
+                </entry>
+                <entry key="xml">
+                    <ref bean="fileHandler"/>
+                </entry>
+                <entry key="font">
+                    <ref bean="fileHandler"/>
+                </entry>
+                <entry key="jrxml">
+                    <ref bean="fileHandler"/>
+                </entry>
+                <entry key="jar">
+                    <ref bean="fileHandler"/>
+                </entry>
+                <entry key="prop">
+                    <ref bean="fileHandler"/>
+                </entry>
+                <entry key="jrtx">
+                    <ref bean="fileHandler"/>
+                </entry>
+                <entry key="reference">
+                    <ref bean="fileHandler"/>
+                </entry>
+                <entry key="olapMondrianSchema">
+                    <ref bean="fileHandler"/>
+                </entry>
+
+                <entry key="reportUnit">
+                    <ref bean="reportUnitHandler"/>
+                </entry>
+                <entry key="olapUnit">
+                    <ref bean="olapUnitHandler"/>
+                </entry>
+                <entry key="datasource">
+                    <ref bean="dataSourceHandler"/>
+                </entry>
+                <entry key="jdbc">
+                    <ref bean="jdbcDataSourceHandler"/>
+                </entry>
+                <entry key="jndi">
+                    <ref bean="jndiJdbcDataSourceHandler"/>
+                </entry>
+                <entry key="bean">
+                    <ref bean="beanDataSourceHandler"/>
+                </entry>
+                <entry key="custom">
+                    <ref bean="customDataSourceHandler"/>
+                </entry>
+                <entry key="inputControl">
+                    <ref bean="inputControlHandler"/>
+                </entry>
+                <entry key="dataType">
+                    <ref bean="dataTypeHandler"/>
+                </entry>
+                <entry key="olapXmlaCon">
+                    <ref bean="xmlaConnectionHandler"/>
+                </entry>
+                <entry key="olapMondrianCon">
+                    <ref bean="mondrianConnectionHandler"/>
+                </entry>
+                <entry key="xmlaConnection">
+                    <ref bean="xmlaConnectionHandler"/>
+                </entry>
+                <entry key="unknow">
+                    <ref bean="unknownResourceHandler"/>
+                </entry>
+                <entry key="lov">
+                    <ref bean="listOfValuesHandler"/>
+                </entry>
+                <entry key="query">
+                    <ref bean="queryHandler"/>
+                </entry>
+                <entry key="contentResource">
+                    <ref bean="contentResourceHandler"/>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="abstractResourceHandler" class="com.jaspersoft.jasperserver.remote.handlers.AbstractResourceHandler" abstract="true"/>
+    
+    <bean id="folderHandler" class="com.jaspersoft.jasperserver.remote.handlers.FolderHandler"
+          parent="${bean.abstractResourceHandler}"/>
+    <bean id="fileHandler" class="com.jaspersoft.jasperserver.remote.handlers.FileResourceHandler"
+          parent="${bean.abstractResourceHandler}"/>
+    <bean id="reportUnitHandler" class="com.jaspersoft.jasperserver.remote.handlers.ReportUnitHandler"
+          parent="${bean.abstractResourceHandler}"/>
+    <bean id="olapUnitHandler" class="com.jaspersoft.jasperserver.remote.handlers.OlapUnitHandler"
+          parent="${bean.abstractResourceHandler}"/>
+    <bean id="dataSourceHandler" class="com.jaspersoft.jasperserver.remote.handlers.DataSourceHandler"
+          parent="${bean.abstractResourceHandler}"/>
+    <bean id="jdbcDataSourceHandler" class="com.jaspersoft.jasperserver.remote.handlers.JdbcDataSourceHandler"
+          parent="${bean.abstractResourceHandler}"/>
+    <bean id="jndiJdbcDataSourceHandler" class="com.jaspersoft.jasperserver.remote.handlers.JndiJdbcDataSourceHandler"
+          parent="${bean.abstractResourceHandler}"/>
+    <bean id="beanDataSourceHandler" class="com.jaspersoft.jasperserver.remote.handlers.BeanDataSourceHandler"
+          parent="${bean.abstractResourceHandler}"/>
+    <bean id="customDataSourceHandler" class="com.jaspersoft.jasperserver.remote.handlers.CustomDataSourceHandler"
+          parent="${bean.abstractResourceHandler}"/>
+    <bean id="inputControlHandler" class="com.jaspersoft.jasperserver.remote.handlers.InputControlHandler"
+          parent="${bean.abstractResourceHandler}"/>
+    <bean id="dataTypeHandler" class="com.jaspersoft.jasperserver.remote.handlers.DataTypeHandler"
+          parent="${bean.abstractResourceHandler}"/>
+    <bean id="xmlaConnectionHandler" class="com.jaspersoft.jasperserver.remote.handlers.XmlaConnectionHandler"
+          parent="${bean.abstractResourceHandler}"/>
+    <bean id="mondrianConnectionHandler" class="com.jaspersoft.jasperserver.remote.handlers.MondrianConnectionHandler"
+          parent="${bean.abstractResourceHandler}"/>
+    <bean id="unknownResourceHandler" class="com.jaspersoft.jasperserver.remote.handlers.UnknownResourceHandler"
+          parent="${bean.abstractResourceHandler}"/>
+    <bean id="listOfValuesHandler" class="com.jaspersoft.jasperserver.remote.handlers.ListOfValuesHandler"
+          parent="${bean.abstractResourceHandler}"/>
+    <bean id="queryHandler" class="com.jaspersoft.jasperserver.remote.handlers.QueryHandler"
+          parent="${bean.abstractResourceHandler}"/>
+    <bean id="contentResourceHandler" class="com.jaspersoft.jasperserver.remote.handlers.ContentResourceHandler"
+          parent="${bean.abstractResourceHandler}"/>
+
+
+    <bean id="addRESTResourceHandler" class="com.jaspersoft.jasperserver.api.common.util.spring.GenericBeanUpdaterDefinition">
+        <property name="order" value="10"/>
+        <property name="beanName" value="remoteResourceHandlerRegistry"/>
+        <property name="propertyName" value="handlers"/>
+        <property name="operation" value="append"/>
+    </bean>
+</beans>

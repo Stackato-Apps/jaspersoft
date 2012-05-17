@@ -1,0 +1,381 @@
+/*
+overrides ie8
+
+intended scope:
+- one file for all overrides required to deal with IE8 standards implementation
+
+
+pods skin
+tim sheiner & christie rixford
+*/		
+
+#frame>.content {
+ 	background: none;
+}
+
+.dimmer {
+	filter: alpha(opacity=60);
+}
+
+/* button fixes */
+
+.button.action>.wrap,
+.tabSet.vertical.buttons>.tab>.button>.wrap, 
+.tabSet.horizontal.buttons>.tab>.button>.wrap,
+.button.capsule>.wrap,
+.button.options>.wrap,
+input,
+select {
+  font-size: 11px;
+}
+
+.button.action.jumbo>.wrap {
+	font-size: 22px; 
+}
+
+
+
+/* fix shift left and up for button:active */
+
+/* buttons shifts */
+
+
+button.button.disclosure:active,
+button.button.picker:active {
+	top:1px;
+}
+
+.sourceDialog #cancel.pressed {
+/* because this button is positioned absolutely */
+	margin-right:4px; 
+}
+
+
+
+/* background shifts */
+
+/*.action*/
+button.action:active {
+	position: relative;
+	left: 1px;
+}
+
+button.action:active .wrap {
+	left: -1px;
+}
+
+button.button.action:active {
+	background-position: right -259px;
+}
+
+button[disabled].button.action:active {
+	background-position: right -52px; 
+}
+
+button[disabled].button.action:active,
+button[disabled].button.action:active .wrap {
+	left:0px; 
+}
+
+
+
+button.button.action.jumbo:active {
+	-ms-background-position-y: -572px;
+}
+
+
+/*.options*/
+
+button.button.options:active {
+	position: relative;
+	left: 1px;
+}
+
+button.button.options.up:active .wrap {
+	left: -1px;
+}
+
+button.button.options.up:active {
+	-ms-background-position-y: -204px;
+}
+
+.header button.button.options.up:active {
+	position:absolute;
+	left:auto;
+}
+
+.header button.button.options.up:active .wrap {
+	left:auto;
+}
+
+
+/*.capsule*/
+button.button.capsule:active {
+	position: relative;
+	left: 1px;
+}
+
+button.button.capsule.up:active .wrap,
+button.button.capsule.down:active .wrap {
+	left: -1px;
+}
+
+button.button.capsule.up:active {
+	-ms-background-position-y: -321px;
+}
+
+button.button.capsule.down:active {
+	-ms-background-position-y: -459px;
+}
+
+button.button.capsule.first.up:active,
+button.button.capsule.middle.up:active {
+	-ms-background-position-y: -566px;
+}
+
+button.button.capsule.down.first:active,
+button.button.capsule.down.middle:active {   
+	-ms-background-position-y: -626px; 
+}
+
+button[disabled].button.capsule:active{
+	background-position: right -46px; 
+}
+
+button[disabled].button.capsule.first:active{
+	background-position: right -674px; 
+}
+
+button[disabled].button.capsule.middle:active{
+	background-position: left -92px;  
+}
+
+
+button[disabled].button.capsule:active,
+button[disabled].button.capsule:active .wrap {
+	left:0px; 
+}
+
+
+
+
+/*.move/.join*/
+.button.move:active,
+.button.join:active {
+	-ms-background-position-y: -259px;
+}
+
+
+/* END fix :active shift */
+
+/* fix for PNG opacity issue with disabled buttons */
+
+#designer .toolbar .button[disabled] .icon {
+	-ms-background-position-x: -70px !important;
+}
+
+.move.right[disabled] .icon,
+.move.right.disabled .icon {
+	background-position: -86px 9px;
+}
+
+.move.left[disabled] .icon,
+.move.left.disabled .icon {
+	background-position: -86px -44px;
+}
+
+.move.toRight[disabled] .icon,
+.move.toRight.disabled .icon  {
+	background-position: -86px -150px;
+}
+
+.move.toLeft[disabled] .icon,
+.move.toLeft.disabled .icon {
+	background-position: -86px -97px;
+}
+
+.move.upward[disabled] .icon,
+.move.upward.disabled .icon {
+	background-position: -86px -217px;
+}
+
+.move.downward[disabled] .icon,
+.move.downward.disabled .icon {
+	background-position: -86px -270px;
+}
+
+.move.toTop[disabled] .icon,
+.move.toTop.disabled .icon {
+	background-position: -86px -336px;
+}
+
+.move.toBottom[disabled] .icon,
+.move.toBottom.disabled .icon {
+	background-position: -86px -387px;
+}
+
+.action.join.left[disabled] .icon,
+.action.join.left.disabled .icon {
+	background-position: -91px -693px;
+}
+
+.action.join.right[disabled] .icon,
+.action.join.right.disabled .icon {
+	background-position: -91px -723px;
+}
+
+.action.join.inner[disabled] .icon,
+.action.join.inner.disabled .icon {
+	background-position: -91px -752px;
+}
+
+.action.join.full[disabled] .icon,
+.action.join.full.disabled .icon {
+	background-position: -91px -780px;
+}
+
+#add.square[disabled]>.wrap>.icon,
+#add.square.disabled>.wrap>.icon {
+	background-position: -88px -655px;
+}
+
+#addToSet.square[disabled]>.wrap>.icon,
+#addToSet.square.disabled>.wrap>.icon  {
+	background-position: -88px -615px;
+}
+
+/* pagination */
+
+#reportViewer #pagination .action.square.pressed {
+	background-position: right -571px !important;
+}
+
+
+.control.input.file input[type=file] {
+	width: auto;
+}
+
+.control [type="radio"],
+.control [type="checkbox"] {
+	top:-2px;
+}
+
+.panel.dialog.inlay.filter .column.two {
+	padding-right:5px;
+}
+
+.panel.dialog.inlay.filter .column.two .button.picker {
+	float:right;
+	margin-top:0;
+	left:20px
+}
+
+.panel.dialog.inlay.filter .control.combo.availableValues select,
+.panel.dialog.inlay.filter .control.select.selectedValues select {
+	top:auto;
+}
+
+
+.panel.dialog.inlay.filter .control.combo.availableValues select {
+	height:100px;
+}
+
+.panel.dialog.inlay.filter .control.select.selectedValues select {
+	height:130px;
+}
+
+/* tweaks to list.css */
+
+#repoBrowse .resourcePath {
+	word-wrap: break-word;
+}
+
+/* tweaks to pageSpecific.css */
+/* adhoc */
+#designer #mainTableContainer .overlay {
+	background-color: transparent;
+}
+
+#designer #mainTableContainer .overlay.legend {
+	background-color: white;
+	filter: alpha(opacity=10);
+}
+
+#designer #mainTableContainer .overlay.legend.over {
+	background-color: blue;
+}
+
+
+#designer #mainTableContainer .overlay.legend.over,
+#designer #mainTableContainer .overlay.legend.pressed,
+#designer #mainTableContainer .overlay.legend.selected,  
+#designer #mainTableContainer .overlay.over,
+#designer #mainTableContainer .overlay.pressed,
+#designer #mainTableContainer .overlay.selected {
+	background-color: #217EB5;
+	filter: alpha(opacity=30);
+}
+
+.overlay.col.dragging {
+	filter: alpha(opacity=70) !important;
+}
+
+
+
+/* dashboard designer */
+
+.componentContainer>.overlay.button {
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    background-color: #eee;
+}
+
+.componentContainer>.overlay.pressed,
+.componentContainer.selected>.overlay {
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+	filter: alpha(opacity=70);
+	background-color: #eee;
+	border:2px dashed #217EB5;
+}
+
+/* scheduler_jobSetUp */
+
+#scheduler_jobSetUp #fixedRepeat {
+    top: 0;
+}
+
+#scheduler_jobSetUp #startDate,
+#scheduler_jobSetUp #calendarRepeat {
+    top: 7px;
+}
+
+#scheduler_jobSetUp #theMonthDays {
+    margin-left:20px;
+    display: block;
+}
+
+#scheduler_jobSetUp #startDateLabel>span,
+#scheduler_jobSetUp #calendarRepeatSet>span {
+    margin-top: 6px;
+}
+
+
+/* columns.css */
+.column.decorated>.content>.footer {
+	height:40px !important;
+}
+
+/* tweaks to theme.css */
+
+
+/* tweaks to dataDisplays.css */
+
+.table.data td {
+	height: auto;
+}
+
+.table.data td.label {
+	height: 25px;
+	padding-top:0;
+	padding-bottom: 0;
+}

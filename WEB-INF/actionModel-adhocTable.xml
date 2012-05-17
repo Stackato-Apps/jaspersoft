@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+    <!--Toolbar menus-->
+    <context name="toolbar_save">
+        <condition test="getCanSave">
+            <simpleAction labelKey="ADH_030_MENU_SAVE_REPORT" action="designerBase.handleSave"/>
+            <simpleAction labelKey="ADH_037_MENU_SAVE_REPORT_AS" action="designerBase.handleSaveAs"/>
+        </condition>
+    </context>
+
+    <!--menu for toolbar options-->
+    <context name="toolbar_options">
+        <selectAction labelKey="hidden">
+            <option labelKey="ADH_1150_TOOLBAR_MENU_TOGGLE_TITLE_BAR" action="adhocDesigner.toggleTitleBar"/>
+            <condition test="getShowDetailMenu">
+                <option labelCondition="getShowTableDetails" action="toggleTableDetails">
+                    <labelOption functionResponse="false" labelKey="ADH_242_SHOW_TABLE_DETAILS"/>
+                    <labelOption functionResponse="true" labelKey="ADH_241_HIDE_TABLE_DETAILS"/>
+                </option>
+            </condition>
+        </selectAction>
+        <simpleAction labelKey="ADH_1213_SHOW_DISPLAY_MANAGER" clientTest="!adhocDesigner.isDisplayManagerVisible" action="adhocDesigner.toggleDisplayManager"/>
+        <simpleAction labelKey="ADH_1213_HIDE_DISPLAY_MANAGER" clientTest="adhocDesigner.isDisplayManagerVisible" action="adhocDesigner.toggleDisplayManager"/>                  
+        <separator />
+        <selectAction labelKey="ADH_024_MENU_PAGE_PROPERTIES">
+            <option labelKey="ADH_025_MENU_PORTRAIT" isSelectedTest="adhocDesigner.orientationEquals" isSelectedTestArgs="Portrait" action="adhocDesigner.orientationSelected" actionArgs="Portrait"/>
+            <option labelKey="ADH_026_MENU_LANDSCAPE" isSelectedTest="adhocDesigner.orientationEquals" isSelectedTestArgs="Landscape" action="adhocDesigner.orientationSelected" actionArgs="Landscape"/>
+            <separator />
+            <option labelKey="ADH_027_MENU_LETTER_SIZE" isSelectedTest="adhocDesigner.paperSizeEquals" isSelectedTestArgs="letter" action="adhocDesigner.paperSizeSelected" actionArgs="letter"/>
+            <option labelKey="ADH_028_MENU_A4_SIZE" isSelectedTest="adhocDesigner.paperSizeEquals" isSelectedTestArgs="a4" action="adhocDesigner.paperSizeSelected" actionArgs="a4"/>
+            <option labelKey="ADH_028a_MENU_ACTUAL_SIZE" isSelectedTest="adhocDesigner.paperSizeEquals" isSelectedTestArgs="content" action="adhocDesigner.paperSizeSelected" actionArgs="content"/>
+        </selectAction>
+    </context>
+
+
+
+    <!--Context menus-->
+    <context name="columnLevel">
+        <simpleAction className="requiresInput" clientTest="selectedColumnCouldBeUsedForSorting" labelKey="ADH_175_USE_FOR_SORTING" action="launchSortingDialogForColumn" actionArgs="${event}"/>
+        <simpleAction className="requiresInput" selectionConstraint="singleSelect" clientTest="selectedColumnUsedForSorting" labelKey="ADH_176_CHANGE_SORTING" action="launchSortingDialogForColumn" actionArgs="${event}"/>
+        <simpleAction selectionConstraint="singleSelect" clientTest="selectedColumnCanAddSummary" labelKey="ADH_035_MENU_ADD_SUMMARY" action="addDefaultColumnSummary"/>
+        <simpleAction selectionConstraint="singleSelect" clientTest="selectedColumnHasSummary" labelKey="ADH_036_MENU_REMOVE_SUMMARY" action="removeColumnSummary"/>
+        <selectAction className="flyout" selectionConstraint="singleSelect" clientTest="canColumnSetMask" labelKey="ADH_040_MENU_CHANGE_DATA_FORMAT">
+            <generatedOptions selectionConstraint="singleSelect" clientTest="isSelectedColumnType" clientTestArgs="int" function="getMaskMapForType" functionArgs="int" action="columnMaskSelected" isSelectedTest="isColumnMaskSelected"/>
+            <generatedOptions selectionConstraint="singleSelect" clientTest="isSelectedColumnType" clientTestArgs="dec" function="getMaskMapForType" functionArgs="dec" action="columnMaskSelected" isSelectedTest="isColumnMaskSelected"/>
+            <generatedOptions selectionConstraint="singleSelect" clientTest="isSelectedColumnType" clientTestArgs="date" function="getMaskMapForType" functionArgs="date" action="columnMaskSelected" isSelectedTest="isColumnMaskSelected"/>
+        </selectAction>
+
+        <separator />
+        <!--Formulas Start-->
+        <condition test="getIsDesignView">
+            <simpleAction className="requiresInput" labelKey="ADH_401_CREATE_CUSTOM_FIELD" clientTest="adhocDesigner.canCreateCustomFieldOption" action="adhocDesigner.createCalculatedField"/>
+            <simpleAction className="requiresInput" labelKey="ADH_401_CREATE_CUSTOM_FIELD" clientTest="adhocDesigner.checkIfSelectedAreDateTypes" action="adhocDesigner.createCalculatedField"/>
+            <simpleAction className="requiresInput" labelKey="ADH_417_EDIT_CUSTOM_FIELD" clientTest="adhocDesigner.isEditMenuAllowed" action="adhocDesigner.editCalculatedField"/>
+        </condition>
+        <!--Formulas End-->
+        <condition test="getIsDesignView">
+            <separator/>
+            <simpleAction selectionConstraint="singleSelect" clientTest="canAddColumnHeaderToSelected" labelKey="ADH_031_MENU_ADD_LABEL" action="adhocDesigner.addColumnLabel"/>
+            <simpleAction selectionConstraint="singleSelect" clientTest="canEditColumnHeaderForSelected" labelKey="ADH_032_MENU_EDIT_LABEL" action="adhocDesigner.editColumnLabel"/>
+            <simpleAction selectionConstraint="singleSelect" clientTest="canEditColumnHeaderForSelected" labelKey="ADH_033_MENU_DELETE_LABEL" action="adhocDesigner.deleteColumnLabel"/>
+            <separator/>
+            <simpleAction labelKey="ADH_034_MENU_REMOVE_FROM_TABLE" action="removeColumn"/>
+            <simpleAction labelKey="ADH_1212_DYNAMIC_FILTER_CREATE" clientTest="adHocFilterModule.canShowFilterOption" action="adHocFilterModule.addFilter"/>
+        </condition>
+        <separator />
+        <simpleAction clientTest="canMoveColumnsLeft" labelKey="ADH_060_MENU_MOVE_LEFT" action="moveColumnLeft"/>
+        <simpleAction clientTest="canMoveColumnsRight" labelKey="ADH_061_MENU_MOVE_RIGHT" action="moveColumnRight"/>
+    </context>
+
+    <context name="summaryLevel">
+        <selectAction className="flyout" selectionConstraint="singleSelect" clientTest="selectedColumnShowsSummaryOptions" labelKey="ADH_070_MENU_CHANGE_FUNCTION">
+            <option clientTest="isSelectedMeasureNumeric" labelKey="ADH_074_MENU_SUM" isSelectedTest="isSelectedSummaryFunction" isSelectedTestArgs="Sum" action="functionSelected" actionArgs="Sum"/>
+            <option clientTest="isSelectedMeasureNumeric" labelKey="ADH_073_MENU_AVERAGE" isSelectedTest="isSelectedSummaryFunction" isSelectedTestArgs="Average" action="functionSelected" actionArgs="Average"/>
+            <option clientTest="isSelectedMeasureNumeric" labelKey="ADH_071_MENU_MAXIMUM" isSelectedTest="isSelectedSummaryFunction" isSelectedTestArgs="Highest" action="functionSelected" actionArgs="Highest"/>
+            <option clientTest="isSelectedMeasureNumeric" labelKey="ADH_072_MENU_MINIMUM" isSelectedTest="isSelectedSummaryFunction" isSelectedTestArgs="Lowest" action="functionSelected" actionArgs="Lowest"/>
+            <option labelKey="ADH_163_MENU_COUNT_DISTINCT" isSelectedTest="isSelectedSummaryFunction" isSelectedTestArgs="DistinctCount" action="functionSelected" actionArgs="DistinctCount"/>
+            <option labelKey="ADH_075_MENU_COUNT_ALL" isSelectedTest="isSelectedSummaryFunction" isSelectedTestArgs="Count" action="functionSelected" actionArgs="Count"/>
+        </selectAction>
+        <simpleAction selectionConstraint="singleSelect" clientTest="selectedColumnCanAddSummary" labelKey="ADH_076_MENU_ADD_SUMMARY" action="addDefaultColumnSummary"/>
+        <simpleAction selectionConstraint="singleSelect" clientTest="selectedColumnHasSummary" labelKey="ADH_077_MENU_REMOVE_SUMMARY" action="removeColumnSummary"/>
+    </context>
+
+    <context name="groupLevel">
+        <selectAction className="flyout" selectionConstraint="singleSelect" clientTest="canGroupSetMask" labelKey="ADH_040_MENU_CHANGE_DATA_FORMAT">
+            <generatedOptions selectionConstraint="singleSelect" clientTest="isSelectedGroupType" clientTestArgs="int" function="getMaskMapForType" functionArgs="int" action="groupMaskSelected" isSelectedTest="isGroupMaskSelected"/>
+            <generatedOptions selectionConstraint="singleSelect" clientTest="isSelectedGroupType" clientTestArgs="dec" function="getMaskMapForType" functionArgs="dec" action="groupMaskSelected" isSelectedTest="isGroupMaskSelected"/>
+            <generatedOptions selectionConstraint="singleSelect"  clientTest="isSelectedGroupType" clientTestArgs="date" function="getMaskMapForType" functionArgs="date" action="groupMaskSelected" isSelectedTest="isGroupMaskSelected"/>
+            <separator />
+        </selectAction>
+        <condition test="getIsDesignView">
+            <simpleAction selectionConstraint="singleSelect" clientTest="canAddGroupLabelToSelected" labelKey="ADH_080_MENU_ADD_LABEL" action="adhocDesigner.addGroupLabel"/>
+            <simpleAction selectionConstraint="singleSelect" clientTest="!canAddGroupLabelToSelected" labelKey="ADH_081_MENU_EDIT_LABEL" action="adhocDesigner.editGroupLabel"/>
+            <simpleAction selectionConstraint="singleSelect" clientTest="!canAddGroupLabelToSelected" labelKey="ADH_082_MENU_DELETE_LABEL" action="adhocDesigner.deleteGroupLabel"/>
+            <separator />
+            <simpleAction labelKey="ADH_034_MENU_REMOVE_FROM_TABLE" action="removeGroup"/>
+            <simpleAction labelKey="ADH_1212_DYNAMIC_FILTER_CREATE" clientTest="adHocFilterModule.canShowFilterOption" action="adHocFilterModule.addFilter" />
+        </condition>
+        <separator />
+        <simpleAction clientTest="canMoveGroupUp" labelKey="ADH_084_MOVE_UP" action="moveGroupUp"/>
+        <simpleAction clientTest="canMoveGroupDown" labelKey="ADH_085_MOVE_DOWN" action="moveGroupDown"/>
+    </context>
+    
+    <!--Display Manager column clicked-->
+    <context name="displayManagerColumn">
+        <condition test="getIsDesignView">
+            <simpleAction labelKey="ADH_034_MENU_REMOVE_FROM_TABLE" action="removeColumn"/>
+            <simpleAction labelKey="ADH_235_MENU_SWITCH_TO_GROUP" clientTest="canSwitchToGroup" action="switchToGroup"/>
+            <simpleAction labelKey="ADH_1212_DYNAMIC_FILTER_CREATE" clientTest="adHocFilterModule.canShowFilterOption" action="adHocFilterModule.addFilter"/>
+            <separator/>
+        </condition>
+        <simpleAction clientTest="canMoveColumnsLeft" labelKey="ADH_060_MENU_MOVE_LEFT" action="moveColumnLeft"/>
+        <simpleAction clientTest="canMoveColumnsRight" labelKey="ADH_061_MENU_MOVE_RIGHT" action="moveColumnRight"/>
+    </context>
+
+    <!--Display Manager row clicked-->
+    <context name="displayManagerRow">
+        <condition test="getIsDesignView">
+            <simpleAction labelKey="ADH_034_MENU_REMOVE_FROM_TABLE" action="removeGroup"/>
+            <simpleAction labelKey="ADH_235_MENU_SWITCH_TO_COLUMN" action="switchToColumn"/>
+            <simpleAction labelKey="ADH_1212_DYNAMIC_FILTER_CREATE" clientTest="adHocFilterModule.canShowFilterOption" action="adHocFilterModule.addFilter"/>
+            <separator/>
+        </condition>
+        <simpleAction clientTest="canMoveGroupUp" labelKey="ADH_060_MENU_MOVE_LEFT" action="moveGroupUp"/>
+        <simpleAction clientTest="canMoveGroupDown" labelKey="ADH_061_MENU_MOVE_RIGHT" action="moveGroupDown"/>
+    </context>
+
+    <!--available fields menu-->
+    <context name="fieldLevel">
+        <simpleAction labelKey="ADH_090_ADD_AS_COLUMN" action="addFieldAsColumn"/>
+        <simpleAction labelKey="ADH_091_ADD_AS_GROUP" selectionConstraint="singleSelect"  clientTest="canAddAsGroup" action="addFieldAsGroup"/>
+        <simpleAction labelKey="ADH_1212_DYNAMIC_FILTER_CREATE" clientTest="adHocFilterModule.canShowFilterOption" action="adHocFilterModule.addFilter"/>
+        <separator />
+        <!--FORMULAS START-->
+        <simpleAction className="requiresInput" labelKey="ADH_401_CREATE_CUSTOM_FIELD" clientTest="adhocDesigner.canCreateCustomFieldOption" action="adhocDesigner.createCalculatedField"/>
+        <simpleAction className="requiresInput" labelKey="ADH_401_CREATE_CUSTOM_FIELD" clientTest="adhocDesigner.checkIfSelectedAreDateTypes" action="adhocDesigner.createCalculatedField"/>
+        <simpleAction className="requiresInput" labelKey="ADH_417_EDIT_CUSTOM_FIELD" clientTest="adhocDesigner.isEditMenuAllowed" action="adhocDesigner.editCalculatedField"/>
+        <!--FORMULAS END-->
+        <separator />
+        <simpleAction className="requiresInput" selectionConstraint="singleSelect"
+                      clientTest="selectedFieldCouldBeUsedForSorting"
+                      labelKey="ADH_175_USE_FOR_SORTING" action="launchSortingDialogForColumn" actionArgs="${event}"/>
+        <simpleAction className="requiresInput" selectionConstraint="singleSelect"
+                      clientTest="selectedFieldUsedForSorting" labelKey="ADH_176_CHANGE_SORTING"
+                      action="launchSortingDialogForColumn" actionArgs="${event}"/>
+        <condition test="getIsDesignView">
+            <separator clientTest="adhocDesigner.isDeleteAllowed" />
+            <simpleAction clientTest="adhocDesigner.isDeleteAllowed" labelKey="ADH_420_DELETE_CUSTOM_FIELD" action="adhocDesigner.deleteCalculatedField"/>
+            <simpleAction labelKey="ADH_1213_USE_AS_MEASURE" clientTest="adhocDesigner.canMoveToMeasures" action="adhocDesigner.moveToMeasures"/>
+            <simpleAction labelKey="ADH_1213_USE_AS_FIELD" clientTest="adhocDesigner.canMoveToDimensions" action="adhocDesigner.moveToDimensions"/>
+        </condition>
+    </context>
+
+    <!--folder level-->
+    <context name="fieldSetLevel">
+        <simpleAction clientTest="" labelKey="ADH_100_ADD_SET_AS_COLUMN" action="addFieldAsColumn" actionArgs="true"/>
+    </context>
+
+    <!--menu for filer pod-->
+    <context name="filterPodMenu">
+        <simpleAction labelKey="ADH_1218_DYNAMIC_FILTER_TOGGLE_OPERATION" clientTest="adHocFilterModule.isFilterThisPodMaximized" action="adHocFilterModule.toggleFilterCondition"/>
+        <separator />
+        <simpleAction labelKey="ADH_1217_DYNAMIC_FILTER_REMOVE_FILTER" clientTest="adHocFilterModule.isRemoveFilterAllowed" action="adHocFilterModule.removeFilter"/>
+    </context>
+
+    <!--menu for filter panel-->
+    <context name="filterPanelMenu">
+        <simpleAction labelKey="ADH_1220_DYNAMIC_FILTER_MINIMIZE_ALL" clientTest="adHocFilterModule.isMinimizeAllFilterPodsAllowed" action="adHocFilterModule.minimizeAllPods"/>
+        <simpleAction labelKey="ADH_1221_DYNAMIC_FILTER_MAXIMIZE_ALL" clientTest="adHocFilterModule.isMaximizeAllFilterPodsAllowed" action="adHocFilterModule.maximizeAllPods"/>
+        <simpleAction labelKey="ADH_1225_DYNAMIC_FILTER_ADVANCED_SHOW" clientTest="adHocFilterModule.isShowComplexExpressionPodAllowed" action="adHocFilterModule.showHideComplexExpressionPod"/>
+        <simpleAction labelKey="ADH_1225_DYNAMIC_FILTER_ADVANCED_HIDE" clientTest="adHocFilterModule.isHideComplexExpressionPodAllowed" action="adHocFilterModule.showHideComplexExpressionPod"/>
+        <separator />
+        <simpleAction labelKey="ADH_1219_DYNAMIC_FILTER_REMOVE_ALL" clientTest="adHocFilterModule.isRemoveAllFilterAllowed" action="adHocFilterModule.deleteAllAdhocFilters"/>
+    </context>
+
+    <!--menu for available fields-->
+    <context name="availableFieldsMenu">
+        <simpleAction labelKey="ADH_1222_DYNAMIC_FILTER_CHANGE_SOURCE" action="adhocDesigner.goToTopicView"/>
+        <simpleAction labelKey="ADH_1223_DYNAMIC_FILTER_SELECT_FIELDS" clientTest="adhocDesigner.isSelectFieldsAllowed" action="adhocDesigner.selectFields"/>
+    </context>
+
+</actions>

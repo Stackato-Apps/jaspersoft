@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+   
+	<!-- Backing action for reportDataSourceFlow -->
+   <bean id="reportDataSourceAction" class="com.jaspersoft.jasperserver.war.action.ReportDataSourceAction">
+	   <property name="repository">
+		   <ref bean="${bean.repositoryService}"/>
+	   </property>
+	   <property name="configuration" ref="configurationBean"/>
+
+	   <property name="customDataSourceFactory" ref="customDataSourceServiceFactory"/>
+
+	   <property name="dataSourceMappings">
+		 <bean class="com.jaspersoft.jasperserver.api.metadata.common.service.impl.ResourceFactoryImpl">
+		   <property name="objectFactory" ref="objectFactory"/>
+		   <property name="implementationClassMappings">
+			 <map>
+			   <entry key="JNDI Data Source"
+				   value="com.jaspersoft.jasperserver.api.metadata.jasperreports.domain.client.JndiJdbcReportDataSourceImpl"/>
+			   <entry key="JDBC Data Source"
+				   value="com.jaspersoft.jasperserver.api.metadata.jasperreports.domain.client.JdbcReportDataSourceImpl"/>
+			   <entry key="Bean Data Source"
+				   value="com.jaspersoft.jasperserver.api.metadata.jasperreports.domain.client.BeanReportDataSourceImpl"/>
+			   <entry key="Custom Data Source"
+				   value="com.jaspersoft.jasperserver.api.metadata.jasperreports.domain.client.CustomReportDataSourceImpl"/>
+			 </map>
+		   </property>
+		 </bean>
+	   </property>
+	   <property name="timezones">
+		   <ref bean="userTimeZonesList"/>
+	   </property>
+	   <property name="validator" ref="dataSourceValidator"/>
+	   <property name="messageSource" ref="messageSource"/>
+	   <property name="engine" ref="engineService"/>
+	   <property name="queryLanguageFlowAttribute" value="queryLanguage"/>
+       <property name="dataSourceTreeDataProvider" ref="dsTreeDataProvider"/>
+	</bean>
+
+    <bean id="dataSourceAction" class="com.jaspersoft.jasperserver.war.action.DataSourceAction">
+	   <property name="repository">
+		   <ref bean="${bean.repositoryService}"/>
+	   </property>
+        <property name="configuration" ref="configurationBean"/>
+
+        <property name="customDataSourceFactory" ref="customDataSourceServiceFactory"/>
+
+	   <property name="dataSourceMappings">
+		 <bean class="com.jaspersoft.jasperserver.api.metadata.common.service.impl.ResourceFactoryImpl">
+		   <property name="objectFactory" ref="objectFactory"/>
+		   <property name="implementationClassMappings">
+			 <map>
+			   <entry key="JNDI Data Source"
+				   value="com.jaspersoft.jasperserver.api.metadata.jasperreports.domain.client.JndiJdbcReportDataSourceImpl"/>
+			   <entry key="JDBC Data Source"
+				   value="com.jaspersoft.jasperserver.api.metadata.jasperreports.domain.client.JdbcReportDataSourceImpl"/>
+			   <entry key="Bean Data Source"
+				   value="com.jaspersoft.jasperserver.api.metadata.jasperreports.domain.client.BeanReportDataSourceImpl"/>
+               <entry key="Custom Data Source"
+				   value="com.jaspersoft.jasperserver.api.metadata.jasperreports.domain.client.CustomReportDataSourceImpl"/>
+			 </map>
+		   </property>
+		 </bean>
+	   </property>
+	   <property name="timezones">
+		   <ref bean="userTimeZonesList"/>
+	   </property>
+	   <property name="validator" ref="dataSourceValidator"/>
+       <property name="messages" ref="messageSource" />
+	   <property name="engine" ref="engineService"/>
+	   <property name="queryLanguageFlowAttribute" value="queryLanguage"/>
+	</bean>
+
+	<bean id="dataSourceValidator" class="com.jaspersoft.jasperserver.war.validation.ReportDataSourceValidator">
+		<property name="repository" ref="${bean.repositoryService}"/>
+		<property name="customDataSourceFactory" ref="customDataSourceServiceFactory"/>
+	</bean>
+
+    <import resource="repositoryExplorerBean.xml"/>
+</beans>

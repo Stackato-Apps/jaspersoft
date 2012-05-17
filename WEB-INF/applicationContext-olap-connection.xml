@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+
+  <bean id="olapServiceTransactionInterceptor" class="org.springframework.transaction.interceptor.TransactionInterceptor">
+    <property name="transactionManager" ref="transactionManager"/>
+    <property name="transactionAttributes">
+      <props>
+        <prop key="get*">PROPAGATION_REQUIRED</prop>
+        <prop key="create*">PROPAGATION_REQUIRED</prop>
+        <prop key="initialize*">PROPAGATION_REQUIRED</prop>
+        <prop key="validate">PROPAGATION_REQUIRED</prop>
+        <prop key="dereference">PROPAGATION_REQUIRED</prop>
+        <prop key="save*">PROPAGATION_REQUIRED</prop>
+        <prop key="*">PROPAGATION_SUPPORTS</prop>
+      </props>
+    </property>
+  </bean>
+
+  <bean id="olapConnectionServiceTarget"
+    class="com.jaspersoft.jasperserver.api.metadata.olap.service.impl.OlapConnectionServiceImpl">
+    <property name="repository" ref="${bean.repositoryService}"/>
+    <property name="encodingProvider">
+      <ref bean="encodingProvider"/>
+    </property>
+    <property name="userService" ref="${bean.userAuthorityService}"/>
+    <property name="tenantService" ref="${bean.tenantService}"/>
+    <property name="useContentChecksum" value="${UseContentChecksum}"/>
+  </bean>
+
+  <!--
+    <bean id="mondrianConnectionCacheFactory" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+      <property name="cacheManager">
+         <ref bean="cacheManager"/>
+      </property>
+      <property name="cacheName">
+        <value>mondrianConnections</value>
+      </property>
+    </bean>
+  -->
+
+  <bean id="olapConnectionService" class="org.springframework.aop.framework.ProxyFactoryBean">
+    <property name="proxyInterfaces">
+      <list>
+        <value>com.jaspersoft.jasperserver.api.metadata.olap.service.OlapConnectionService</value>
+        <value>com.jaspersoft.jasperserver.api.metadata.jasperreports.service.ReportDataSourceServiceFactory</value>
+      </list>
+    </property>
+    <property name="interceptorNames">
+      <list>
+        <idref local="olapServiceTransactionInterceptor"/>
+        <idref local="olapConnectionServiceTarget"/>
+      </list>
+    </property>
+  </bean>
+
+  <bean id="olapManagementService"
+    class="com.jaspersoft.jasperserver.api.metadata.olap.service.impl.OlapManagementServiceImpl">
+        <property name="repositoryService">
+            <ref bean="${bean.repositoryService}"/>
+        </property>
+        <property name="olapConnectionService">
+            <ref bean="olapConnectionService"/>
+        </property>
+        <property name="mondrianConnectionCache" ref="sharedMondrianConnectionCacheFactory"/>
+        <!-- <property name="sharedMondrianConectionCacheFactory" ref="sharedMondrianConnectionCacheFactory"/> -->
+  </bean>
+
+     <!-- Setup a cache for Mondrian connections to synch cache flushing -->
+    <bean id="olapCacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean" lazy-init="true">
+      <property name="configLocation">
+         <value>${resource.root}/olap-ehcache.xml</value>
+      </property>
+    </bean>
+
+    <bean id="sharedMondrianConnectionCacheFactory" class="org.springframework.cache.ehcache.EhCacheFactoryBean" lazy-init="true">
+      <property name="cacheManager">
+         <ref bean="${bean.olapCacheManager}"/>
+         <!-- <ref bean="olapCacheManager"/> -->
+      </property>
+      <property name="cacheName">
+        <value>sharedMondrianConnections</value>
+      </property>
+    </bean>
+
+  <bean id="xmlaUpdateListener" class="com.jaspersoft.jasperserver.war.xmla.XMLAUpdateListener"/>
+
+</beans>

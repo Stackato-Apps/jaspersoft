@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<!-- Backing action for fileResourceFlow -->
+	<bean id="fileResourceAction" class="com.jaspersoft.jasperserver.war.action.FileResourceAction">
+		<property name="repository">
+			<ref bean="${bean.repositoryService}"/>
+		</property>
+		<property name="configuration">
+			<ref bean="configurationBean"/>
+		</property>
+        <property name="securityContextProvider">
+            <ref bean="${bean.securityContextProvider}" />
+        </property>
+		<property name="validator" ref="fileResourceValidator"/>
+        <property name="messages" ref="messageSource"/>
+        <property name="fileResourceTreeDataProvider" ref="fileResourceTreeDataProvider"/>
+	</bean>
+	<bean id="fileResourceValidator" class="com.jaspersoft.jasperserver.war.validation.FileResourceValidator">
+		<property name="repository">
+		   <ref bean="${bean.repositoryService}"/>
+		</property>
+		<property name="repositoryServiceSecurityChecker">
+		   <ref bean="${bean.repositoryServiceSecurityChecker}"/>
+		</property>
+	</bean>
+
+    <import resource="repositoryExplorerBean.xml"/>
+</beans>

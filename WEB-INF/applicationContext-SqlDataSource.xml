@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<bean id="SqlDataSource"
+		class="com.jaspersoft.jasperserver.api.engine.jasperreports.util.CustomDataSourceDefinition">
+		<property name="factory" ref="customDataSourceServiceFactory" />
+		<property name="name" value="SqlDataSource" />
+		<property name="serviceClassName" value="com.jaspersoft.sql.SqlDataSourceService" />
+		<property name="propertyDefinitions">
+			<list>
+				<map>
+					<entry key="name" value="serviceName" />
+				</map>
+			</list>
+		</property>
+	</bean>
+
+	<bean
+		class="com.jaspersoft.jasperserver.api.common.util.spring.GenericBeanUpdater">
+		<property name="definition" ref="addMessageCatalog" />
+		<property name="value">
+			<list>
+				<value>WEB-INF/bundles/SqlDataSource</value>
+			</list>
+		</property>
+		<property name="valueType" value="stringList" />
+	</bean>
+</beans>

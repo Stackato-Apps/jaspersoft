@@ -1,0 +1,840 @@
+/*
+pages.css
+
+intended scope:
+- default layout positioning
+
+pods skin
+tim sheiner & christie rixford
+*/
+
+/*
+______________________________________________________________ 
+
+ PAGE LAYOUTS 
+______________________________________________________________ 
+
+The most important layout concept for JIF is the column.
+
+The framework assumes that within a given layout context, there will be at most
+3 columns.  These columns will be identified as .primary, .secondary and .tertiary.
+
+.Column.primary is special in that it is not sized directly by the user, but absorbs 
+the size changes initiated by the user to adjacent columns or the browser window.
+
+By convention, the layout context for a .column will be of class .body or .row, though 
+neither of these selectors is required.  
+
+However, setting additional class attributes on layout context element, as shown in the rules below, will create specific column layouts.
+
+Layout contexts can be nested, and the column layout metrics will cascade appropriately.
+
+*/
+
+/* ONE COLUMN */
+
+.oneColumn>.primary.column,
+.body.oneColumn>.primary.column,
+.row.oneColumn>.primary.column {
+	right:0;
+	left:0;
+	display:block;
+}
+
+.oneColumn>.secondary.column,
+.oneColumn>.tertiary.column {
+	display: none;
+}
+
+/* TWO COLUMN */
+
+/* twoColumn */
+
+.twoColumn>.primary.column,
+.body.twoColumn>.primary.column,
+.row.twoColumn>.primary.column {
+	right:0;
+	left:200px;
+	display:block;
+	margin-left:43px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+}
+
+
+.twoColumn>.secondary.column,
+.body.twoColumn>.secondary.column,
+.row.twoColumn>.secondary.column {
+	width:200px;
+	left:0;
+	right:auto;
+	display:block;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+}
+
+/* iPads (portrait and landscape) */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+
+	#repoBrowse>#frame>.content>.body.twoColumn>.primary.column.decorated {
+		left:200px;
+	}
+	
+	#repoSearch>#frame>.content>.body.twoColumn>.primary.column {
+		left:168px;
+	}
+
+	.body.twoColumn>#filters.secondary.column {
+		width:168px;
+	}
+	
+	#frame>.content>.body.twoColumn>.primary.column.decorated {
+		left:200px;
+	}
+	
+	#analysisOptions #display.body.twoColumn>.column.decorated.primary,
+	#designerOptions #display.body.twoColumn>.column.decorated.primary,
+	#designerCache #display.body.twoColumn>.column.decorated.primary,
+	#logSettings #display.body.twoColumn>.column.decorated.primary {
+		margin-left:10px;
+	}
+	
+	#manage_users .body.threeColumn.manager>.column.decorated.primary.showingToolBar,
+	#manage_roles .body.threeColumn.manager>.column.decorated.primary.showingToolBar {
+		margin-left:53px;
+	}
+	
+	#manage_orgs .body.threeColumn.manager>.column.decorated.primary.showingToolBar {
+		margin-left:53px;
+		right:32%
+	}
+	
+	#manage_orgs .body.threeColumn.manager>#properties {
+		width:32%;
+	}
+}
+
+
+.twoColumn>.tertiary.column {
+	display: none;
+}
+
+/* twoColumn.primaryLeft */
+
+.twoColumn.primaryLeft>.primary.column,
+.body.twoColumn.primaryLeft>.primary.column,
+.row.twoColumn.primaryLeft>.primary.column {
+	right:200px;
+	left:0;
+	display:block;
+	margin-right:25px;
+}
+
+.twoColumn.primaryLeft>.secondary.column,
+.body.twoColumn.primaryLeft>.secondary.column,
+.row.twoColumn.primaryLeft>.secondary.column,
+.twoColumn.primaryLeft>.tertiary.column,
+.body.twoColumn.primaryLeft>.tertiary.column,
+.row.twoColumn.primaryLeft>.tertiary.column {
+	width:200px;
+	right:0;
+	left:auto;
+	display:block;
+}
+
+.twoColumn.primaryLeft>.secondary.column>.sizer,
+.body.twoColumn.primaryLeft>.secondary.column>.sizer,
+.row.twoColumn.primaryLeft>.secondary.column>.sizer,
+.twoColumn.primaryLeft>.tertiary.column>.sizer,
+.body.twoColumn.primaryLeft>.tertiary.column>.sizer,
+.row.twoColumn.primaryLeft>.tertiary.column>.sizer {
+	left:0;
+	margin-left:-20px;
+}
+
+
+/* twocolumn_equal */
+
+.twoColumn_equal> .primary.column,
+.body.twoColumn_equal> .primary.column,
+.row.twoColumn_equal> .primary.column {
+	right:0;
+	left:50%;
+	display:block;
+	/* margin-left: 8px; */
+	width:auto;
+}
+
+.twoColumn_equal> .secondary.column,
+.body.twoColumn_equal> .secondary.column ,
+.row.twoColumn_equal> .secondary.column {
+	right:50%;
+	left:0;
+	display:block;
+	width:auto;
+}
+
+.twoColumn_equal> .tertiary.column {
+	display: none;
+}
+
+.relative.twoColumn_equal> .primary.column {
+	width:50%;
+	display:block;
+	position: relative;
+	float: left;
+	right:auto;
+	margin: auto 0;
+	left:0;
+}
+
+.relative.twoColumn_equal> .secondary.column {
+	width:49%;
+	display:block;
+	position: relative;
+	float: right;
+	right:auto;
+}
+
+.relative.twoColumn_equal> .column {
+	overflow:hidden;
+	min-width:100px;
+}
+
+/* .twoColumn.manager */
+
+.twoColumn.manager>.primary.column {
+	right:50%;
+	left:0;
+	display:block;
+	margin-left: 24px;
+    margin-right: 45px;
+}
+
+.twoColumn.manager>.secondary.column {
+	display:none;
+}
+
+.twoColumn.manager>.tertiary.column {
+	right:0;
+	left: auto;
+	display:block;
+	width: 50%;
+}
+
+/* THREE COLUMN LAYOUTS */
+
+/* .threeColumn */
+.threeColumn>.primary.column,
+.body.threeColumn>.primary.column,
+.row.threeColumn>.primary.column {
+	right:200px;
+	left:200px;
+	margin-left:43px;
+	margin-right: 43px;
+	display:block;
+}
+
+.threeColumn>.secondary.column,
+.body.threeColumn>.secondary.column,
+.row.threeColumn>.secondary.column {
+	width:200px;
+	left:0;
+	right:auto;
+	display:block;
+}
+
+.threeColumn>.tertiary.column,
+.body.threeColumn>.tertiary.column,
+.row.threeColumn>.tertiary.column {
+	width:200px;
+	right:0;
+	left:auto;
+	display:block;	
+}
+
+/* .threeColumn_equal> */
+
+.threeColumn_equal> .primary.column,
+.body.threeColumn_equal> .primary.column,
+.row.threeColumn_equal> .primary.column {
+	right:33%;
+	left:33%;
+	display:block;
+}
+
+.threeColumn_equal> .secondary.column,
+.body.threeColumn_equal> .secondary.column,
+.row.threeColumn_equal> .secondary.column {
+	width:32%;
+	left:0;
+	right:auto;
+	display:block;
+}
+
+.threeColumn_equal> .tertiary.column,
+.body.threeColumn_equal> .tertiary.column,
+.row.threeColumn_equal> .tertiary.column {
+	width:32%;
+	right:0;
+	left:auto;
+	display:block;
+}
+
+/* .threeColumn.manager */
+
+.threeColumn.manager>.primary.column {
+	right:40%;
+	left:15%;
+	display:block;
+}
+
+.threeColumn.manager>.secondary.column {
+	left:0;
+	display:block;
+	width: 15%;
+}
+
+.threeColumn.manager>.tertiary.column {
+	right:0;
+	display:block;
+	width: 40%;
+}
+
+
+/* .flow 
+ 
+NOTE: .flow layout classes are used by .wizards as well 
+
+*/
+
+.body.flow {
+	white-space: nowrap;
+}
+
+.flow .row {
+	white-space: normal;
+}
+
+.flow #flowControls {
+	float: left;
+	position: relative;
+	padding: 0 10px;
+	margin-top:85px;
+	min-width:125px;
+}
+
+.flow #stepDisplay {
+	display: inline-block;
+	position: relative;
+	height:99%;
+}
+
+.flow #stepDisplay.error .instructions>.warning {
+	display:block;
+}
+
+.flow #stepDisplay .instructions>.warning {
+	display:none;
+}
+
+.flow #stepDisplay .instructions.error>.warning {
+	display:block;
+}
+
+.flow .row.instructions {
+	margin:10px;
+	margin-bottom: 15px;
+}
+
+.flow .row.inputs {
+	min-height: 350px;
+	min-width: 600px;
+	height: 80%;
+}
+
+
+/* iPads (portrait and landscape) */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+
+	.flow .row.inputs {
+		min-height: 450px;
+	}
+}
+
+.flow .row.inputs.twoColumn,
+.flow .row.inputs.twoColumn_equal {
+	min-width: 900px;
+}
+
+.flow .row.actions {
+	margin-bottom:10px;
+}
+
+.flow .error .inputs {
+	top:100px;
+}
+
+flow #flowControls .tabSet {
+	float:none;
+	margin-bottom: 25px;
+	overflow: auto;
+}
+
+.flow .inputs.oneColumn>.primary.decorated>.content>.body {
+	padding:15px 5px 5px 20px;
+}
+
+.flow .inputs.oneColumn>.primary>.content>.header {
+	overflow:visible;
+}
+
+
+.flow .inputs .twoColumn_equal>.column {
+	padding:0 5px;
+}
+
+.flow .inputs.twoColumn>.column.primary {
+	margin-left:35px;
+}
+
+
+.flow .inputs> .column {
+	margin-left: 10px;	
+}
+
+.flow .inputs> .column.decorated {
+	margin-top: 5px;	
+}
+
+
+
+.flow .twoColumn_equal>.column>.sizer,
+.flow .twoColumn_equal .minimize  {
+	display: none;
+}
+
+.flow #moveButtons .button,
+.flow .moveButtons .button {
+	margin-bottom: 10px;
+}
+
+.flow #moveButtons .toRight,
+.flow #moveButtons .toTop,
+.flow .moveButtons .toRight,
+.flow .moveButtons .toTop  {
+	margin-top: 30px;
+}
+
+.flow .panel.info {
+	height: 100%;
+	width: 100%;
+}
+
+.nameAndDescription {
+	margin:5px 20px;
+}
+
+/* .flow.wizard */
+
+.flow.wizard #wizardNav #done,
+.flow.wizard #wizardNav #submit {
+	display:none;
+}
+
+.flow #next,
+.flow #previous,
+.flow.wizard.oneStep #wizardNav #next,
+.flow.wizard.oneStep #wizardNav #previous,
+.flow.wizard.lastStep #wizardNav #next {
+	display:none;
+}
+
+.flow.wizard #wizardNav #previous,
+.flow.wizard #wizardNav #next,
+.flow.wizard #wizardNav #previous,
+.flow.wizard.firstStep #wizardNav #next,
+.flow.wizard.oneStep #wizardNav #done,
+.flow.wizard.lastStep #wizardNav #done,
+.flow.wizard.oneStep #wizardNav #submit,
+.flow.wizard.lastStep #wizardNav #submit  {
+	display:inline;
+}
+
+
+
+
+/* .pickWells */
+
+.twoColumn_equal.pickWells>.primary.column,
+.moveButtons>.primary.column  {
+	margin-left:30px;
+}
+
+.twoColumn_equal.pickWells>.secondary.column,
+.moveButtons>.secondary.column {
+	margin-right:30px;
+}
+
+.twoColumn_equal.pickWells> .primary > .content > .body {
+	padding:0;
+}
+
+.flow .inputs .primary .twoColumn.pickWells>#moveButtons,
+.twoColumn_equal.pickWells>#moveButtons,
+.twoColumn_equal.pickWells>.moveButtons {
+	left: 50%;
+	margin-left: -17px;
+}
+
+.pickWells .sizer,
+.pickWells .button.minimize {
+	display: none;
+}
+
+.flow #moveButtons,
+.row #moveButtons,
+.moveButtons {
+	position: absolute;
+	width: 34px;
+	padding-top: 35px;
+	right:0;
+	margin-left: 38px;
+	margin-right:5px;
+}
+
+.moveButtons .button {
+	margin-bottom: 8px;
+}
+
+/* .tabbed */
+
+.column.decorated.tabbed.showingToolBar > .content > .body {
+	margin-top:70px;
+}
+
+.column.decorated.tabbed > .content > .body > .row.canvas {
+	height:86%;
+	margin: 1% 20px;
+}
+
+.column.decorated.tabbed > .content > .body > .row.actions {
+	height:9%;
+	padding: 0 35px;
+}
+
+
+/* ROW LAYOUTS 
+
+Row elements can be used to create parent context's for columns for complex and nested layouts.
+
+*/
+
+.row>.sizer.vertical {
+	bottom: 0;
+	width: 100%;
+	height: 10px;
+}
+
+
+/* two panes, fill column */
+
+.column .body.twoPanes {
+	overflow: hidden;
+} 
+
+.twoPanes .panel.pane {
+	position: absolute;
+	min-height: 30px;
+	margin-bottom: 0;
+}
+
+.twoPanes .pane>.content>.body {
+	bottom: 0;
+}
+
+.twoPanes .pane.secondary {
+	bottom:0px;
+	height: 200px;
+}
+
+.twoPanes .pane.primary {
+	top:0;
+	bottom:200px;
+	height: auto;
+}
+
+.twoPanes .pane.secondary>.content {
+	border-top: 1px solid #D4D5D5;
+}
+
+
+.twoPanes .pane .footer {
+	display: none;
+}
+
+.twoPanes .pane.secondary .sizer {
+	position:absolute;
+	width:9px;
+	height:9px;
+	background-image: url(images/panel_sizer_sprite.png);
+	background-repeat: none;
+	cursor: pointer;
+	z-index: 3;
+	background-position: left 0;
+	right:4px;
+	top:12px;
+    /*workaround for IE and Ch; see Bug 24068*/
+    bottom:13px!important;
+}
+
+
+/* three panes, fill column */
+
+.column .body.threeRow {
+	overflow: hidden;
+} 
+
+.threeRow .pane {
+	position: absolute;
+}
+
+.threeRow .pane.primary {
+	top:100px;
+	bottom:100px;
+	height: auto;
+}
+
+.threeRow .pane.upper {
+	top:0;
+	height:100px;
+}
+
+.threeRow .pane.lower {
+	bottom:0;
+	height:100px;
+}
+
+/* flashExport */
+
+.swfExport {
+	bottom:20px;
+	left:0;
+	position:absolute;
+	right:0;
+	top:37px;	
+}
+
+.swfWrapper {
+	z-index: 0;
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+	.twoColumn>.primary.column,
+	.body.twoColumn>.primary.column,
+	.row.twoColumn>.primary.column {
+		right:0;
+		left:200px;
+		display:block;
+		margin-left:12px;
+		-webkit-border-radius: 0;
+		-moz-border-radius: 0;
+		border-radius: 0;
+	}
+	
+	
+	.twoColumn>.secondary.column,
+	.body.twoColumn>.secondary.column,
+	.row.twoColumn>.secondary.column {
+		width:200px;
+		left:0;
+		right:auto;
+		display:block;
+		-webkit-border-radius: 0;
+		-moz-border-radius: 0;
+		border-radius: 0;
+	}
+	
+	.twoColumn.primaryLeft>.primary.column,
+	.body.twoColumn.primaryLeft>.primary.column,
+	.row.twoColumn.primaryLeft>.primary.column {
+		right:200px;
+		left:0;
+		display:block;
+		margin-right:25px;
+	}
+	
+	.twoColumn.primaryLeft>.secondary.column,
+	.body.twoColumn.primaryLeft>.secondary.column,
+	.row.twoColumn.primaryLeft>.secondary.column,
+	.twoColumn.primaryLeft>.tertiary.column,
+	.body.twoColumn.primaryLeft>.tertiary.column,
+	.row.twoColumn.primaryLeft>.tertiary.column {
+		width:200px;
+		right:0;
+		left:auto;
+		display:block;
+	}
+	
+	.twoColumn.primaryLeft>.secondary.column>.sizer,
+	.body.twoColumn.primaryLeft>.secondary.column>.sizer,
+	.row.twoColumn.primaryLeft>.secondary.column>.sizer,
+	.twoColumn.primaryLeft>.tertiary.column>.sizer,
+	.body.twoColumn.primaryLeft>.tertiary.column>.sizer,
+	.row.twoColumn.primaryLeft>.tertiary.column>.sizer {
+		left:0;
+		margin-left:-20px;
+	}
+	
+	
+	/* twocolumn_equal */
+	
+	.twoColumn_equal> .primary.column,
+	.body.twoColumn_equal> .primary.column,
+	.row.twoColumn_equal> .primary.column {
+		right:0;
+		left:50%;
+		display:block;
+		/* margin-left: 8px; */
+		width:auto;
+	}
+	
+	.twoColumn_equal> .secondary.column,
+	.body.twoColumn_equal> .secondary.column ,
+	.row.twoColumn_equal> .secondary.column {
+		right:50%;
+		left:0;
+		display:block;
+		width:auto;
+	}
+	
+	.twoColumn_equal> .tertiary.column {
+		display: none;
+	}
+	
+	.relative.twoColumn_equal> .primary.column {
+		width:50%;
+		display:block;
+		position: relative;
+		float: left;
+		right:auto;
+		margin: auto 0;
+		left:0;
+	}
+	
+	.relative.twoColumn_equal> .secondary.column {
+		width:49%;
+		display:block;
+		position: relative;
+		float: right;
+		right:auto;
+	}
+	
+	.relative.twoColumn_equal> .column {
+		overflow:hidden;
+		min-width:100px;
+	}
+	
+	/* .twoColumn.manager */
+	
+	.twoColumn.manager>.primary.column {
+		right:50%;
+		left:0;
+		display:block;
+		margin-left: 24px;
+	    margin-right: 45px;
+	}
+	
+	.twoColumn.manager>.secondary.column {
+		display:none;
+	}
+	
+	.twoColumn.manager>.tertiary.column {
+		right:0;
+		left: auto;
+		display:block;
+		width: 50%;
+	}
+	
+	.threeColumn>.primary.column,
+	.body.threeColumn>.primary.column,
+	.row.threeColumn>.primary.column {
+		right:200px;
+		left:200px;
+		margin-left:12px;
+		margin-right:12px;
+		display:block;
+	}
+	
+	.threeColumn>.secondary.column,
+	.body.threeColumn>.secondary.column,
+	.row.threeColumn>.secondary.column {
+		width:200px;
+		left:0;
+		right:auto;
+		display:block;
+	}
+	
+	.threeColumn>.tertiary.column,
+	.body.threeColumn>.tertiary.column,
+	.row.threeColumn>.tertiary.column {
+		width:200px;
+		right:0;
+		left:auto;
+		display:block;	
+	}
+	
+	/* .threeColumn_equal> */
+	
+	.threeColumn_equal> .primary.column,
+	.body.threeColumn_equal> .primary.column,
+	.row.threeColumn_equal> .primary.column {
+		right:33%;
+		left:33%;
+		display:block;
+	}
+	
+	.threeColumn_equal> .secondary.column,
+	.body.threeColumn_equal> .secondary.column,
+	.row.threeColumn_equal> .secondary.column {
+		width:32%;
+		left:0;
+		right:auto;
+		display:block;
+	}
+	
+	.threeColumn_equal> .tertiary.column,
+	.body.threeColumn_equal> .tertiary.column,
+	.row.threeColumn_equal> .tertiary.column {
+		width:32%;
+		right:0;
+		left:auto;
+		display:block;
+	}
+	
+	/* .threeColumn.manager */
+	
+	.threeColumn.manager>.primary.column {
+		right:40%;
+		left:15%;
+		display:block;
+	}
+	
+	.threeColumn.manager>.secondary.column {
+		left:0;
+		display:block;
+		width: 15%;
+	}
+	
+	.threeColumn.manager>.tertiary.column {
+		right:0;
+		display:block;
+		width: 40%;
+	}
+}

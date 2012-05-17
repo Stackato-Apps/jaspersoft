@@ -1,0 +1,438 @@
+/*
+.overrides_custom css
+
+Place styles for simple UI customization in this file
+
+*/
+
+/* themes.css */
+
+
+body {
+	background:url("images/body_bkgnd.png") repeat-y scroll 0 0 #0ABAEE;
+	position:relative;
+}
+
+
+#metaLinks li {
+	border-right:1px solid #666;
+}
+
+.palette08, 
+.button.action.primary.disabled, 
+.button.action.primary[disabled], 
+.tabSet.buttons.vertical [disabled]  {
+	color:#a2c664;
+}
+
+.palette08_bkgd { 
+	background-color:#a2c664; 
+}
+
+button.action.primary.up,
+.menu.primaryNav .up,
+.menu.primaryNav .wrap,
+.tabSet.vertical.buttons .button,
+.tabSet.horizontal.buttons .selected > .button > .wrap {
+	color:#559502;
+}
+
+.palette10_bkgd { 
+	background-color:#559502; 
+}
+
+
+.tabSet.vertical.buttons .button.over,
+.tabSet.vertical.buttons .button.pressed,
+.tabSet.vertical.buttons>.tab.selected>.button {
+	color:#FFF;
+}
+
+.palette14_bkgd,
+.palette15_bkgd,
+.palette16_bkgd {
+	background-color: transparent;
+}
+
+
+.selected:focus .resourcePath {
+	color:#68A4E1;
+}
+
+.selected .resourcePath {
+	color:#aaa;
+}
+
+.launcher {
+	color:#4698be;
+}
+
+.palette15, .button.capsule.down {
+	color:#004400;
+}
+
+.palette16, 
+.button.capsule.down.disabled, 
+.button.capsule.down[disabled], 
+.resourcePath {
+	color:#306F04;
+}
+
+.sky_bkgd {
+	background-color:#4698be;
+}
+
+.royal,
+.textAccent02,
+.tabSet .selected .button,
+.list.filters>li.selected>.wrap,
+.list.filters>.leaf>.wrap.pressed,
+.list.stepIndicator .selected>.wrap,
+.panel.info.system .message,
+.data.table .label,
+.control.path .step.pressed,
+a:focus, a:hover, a:active,
+a#about:hover, a#about:active  {
+	color:#217EB5;
+}
+
+.royal_bkgd,
+.menu.vertical li>.wrap.over,
+.list.responsive>li>.wrap.pressed,
+.list.responsive>li.selected:focus>.wrap,
+.list.responsive>li.selected:focus>.wrap.over,
+div:focus li.selected>.wrap {
+	background-color:#217EB5;
+}
+
+
+#metaLinks li,
+#metaLinks li a {
+	color:#666;
+}
+
+.list.responsive>li.selected>.wrap {
+	background-color:#666;
+}
+
+
+.cerulean {
+	color:#134F91;
+}
+
+.cerulean_bkgd,
+.menu.vertical li>.wrap.pressed,
+.list.responsive>li>.wrap.pressed {
+	background-color:#134f91;
+}
+
+#frame>.content>.header {
+	height:37px;
+	-moz-border-radius: 10px 10px 0px 0px;
+	-webkit-border-radius: 10px 10px 0px 0px;
+	border-radius: 10px 10px 0px 0px;
+	background: -webkit-gradient(linear, left top, left bottom, from(#e1edba), to(#8fbd04));
+	background: -moz-linear-gradient(top,#e1edba,#8fbd04);
+	border:1px solid f2f7e1;
+	border-bottom:1px solid #4eae00;
+}
+
+
+/* containers.css */
+
+.menu.primaryNav .node > .wrap > .icon {
+	background-position:0 -108px;
+}
+
+.menu.primaryNav .node > .wrap.over > .icon {
+	background-position:0 -75px;
+}
+
+.menu.primaryNav #main_home .wrap.over > .icon, 
+.menu.primaryNav #main_home .wrap.pressed > .icon {
+	background-position:left -118px;
+}
+
+.menu.primaryNav .wrap.over,
+.menu.primaryNav .wrap.pressed {
+	background-image: url(images/menu_primaryNav_sprite.png)\9;  /* for all ie browsers */	
+	background-position: center top\9;                           /* for all ie browsers */	
+}
+
+.menu.primaryNav .wrap.over,
+.menu.primaryNav .wrap.pressed {
+	background: -webkit-gradient(linear, left top, left bottom, from(#94bf0e), to(#418f00));
+	background: -moz-linear-gradient(top,#94bf0e,#418f00);
+	height:37px;
+}
+
+.menu.vertical {
+	border:none\9; /* for all ie browsers */	
+}
+
+/* buttons.css */
+
+.action.jumbo {
+	background-position:right -241px;
+}
+
+.action.jumbo.over {   
+	background-color: #6db000; 
+}
+
+.action.jumbo.pressed {
+	background-color: #6db000;  
+	-moz-box-shadow: 0px 0px 0px;
+	-webkit-box-shadow: 0px 0px 0px ;
+	box-shadow: 0px 0px 0px;
+}
+
+.action.jumbo>.wrap {
+	left:-5px;
+}
+
+.action.primary { 
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	background: -webkit-gradient(linear, left top, left bottom, from(#e1eebb), to(#84c300));
+	background: -moz-linear-gradient(top,#e1eebb,#84c300);
+}
+
+.action.primary.over {
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	background: -webkit-gradient(linear, left top, left bottom, from(#8cdb00), to(#119500));
+	background: -moz-linear-gradient(top,#8cdb00,#119500); 
+}
+
+.action.primary.pressed {
+	background: -webkit-gradient(linear, left top, left bottom, from(#83ba00), to(#0e9500));
+	background: -moz-linear-gradient(top,#83ba00,#0e9500);
+	-moz-box-shadow: inset 0px 3px 3px #356002;
+	-webkit-box-shadow: inset 0px 3px 3px #356002;
+	box-shadow: inset 0px 3px 3px #356002;
+}
+
+.button.capsule.up.over {   
+	background: -webkit-gradient(linear, left top, left bottom, from(#7ab405), to(#1d8805));
+	background: -moz-linear-gradient(top,#7ab405,#1d8805);
+}
+
+.button.capsule.up.pressed {
+	background-color:#489e00;
+	-moz-box-shadow: inset 0px 3px 3px #307304;
+	-webkit-box-shadow: inset 0px 3px 3px #307304;
+	box-shadow: inset 0px 3px 3px #307304;
+}
+
+.button.capsule.down,
+.button.capsule.down.over {
+	background-color:#4ca100;
+	-moz-box-shadow: inset 0px 3px 3px #357f05;
+	-webkit-box-shadow: inset 0px 3px 3px #357f05;
+	box-shadow: inset 0px 3px 3px #357f05;
+}
+
+.button.capsule.down.pressed {
+	background: -webkit-gradient(linear, left top, left bottom, from(#58a300), to(#4ca100));
+	background: -moz-linear-gradient(top,#58a300,#4ca100);
+	-moz-box-shadow: inset 0px 3px 3px #2c5105;
+	-webkit-box-shadow: inset 0px 3px 3px #2c5105;
+	box-shadow: inset 0px 3px 3px #2c5105;
+}
+
+
+/* controls.css */
+
+.tabSet.vertical.buttons .button {
+	background: -webkit-gradient(linear, left top, left bottom, from(#d8eaaf), to(#96c335));
+	background: -moz-linear-gradient(top,#d8eaaf,#96c335);
+	border-top: 1px solid #d8eaaf;
+	border-bottom: 1px solid #96c335;
+	border-top:none\9;	   /* for all ie browsers */
+	border-bottom:none\9;  /* for all ie browsers */
+}
+
+
+.tabSet.vertical.buttons .button .wrap {
+	padding: 0 0 0 15px; 
+	line-height: 26px;
+	height: 26px;
+	height: 28px\9;  /* for all ie browsers */
+}
+
+.tabSet.vertical.buttons .selected.first .button,
+.tabSet.vertical.buttons .selected.first .button.over,
+.tabSet.vertical.buttons .selected.first .button.pressed,
+.tabSet.vertical.buttons .first .button.over {
+	background: -webkit-gradient(linear, left top, left bottom, from(#79b600), to(#188800));
+	background: -moz-linear-gradient(top,#79b600,#188800);
+	-moz-border-radius: 10px 10px 0px 0px;
+	-webkit-border-radius: 10px 10px 0px 0px;
+	border-radius: 10px 10px 0px 0px;
+	border-top: 1px solid #d8eaaf;
+	border-bottom:1px solid #0e5a00;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	border-top:none\9;     /* for all ie browsers */
+	border-bottom:none\9;  /* for all ie browsers */
+}
+
+.tabSet.vertical.buttons .selected .button,
+.tabSet.vertical.buttons .selected .button.over,
+.tabSet.vertical.buttons .selected .button.pressed,
+.tabSet.vertical.buttons .button.over {
+	background: -webkit-gradient(linear, left top, left bottom, from(#79b600), to(#188800));
+	background: -moz-linear-gradient(top,#79b600,#188800);
+	border-top: 1px solid #d8eaaf;
+	border-bottom:1px solid #0e5a00;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	border-top:none\9;      /* for all ie browsers */
+	border-bottom:none\9;   /* for all ie browsers */
+}
+
+.tabSet.vertical.buttons .selected.last .button,
+.tabSet.vertical.buttons .selected.last .button.over,
+.tabSet.vertical.buttons .selected.last .button.pressed,
+.tabSet.vertical.buttons .last .button.over {
+	background: -webkit-gradient(linear, left top, left bottom, from(#79b600), to(#188800));
+	background: -moz-linear-gradient(top,#79b600,#188800);
+	-moz-border-radius: 0px 0px 10px 10px;
+	-webkit-border-radius: 0px 0px 10px 10px;
+	border-radius: 0px 0px 10px 10px;
+	border-top: 1px solid #d8eaaf;
+	border-bottom:1px solid #0e5a00;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	border-top:none\9;     /* for all ie browsers */
+	border-bottom:none\9;  /* for all ie browsers */
+}
+
+/* THIS IS NEW */
+.tabSet.vertical.buttons .selected.last .button,
+.tabSet.vertical.buttons .last .button.over,
+.tabSet.vertical.buttons .selected.last .button.pressed {
+	border-bottom:none !important;
+	border-top:none\9;     /* for all ie browsers */
+	border-bottom:none\9;  /* for all ie browsers */
+}
+
+.tabSet.vertical.buttons .first .button.pressed {
+	background: -webkit-gradient(linear, left top, left bottom, from(#79b600), to(#188800));
+	background: -moz-linear-gradient(top,#79b600,#188800);
+	border-top: 1px solid #d8eaaf;
+	border-bottom:1px solid #0e5a00;
+	-moz-box-shadow: inset 0px 3px 3px #295f01;
+	-webkit-box-shadow: inset 0px 3px 3px #295f01;
+	box-shadow: inset 0px 3px 3px #295f01;
+	border-top:none\9;      /* for all ie browsers */
+	border-bottom:none\9;   /* for all ie browsers */
+}
+
+.tabSet.vertical.buttons .button.pressed  {
+	background: -webkit-gradient(linear, left top, left bottom, from(#79b600), to(#188800));
+	background: -moz-linear-gradient(top,#79b600,#188800);
+	border-top: 1px solid #d8eaaf;
+	border-bottom:1px solid #0e5a00;
+	-moz-box-shadow: inset 0px 3px 3px #295f01;
+	-webkit-box-shadow: inset 0px 3px 3px #295f01;
+	box-shadow: inset 0px 3px 3px #295f01;
+	border-top:none\9;     /* for all ie browsers */
+	border-bottom:none\9;  /* for all ie browsers */
+}
+
+.tabSet.vertical.buttons .last .button.pressed {
+	background: -webkit-gradient(linear, left top, left bottom, from(#79b600), to(#188800));
+	background: -moz-linear-gradient(top,#79b600,#188800);
+	border-top: 1px solid #d8eaaf;
+	border-bottom:1px solid #0e5a00;
+	-moz-box-shadow: inset 0px 3px 3px #295f01;
+	-webkit-box-shadow: inset 0px 3px 3px #295f01;
+	box-shadow: inset 0px 3px 3px #295f01;
+	border-top:none\9;     /* for all ie browsers */
+	border-bottom:none\9;  /* for all ie browsers */
+}
+
+.tabSet.horizontal.buttons li {
+	margin:0 3px;
+}
+
+.tabSet.horizontal.buttons>.tab.selected>.button,
+.tabSet.horizontal.buttons>.tab.selected>.button.over,
+.tabSet.horizontal.buttons>.tab.selected>.button.pressed {
+	background: #FFF
+	background: transparent\9; /* for all ie browsers */
+ 	border-top:none;
+ 	border-right:1px solid #b5b5b5;
+ 	border-bottom:1px solid #b5b5b5;
+	border-left:1px solid #b5b5b5;
+ 	border-right:none\9;      /* for all ie browsers */
+ 	border-bottom:none\9;     /* for all ie browsers */
+	border-left:none\9;	      /* for all ie browsers */
+	-moz-border-radius: 0px 0px 8px 8px;
+	-webkit-border-radius: 0px 0px 8px 8px;
+	border-radius: 0px 0px 8px 8px;	
+	-moz-box-shadow: 2px 2px 3px #c5c5c5;
+	-webkit-box-shadow: 2px 2px 3px #c5c5c5;
+	box-shadow: 2px 2px 3px #c5c5c5;
+	cursor:default;
+	background-color:none\9;   /* for all ie browsers */
+}
+
+.tabSet.horizontal.buttons .button.over {
+	background: -webkit-gradient(linear, left top, left bottom, from(#1a8700), to(#7ab600));
+	background: -moz-linear-gradient(top,#1a8700,#7ab600);
+ 	border-top:none;
+ 	border-right:1px solid #58844d;
+ 	border-bottom:1px solid #58844d;
+	border-left:1px solid #58844d;
+ 	border-right:none\9;      /* for all ie browsers */
+ 	border-bottom:none\9;     /* for all ie browsers */
+	border-left:none\9;	      /* for all ie browsers */
+	-moz-border-radius: 0px 0px 8px 8px;
+	-webkit-border-radius: 0px 0px 8px 8px;
+	border-radius: 0px 0px 8px 8px;	
+	-moz-box-shadow: 2px 2px 3px #c5c5c5;
+	-webkit-box-shadow: 2px 2px 3px #c5c5c5;
+	box-shadow: 2px 2px 3px #c5c5c5;
+	padding-bottom:1px;
+}
+
+.tabSet.horizontal.buttons .button.pressed {
+	background: -webkit-gradient(linear, left top, left bottom, from(#1a8700), to(#7ab600));
+	background: -moz-linear-gradient(top,#1a8700,#7ab600);
+ 	border-top:none;
+ 	border-right:1px solid #58844d;
+ 	border-bottom:1px solid #58844d;
+	border-left:1px solid #58844d;
+ 	border-right:none\9;      /* for all ie browsers */
+ 	border-bottom:none\9;     /* for all ie browsers */
+	border-left:none\9;	      /* for all ie browsers */
+ 	-moz-border-radius: 0px 0px 8px 8px;
+	-webkit-border-radius: 0px 0px 8px 8px;
+	border-radius: 0px 0px 8px 8px;
+	-moz-box-shadow: inset 0px 3px 3px #2b4d05;
+	-webkit-box-shadow: inset 0px 3px 3px #2b4d05;
+	box-shadow: inset 0px 3px 3px #2b4d05;
+	padding-bottom:1px;
+}
+
+
+/* samples.css */
+
+#menus .horizontalNav .header {
+	position: relative;
+	height:35px;
+	line-height: 35px;
+	-moz-border-top-left-radius: 10px;
+	-webkit-border-top-left-radius: 10px;
+	border-top-left-radius: 10px;
+	background: -webkit-gradient(linear, left top, left bottom, from(#e1edba), to(#8fdb04));
+	background: -moz-linear-gradient(top,#e1edba,#8fdb04);
+}

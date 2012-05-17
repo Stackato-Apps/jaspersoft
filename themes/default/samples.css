@@ -1,0 +1,154 @@
+/*
+not for production, this file contains styles that are used 
+for the sample pages
+*/
+	
+
+			
+#sampleGrid {
+	margin:10px;
+}
+
+#sampleGrid td,
+#sampleGrid th {
+	padding:15px;
+	border:1px solid #e0e0e0;
+	width: 200px;
+}
+
+
+#sampleGrid #calendarSample td,
+#sampleGrid #calendarSample td{
+	padding: 3px;
+	border: inherit;
+}
+
+
+.rowHeader {
+	width:100px;
+	text-align: right;
+	background: none;
+}
+
+tr#frame {
+	position: static;
+	background: none;
+}
+
+td.example {
+	vertical-align: top;
+	position: relative;
+}
+
+.positioningContext {
+	position: relative;
+}
+
+#sampleGrid td.noPadding {
+	padding: 0;
+}
+
+.toolbar td {
+	vertical-align: middle;
+	padding:0;
+}
+
+.footer.container td {
+	background-color: #E6E6E6;
+}
+
+@-moz-document url-prefix() {
+	.toolbar.container td {
+    	height:38px;
+	}
+}
+
+#panels .panel {
+	position: relative;
+}
+
+#dialogs .dialog {
+	position: relative;
+	left:0 !important;
+	top:0 !important;
+	margin-left: 0 !important;
+	margin-top: 0 !important;
+}
+
+/* iPads (portrait and landscape) */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+	
+	#dialogs .dialog.overlay.addUser > .content > .footer>.action {
+		top:-34px;
+	}
+}
+
+#chooseSource {
+	position: relative;
+	top:auto;
+}
+
+#addResource .dialog {
+	position: relative;
+}
+
+.toolbar.container.labelsAndIcons td{
+	height:50px;
+}
+
+#sample {
+	background-image: url(themes/pods/images/sampleIcon_20x20.png);
+}
+
+button #inputs {
+	background-image: url(images/icons/button_filter.png);
+}
+
+#sampleGrid .menu.vertical {
+	position:relative;
+}
+
+#sampleGrid .sub.menu {
+	position:absolute;
+}
+
+#sampleGrid .toolbar>button {
+	/* top:0; */
+}
+
+.horizontalNav .header {
+	position: relative;
+	height:35px;
+	line-height: 35px;
+	-moz-border-top-left-radius: 10px;
+	-webkit-border-top-left-radius: 10px;
+	border-top-left-radius: 10px;
+	background: -webkit-gradient(linear, left top, left bottom, from(#3fb8fa), to(#2881bb));
+	background: -moz-linear-gradient(top,#3fb8fa,#2881bb);
+}
+
+.horizontalNav .header *{
+	height:35px;
+	line-height: 35px;	
+}
+
+.menu.horizontal {
+	top:0;
+	left:0;
+}
+
+#panels .pane {
+	/* height:200px; */
+	margin:0;
+}
+
+
+.FPOonly {background: #f6f9f9 url(images/grid_20x20_bkgd.png);}
+#panels .FPOonly {}
+.a {height: 300px;width:100%;}
+.b {height:400px;width:300px;}
+.c {height:150px;width:400px;}
+.d {height:100px;width:200px;}
+

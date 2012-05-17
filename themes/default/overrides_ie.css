@@ -1,0 +1,1778 @@
+/*
+overrides.ie.css
+
+overrides for ie
+tim sheiner & anna leeg
+
+*/
+
+
+/*
+______________________________________________________________ 
+
+  CONTAINERS.CSS 
+______________________________________________________________ 
+
+*/
+
+.dialog.overlay {
+	background-color: #fff;
+	float: left;
+	margin:3px;
+}
+
+.sub.header {
+	height:28px;
+	position: relative;
+	top:-1px;
+	z-index: 10;
+	border-bottom:medium none;
+	border-top:1px solid #c2c2c2;
+	min-height: 0;
+}
+
+/* MAIN MENU BAR */
+
+.menu.primaryNav .wrap.over,
+.menu.primaryNav .wrap.pressed {
+	background-image: url(images/menu_primaryNav_sprite.png);
+	background-position: center top;
+}
+
+/* VERTICAL MENUS */
+
+.menu.vertical {
+	min-width: 150px;
+	background-image:url("images/menu_vertical_bkgd.png");
+	border:none;
+}
+
+	/* CONTEXT MENU */
+
+.menu.context>.corner {
+	background-image: url(images/menu_context_bkgd_corners.png);
+}
+
+.menu>.corner {
+	display:block;
+	height: 25px;
+	width: 25px;
+	background-repeat: no-repeat;
+}
+
+.menu.context>.edge.rl {
+	display:block;
+	top:15px;
+	bottom: 7px;
+	width: 25px;
+	background-image: url(images/menu_context_bkgd_edges_rl.png);
+	background-repeat: repeat-y;
+}
+
+.menu.context>.edge.tb {
+	display:block;
+	left:15px;
+	right: 9px;
+	height: 25px;
+	background-image: url(images/menu_context_bkgd_edges_tb.png);
+	background-repeat: repeat-x;	
+}
+
+.menu.context>.corner.top {
+	display:block;
+	top:-10px;
+}
+
+.menu.context>.corner.bottom {
+	display:block;
+	bottom:-18px;
+}
+
+.menu.context>.corner.left {
+	display:block;
+	left:-10px;
+}
+
+.menu.context>.corner.right {
+	display:block;
+	right:-16px;
+}
+
+.menu.context>.edge.rl.left {
+	display:block;
+	left:-10px;
+	right: auto;
+	background-position: top left;
+}
+
+.menu.context>.edge.rl.right {
+	display:block;
+	right:-16px;
+	left: auto;
+	background-position: top right;
+}
+
+.menu.context>.edge.tb.top {
+	display:block;
+	top:-10px;
+	bottom: auto;
+	background-position: top left;
+}
+
+.menu.context>.edge.tb.bottom {
+	display:block;
+	bottom:-18px;
+	top: auto;
+	background-position: bottom left;
+}
+
+	
+	/* DROPDOWN MENU */
+	
+
+.menu.dropDown>.corner {
+	background-image: url(images/menu_dropDown_bkgd_corners.png);
+}
+
+.menu.dropDown>.edge.rl {
+	display:block;
+	top:20px;
+	bottom: 12px;
+	width: 25px;
+	background-image: url(images/menu_dropDown_bkgd_edges_rl.png);
+	background-repeat: repeat-y;
+}
+
+.menu.dropDown>.edge.tb {
+	display:block;
+	left:16px;
+	right: 12px;
+	height: 25px;
+	background-image: url(images/menu_dropDown_bkgd_edges_tb.png);
+	background-repeat: repeat-x;
+}
+
+
+.menu.dropDown>.corner.top {
+	display:block;
+	top:-5px;
+}
+
+.menu.dropDown>.corner.bottom {
+	display:block;
+	bottom:-13px;
+}
+
+.menu.dropDown>.corner.left {
+	display:block;
+	left:-9px;
+}
+
+.menu.dropDown>.corner.right {
+	display:block;
+	right:-13px;
+}
+
+.menu.dropDown>.edge.rl.left {
+	display:block;
+	left:-9px;
+	right: auto;
+	background-position: top left;
+}
+
+.menu.dropDown>.edge.rl.right {
+	display:block;
+	right:-13px;
+	left: auto;
+	background-position: top right;
+}
+
+.menu.dropDown>.edge.tb.top {
+	display:block;
+	top:-5px;
+	bottom: auto;
+	background-position: top left;
+}
+
+.menu.dropDown>.edge.tb.bottom {
+	display:block;
+	bottom:-13px;
+	top: auto;
+	background-position: bottom left;
+}
+
+.dialog.overlay.sizeable>.content {
+/* set coordinates to visual (0,0,0,0) of .column.decorated background,
+   as this object used as reference for positioning
+   child objects */
+	bottom:-1px;
+	left:-1px;
+	right:-1px;
+	top:-1px;
+	float: none;
+	margin-left: 0;
+	position:absolute;
+	margin:0;
+}
+
+/* .panel.info */
+
+.info {
+	float: left;
+	position: relative;
+	margin:2px 5px 20px 2px; /* moves visual top and left to actual */
+	clear:both;
+	border-radius:0px;
+	border:none;
+}
+
+.info>.corner {
+	display:block;
+	height: 15px;
+	width: 15px;
+	background-image: url(images/panel_info_bkgd_corners.png);
+	background-repeat: no-repeat;
+}
+
+.info>.edge.rl {
+	display:block;
+	top:12px;
+	bottom: 5px;
+	width: 15px;
+	background-image: url(images/panel_info_bkgd_edges_rl.png);
+	background-repeat: repeat-y;
+}
+
+.info>.edge.tb {
+	display:block;
+	left:12px;
+	right: 6px;
+	height: 15px;
+	background-image: url(images/panel_info_bkgd_edges_tb.png);
+	background-repeat: repeat-x;	
+}
+
+/* tooltips */
+
+.panel.tooltip.info {
+	float: left;
+	position: relative;
+	margin:0px; /* moves visual top and left to actual */
+	clear:both;
+	border:none;
+}
+
+.panel.tooltip.info>.corner {
+	display:block;
+	height: 10px;
+	width: 10px;
+	bottom: -5px;
+	background-image: url(images/panel_info_tooltip_bkgd_corners.png);
+	background-repeat: no-repeat;
+}
+
+.panel.tooltip.info>.edge.rl {
+	display:block;
+	top:7px;
+	bottom: 5px;
+	width: 10px;
+	background-image: url(images/panel_info_tooltip_bkgd_edges_rl.png);
+	background-repeat: repeat-y;
+}
+
+.panel.tooltip.info>.edge.tb {
+	display:block;
+	left:6px;
+	right: 1px;
+	bottom: -5px;
+	height: 10px;
+	background-image: url(images/panel_info_tooltip_bkgd_edges_tb.png);
+	background-repeat: repeat-x;
+}
+
+
+.info>.corner.top {
+	display:block;
+	top:-3px;
+}
+
+.info>.corner.bottom {
+	display:block;
+	bottom:-10px;
+}
+
+.info>.corner.left {
+	display:block;
+	left:-3px;
+}
+
+.info>.corner.right {
+	display:block;
+	right:-9px;
+}
+
+.info>.edge.rl.left {
+	display:block;
+	left:-3px;
+	right: auto;
+	background-position: top left;
+}
+
+.info>.edge.rl.right {
+	display:block;
+	right:-9px;
+	left: auto;
+	background-position: top right;
+}
+
+.info>.edge.tb.top {
+	display:block;
+	top:-3px;
+	bottom: auto;
+	background-position: top left;
+}
+
+.info>.edge.tb.bottom {
+	display:block;
+	bottom:-10px;
+	top: auto;
+	background-position: bottom left;
+}
+
+.info.system {
+	height:25px;
+	/* background-image: url(images/panel_confirm_bkgd.png); */
+	min-height: 0;
+	min-width: 0;
+	margin: 3px;
+	background-color: #FEEF97;
+}
+
+	/* CONTEXT MENU */
+
+.menu.context>.corner {
+	background-image: url(images/menu_context_bkgd_corners.png);
+}
+
+.menu>.corner {
+	display:block;
+	height: 25px;
+	width: 25px;
+	background-repeat: no-repeat;
+}
+
+.menu.context>.edge.rl {
+	display:block;
+	top:15px;
+	bottom: 7px;
+	width: 25px;
+	background-image: url(images/menu_context_bkgd_edges_rl.png);
+	background-repeat: repeat-y;
+}
+
+.menu.context>.edge.tb {
+	display:block;
+	left:15px;
+	right: 9px;
+	height: 25px;
+	background-image: url(images/menu_context_bkgd_edges_tb.png);
+	background-repeat: repeat-x;	
+}
+
+.menu.context>.corner.top {
+	display:block;
+	top:-10px;
+}
+
+.menu.context>.corner.bottom {
+	display:block;
+	bottom:-18px;
+}
+
+.menu.context>.corner.left {
+	display:block;
+	left:-10px;
+}
+
+.menu.context>.corner.right {
+	display:block;
+	right:-16px;
+}
+
+.menu.context>.edge.rl.left {
+	display:block;
+	left:-10px;
+	right: auto;
+	background-position: top left;
+}
+
+.menu.context>.edge.rl.right {
+	display:block;
+	right:-16px;
+	left: auto;
+	background-position: top right;
+}
+
+.menu.context>.edge.tb.top {
+	display:block;
+	top:-10px;
+	bottom: auto;
+	background-position: top left;
+}
+
+.menu.context>.edge.tb.bottom {
+	display:block;
+	bottom:-18px;
+	top: auto;
+	background-position: bottom left;
+}
+
+
+/* DECORATED COLUMN 
+-------------------------------------------------------------- 
+   a decorated column has a visual presence in the UI with borders, headers, shadows, etc.
+*/
+
+.column.decorated {
+	border:none;
+	margin:21px 21px 25px; /* default margin setting overridden as req'd in layout.css */
+	bottom:0;
+	top:0;
+	overflow: visible;
+	background-color: #fff;
+	min-width: 150px;
+}
+
+.column.decorated>.content {
+/* set coordinates to visual (0,0,0,0) of .column.decorated background,
+   as this object used as reference for positioning
+   child objects */
+	bottom:-3px;
+	left:-3px;
+	right:-1px;
+	top:-3px;
+}
+
+
+/* styles used to produce shadow background */
+
+
+.column.decorated>.corner,
+.column.decorated>.edge {
+	display:block;
+	position: absolute;
+	text-indent: -5000px;
+}
+
+.column.decorated>.corner {
+	display:block;
+	height: 10px;
+	width: 10px;
+	background-image: url(images/column_bkgd_corners.png);
+	background-repeat: no-repeat;
+}
+
+.column.decorated>.corner.top {
+	display:block;
+	top:-5px;
+}
+
+.column.decorated>.corner.bottom {
+	display:block;
+	bottom:-5px;
+}
+
+.column.decorated>.corner.left {
+	display:block;
+	left:-5px;
+}
+
+.column.decorated>.corner.right {
+	display:block;
+	right:-5px;
+}
+
+.column.decorated>.corner.top.left {
+	display:block;
+	background-position: top left;
+}
+
+.column.decorated>.corner.bottom.left {
+	display:block;
+	background-position: bottom left;
+}
+
+.column.decorated>.corner.top.right {
+	display:block;
+	background-position: top right;
+}
+
+.column.decorated>.corner.bottom.right {
+	display:block;
+	background-position: bottom right;
+}
+
+.column.decorated>.edge.rl {
+	display:block;
+	top:5px;
+	bottom: 5px;
+	width: 10px;
+	background-image: url(images/column_bkgd_edges_rl.png);
+	background-repeat: repeat-y;
+}
+
+.column.decorated>.edge.tb {
+	display:block;
+	left:5px;
+	right: 5px;
+	height: 10px;
+	background-image: url(images/column_bkgd_edges_tb.png);
+	background-repeat: repeat-x;	
+}
+
+.column.decorated>.edge.rl.left {
+	display:block;
+	left:-5px;
+	right: auto;
+	background-position: top left;
+}
+
+.column.decorated>.edge.rl.right {
+	display:block;
+	right:-5px;
+	left: auto;
+	background-position: top right;
+}
+
+.column.decorated>.edge.tb.top {
+	display:block;
+	top:-5px;
+	bottom: auto;
+	background-position: top left;
+}
+
+.column.decorated>.edge.tb.bottom {
+	display:block;
+	bottom:-5px;
+	top: auto;
+	background-position: bottom left;
+}
+
+/* .panel.dialog.overlay */
+
+.dialog.overlay {
+	border:none;
+}
+
+.dialog.overlay>.content {
+/* set coordinates to visual (0,0,0,0) of .column.decorated background,
+   as this object used as reference for positioning
+   child objects */
+	margin-bottom:-4px;
+	left:-3px;
+	margin-right:-3px;
+	top:-2px;
+	position: relative;
+}
+
+.dialog.overlay>.content>.header {
+	background-image: url(images/panel_dialog_header_sprite.png);
+	background-position: right -72px;
+	background-repeat: no-repeat;
+}
+
+.dialog.overlay .header>.cosmetic {
+	display:block;
+	height:35px;
+	left:0;
+	margin-right:18px;
+	background-image: url(images/panel_dialog_header_sprite.png);
+	background-repeat: no-repeat;
+}
+
+.dialog.overlay.sizeable>.content {
+/* set coordinates to visual (0,0,0,0) of .column.decorated background,
+   as this object used as reference for positioning
+   child objects */
+	bottom:-1px;
+	left:-3px;
+	right:-1px;
+	top:-1px;
+	float: none;
+	margin-left: 0;
+	position:absolute;
+	margin:0;
+}
+
+.dialog.overlay>.corner {
+	display:block;
+	height: 25px;
+	width: 25px;
+	background-image: url(images/panel_bkgd_corners.png);
+	background-repeat: no-repeat;
+}
+
+.dialog.overlay>.edge.rl {
+	display:block;
+	top:12px;
+	bottom: 5px;
+	width: 25px;
+	background-image: url(images/panel_bkgd_edges_rl.png);
+	background-repeat: repeat-y;
+}
+
+.dialog.overlay>.edge.tb {
+	display:block;
+	left:10px;
+	right: 8px;
+	height: 25px;
+	background-image: url(images/panel_bkgd_edges_tb.png);
+	background-repeat: repeat-x;	
+}
+
+.dialog.overlay>.corner.top {
+	display:block;
+	top:-13px;
+}
+
+.dialog.overlay>.corner.bottom {
+	display:block;
+	bottom:-20px;
+}
+
+.dialog.overlay>.corner.left {
+	display:block;
+	left:-15px;
+}
+
+.dialog.overlay>.corner.right {
+	display:block;
+	right:-17px;
+}
+
+.dialog.overlay>.edge.rl.left {
+	display:block;
+	left:-15px;
+	right: auto;
+	background-position: top left;
+}
+
+.dialog.overlay>.edge.rl.right {
+	display:block;
+	right:-17px;
+	left: auto;
+	background-position: top right;
+}
+
+.dialog.overlay>.edge.tb.top {
+	display:block;
+	top:-13px;
+	bottom: auto;
+	background-position: top left;
+}
+
+.dialog.overlay>.edge.tb.bottom {
+	display:block;
+	bottom:-20px;
+	top: auto;
+	background-position: bottom left;
+}
+
+/* .panel.dialog.inlay 
+   a panel for fixed, non-resizable applications 
+*/
+
+.dialog.inlay {
+	margin:4px 6px 9px 2px; /* moves visual top and left to actual */
+	float:left;
+}
+
+.dialog.inlay>.content {
+/* set coordinates to visual (0,0,0,0) of .column.decorated background,
+   as this object used as reference for positioning
+   child objects */
+   
+	left:-1px;
+	margin-bottom:-5px;
+	margin-right:-7px;
+	position:relative;
+	top:-3px;
+}
+
+.dialog.inlay>.corner {
+	display:block;
+	height: 20px;
+	width: 20px;
+	background-image: url(images/panel_inlay_bkgd_corners.png);
+	background-repeat: no-repeat;
+}
+
+.dialog.inlay>.edge.rl {
+	display:block;
+	top:14px;
+	bottom: 10px;
+	width: 20px;
+	background-image: url(images/panel_inlay_bkgd_edges_rl.png);
+	background-repeat: repeat-y;
+}
+
+.dialog.inlay>.edge.tb {
+	display:block;
+	left:15px;
+	right: 11px;
+	height: 20px;
+	background-image: url(images/panel_inlay_bkgd_edges_tb.png);
+	background-repeat: repeat-x;	
+}
+
+.dialog.inlay>.corner.top {
+	display:block;
+	top:-5px;
+}
+
+.dialog.inlay>.corner.bottom {
+	display:block;
+	bottom:-10px;
+}
+
+.dialog.inlay>.corner.left {
+	display:block;
+	left:-5px;
+}
+
+.dialog.inlay>.corner.right {
+	display:block;
+	right:-9px;
+}
+
+.dialog.inlay>.edge.rl.left {
+	display:block;
+	left:-5px;
+	right: auto;
+	background-position: top left;
+}
+
+.dialog.inlay>.edge.rl.right {
+	display:block;
+	right:-9px;
+	left: auto;
+	background-position: top right;
+}
+
+.dialog.inlay>.edge.tb.top {
+	display:block;
+	top:-5px;
+	bottom: auto;
+	background-position: top left;
+}
+
+.dialog.inlay>.edge.tb.bottom {
+	display:block;
+	bottom:-10px;
+	top: auto;
+	background-position: bottom left;
+}
+
+.dialog.inlay .footer>.cosmetic.left {
+	display:block;
+	left:0;
+	right:15px;
+	background-position: bottom left;
+	background-image: url(images/panel_inlay_gradient_left.png);
+}
+
+.dialog.inlay .footer>.cosmetic.right {
+	display:block;
+	superuserbackground-position: bottom right;
+	background-image: url(images/panel_inlay_gradient_right.png);
+	right:0;
+	width:15px;
+}
+
+/* miminized panels */
+
+.column.decorated.minimized.tertiary {
+	margin-right:0;
+	right: 1px !important;
+}
+
+.column.decorated.minimized.secondary {
+	margin-left:0;
+}
+
+/*
+______________________________________________________________ 
+
+  DIALOGSPECIFIC.CSS 
+______________________________________________________________ 
+
+*/
+
+/* calculated field */
+/* swap fields */
+
+.calculatedField #basicFunctions .radio .wrap {
+    display: inline-block;
+    margin-top: 0px;
+}
+
+.calculatedField.swap #basicFunctions .control [type="checkbox"], 
+.calculatedField.swap #basicFunctions .control [type="radio"] {
+	margin-top:-1px;
+}
+
+.calculatedField #basicFunctions .argument.one {
+	top:-4px;
+}
+
+.calculatedField.swap #basicFunctions .argument.one,
+.calculatedField.swap #basicFunctions .argument.two,
+.calculatedField.swap #basicFunctions .operator {
+	margin-top:3px;
+}
+
+/*
+______________________________________________________________ 
+
+  SAMPLES.CSS 
+______________________________________________________________ 
+
+*/
+
+.horizontalNav .header {
+	position: relative;
+	height:35px;
+	line-height: 35px;
+	background-image:url(images/frame_header_sprite.png);
+}
+
+/*
+______________________________________________________________ 
+
+  CONTROLS.CSS 
+______________________________________________________________ 
+
+*/
+
+/* search lockups */
+
+
+.searchLockup {
+	position:relative;
+	height: auto;
+	display: inline-block;
+	white-space: nowrap;
+	min-height:22px;
+	min-width: 130px;
+	margin-bottom: 0
+}
+
+.control.searchLockup>.wrap {
+	background:transparent url(images/search_sprite.png) no-repeat scroll 0 0;
+	right:60px;
+	position:absolute;
+	left:0 !important;
+	padding-right:0;
+	background-color:none;
+	border:none;
+}
+
+.control.searchLockup>.wrap>input[type=text] {
+	width:89%;
+	background:transparent;
+	border: none;
+	padding:4px 15px 5px 5px;
+	display: inline-block;
+	height:25px;
+	box-shadow:none;
+}
+
+.control.searchLockup#globalSearch>.wrap>input[type=text] {
+	height:14px;
+}
+
+.control.searchLockup#secondarySearchBox>.wrap>input[type=text] {
+	width:85%;
+	height:14px;
+	padding:4px 15px 5px 5px;
+}
+
+.control.searchLockup>.right {
+	position:absolute;
+	right:40px;
+	background:transparent url(images/search_sprite.png) no-repeat scroll right -43px;
+	display:inline-block;
+	height: 22px;
+	width: 22px;
+	top:0;
+}
+
+.button.searchClear {
+	height:15px;
+	width:15px;
+	top:4px;
+	background-image: url(images/search_sprite.png);
+	background-repeat: no-repeat;
+	background-position: -185px -165px;
+	display: none;
+	position: absolute;
+	margin:0;
+	text-indent: -9999px;
+}
+
+.header>.searchLockup {
+	left:20px;
+	position:relative;
+	top:7px;
+}
+
+.header>.searchLockup {
+	width:250px;
+}
+
+
+/* groupBox */
+
+.groupBox>.corner {
+	display:block;
+	height: 15px;
+	width: 15px;
+	background-image: url(images/panel_inset_bkgd_corners.png);
+	background-repeat: no-repeat;
+}
+
+.groupBox>.edge.rl {
+	display:block;
+	top:12px;
+	bottom: 5px;
+	width: 15px;
+	background-image: url(images/panel_inset_bkgd_edges_rl.png);
+	background-repeat: repeat-y;
+}
+
+.groupBox>.edge.tb {
+	display:block;
+	left:12px;
+	right: 6px;
+	height: 15px;
+	background-image: url(images/panel_inset_bkgd_edges_tb.png);
+	background-repeat: repeat-x;	
+}
+
+.groupBox>.corner.top {
+	display:block;
+	top:-3px;
+}
+
+.groupBox>.corner.bottom {
+	display:block;
+	bottom:-10px;
+}
+
+.groupBox>.corner.left {
+	display:block;
+	left:-3px;
+}
+
+.groupBox>.corner.right {
+	display:block;
+	right:-9px;
+}
+
+.groupBox>.edge.rl.left {
+	display:block;
+	left:-3px;
+	right: auto;
+	background-position: top left;
+}
+
+.groupBox>.edge.rl.right {
+	display:block;
+	right:-9px;
+	left: auto;
+	background-position: top right;
+}
+
+.groupBox>.edge.tb.top {
+	display:block;
+	top:-3px;
+	bottom: auto;
+	background-position: top left;
+}
+
+.groupBox>.edge.tb.bottom {
+	display:block;
+	bottom:-10px;
+	top: auto;
+	background-position: bottom left;
+}
+
+.groupBox>.content {
+/* set coordinates to visual (0,0,0,0) of .column.decorated background,
+   as this object used as reference for positioning
+   child objects */
+	left:-1px;
+	margin-right:-10px;
+	position:relative;
+	top:-2px;
+}
+
+.groupBox .body {
+	position: relative;
+	overflow:auto;
+	padding:10px 10px 0;
+	margin:auto 2px auto 1px;
+}
+
+/* .tabSet.horizontal.buttons */
+
+.tabSet.horizontal.buttons li {
+	border: none;
+}
+
+.tabSet.horizontal.buttons {
+	float:left;
+	z-index: 10;
+	position: relative;
+	background-color:#eee;
+	background-image: url("images/tabs_horizontal_buttons_bkgd.png");
+	background-repeat: repeat-x;
+	background-position: left top;
+	border-top:1px solid #b5b5b5;
+	height:25px;
+	padding:0px 20px 7px;
+	margin-bottom: 0;
+}
+
+.tabSet.horizontal.buttons li {  
+	height:31px;
+}
+
+.tabSet.horizontal.buttons .button { 
+	padding: 0 21px 0 0;   
+	text-align: center; 
+	background-image: url(images/tabs_horizontal_sprite.png);
+   	border:none;
+	background-color: transparent;
+}
+
+.tabSet.horizontal.buttons .selected .button { 
+	margin-top: -1px;
+}
+
+.tabSet.horizontal.buttons .selected .button>.wrap { 
+	line-height: 30px;
+	height: 33px;
+}
+
+.tabSet.horizontal.buttons .button .wrap {
+	padding: 0 0 0 15px; 
+	line-height: 28px;
+	height: 31px;
+}
+
+
+/* sprite positions */
+
+.tabSet.horizontal.buttons .button {
+	background-position: left 100px;
+}
+
+.tabSet.horizontal.buttons .button .wrap {
+	background-position: left 100px;
+}
+
+
+/* sprite positions .tabSet.horizontal.buttons. .selected */
+
+.tabSet.horizontal.buttons .selected .button .wrap,
+.tabSet.horizontal.buttons .selected .button.over .wrap,
+.tabSet.horizontal.buttons .selected .button.pressed .wrap {
+	background-position: left top;
+}
+
+.tabSet.horizontal.buttons .selected .button,
+.tabSet.horizontal.buttons .selected .button.over,
+.tabSet.horizontal.buttons .selected .button.pressed {
+	background-position: right -41px;
+}
+
+/* sprite positions .tabSet.horizontal.buttons .over */
+
+.tabSet.horizontal.buttons .button.over {
+	background-position: right -123px;
+	border:none;
+}
+
+.tabSet.horizontal.buttons .button.over .wrap{
+	background-position: left -82px;
+}
+
+/* sprite positions .tabSet.horizontal.buttons .pressed */
+
+.tabSet.horizontal.buttons .button.pressed {
+	background-position: right -205px;
+}
+
+.tabSet.horizontal.buttons .button.pressed .wrap{
+	background-position: left -164px;
+}
+
+
+/* adjustments from pure css default styling */
+
+.tabSet.horizontal.buttons>.tab>.button {
+	background-color:transparent;
+	border:none;
+}
+
+
+.tabSet.horizontal.buttons>.tab.selected>.button,
+.tabSet.horizontal.buttons>.tab.selected>.button.over,
+.tabSet.horizontal.buttons>.tab.selected>.button.pressed {
+	border:none;
+	background-color: transparent;
+	cursor:default
+}
+
+
+.tabSet.horizontal.buttons>.tab.first.selected>.button.over,
+.tabSet.horizontal.buttons>.tab.last.selected>.button.over {
+	background-image: url(images/tabs_horizontal_sprite.png);
+	background-position:right -41px;
+	background-color:transparent;
+}
+
+
+/*
+______________________________________________________________ 
+
+  THEME.CSS 
+______________________________________________________________ 
+
+*/
+
+/* frame */
+
+#frame>.content>.header {
+	height:37px;
+	background-image: url(images/frame_header_sprite.png);
+	background-position: 100% -72px;
+	background-repeat: no-repeat;
+	border:none !important;
+}
+
+#frame>.content>.header>.cosmetic {
+	display:block;
+	height:37px;
+	left:-1px;
+	right:18px;
+}
+
+#frame {
+	background:#e7e7e7 url(images/frame_background_sprite.png) left bottom repeat-x;
+	margin-bottom:32px;
+	margin-top:64px;
+	margin-left:22px;
+}
+					
+#frame>.corner {
+	display:block;
+	height: 40px;
+	width: 40px;
+	background-image: url(images/frame_bkgd_corners.png);
+	background-repeat: no-repeat;
+}
+
+#frame>.edge.rl {
+	display:block;
+	top:10px;
+	bottom: 10px;
+	width: 40px;
+	background-image: url(images/frame_bkgd_edges_rl.png);
+}
+
+#frame>.edge.tb {
+	display:block;
+	left:20px;
+	right: 20px;
+	height: 40px;
+	background-image: url(images/frame_bkgd_edges_tb.png);	
+}
+
+#frame>.corner.top {
+	display:block;
+	top:-25px;
+}
+
+#frame>.corner.bottom {
+	display:block;
+	bottom:-30px;
+}
+
+#frame>.corner.left {
+	display:block;
+	left:-18px;
+}
+
+#frame>.corner.right {
+	display:block;
+	right:-18px;
+}
+
+#frame>.edge.rl.left {
+	display:block;
+	left:-18px;
+}
+
+#frame>.edge.rl.right {
+	display:block;
+	right:-18px;
+}
+
+#frame>.edge.tb.top {
+	display:block;
+	top:-25px;
+}
+
+#frame>.edge.tb.bottom {
+	display:block;
+	bottom:-29px;
+}
+
+/* .tabSet.vertical.buttons */
+
+.tabSet.vertical.buttons .button { 
+  padding: 0 15px 0 0;   
+  text-align: center; 
+  background-image: url(images/tabs_vertical_sprite.png);
+  width:100%;
+}
+
+/* sprite positions */
+
+.tabSet.vertical.buttons .first .button {
+	background-position: right -174px;
+}
+
+.tabSet.vertical.buttons .first .button .wrap {
+	background-position: left top;
+}
+
+.tabSet.vertical.buttons .button {
+	background-position: right -232px;
+}
+
+.tabSet.vertical.buttons .button .wrap {
+	background-position: left -58px;
+}
+
+
+.tabSet.vertical.buttons .last .button {
+	background-position: right -290px;
+}
+
+.tabSet.vertical.buttons .last .button .wrap {
+	background-position: left -116px;
+}
+
+/* sprite positions .tabSet.vertical.buttons.over */
+
+.tabSet.vertical.buttons .selected.first .button,
+.tabSet.vertical.buttons .selected.first .button.over,
+.tabSet.vertical.buttons .selected.first .button.pressed,
+.tabSet.vertical.buttons .first .button.over {
+	background-position: right -522px;
+}
+
+.tabSet.vertical.buttons .selected.first .button .wrap,
+.tabSet.vertical.buttons .selected.first .button.over .wrap,
+.tabSet.vertical.buttons .selected.first .button.pressed .wrap,
+.tabSet.vertical.buttons .first .button.over .wrap {
+	background-position: left -348px;
+}
+
+.tabSet.vertical.buttons .selected .button,
+.tabSet.vertical.buttons .selected .button.over,
+.tabSet.vertical.buttons .selected .button.pressed,
+.tabSet.vertical.buttons .button.over {
+	background-position: right -580px;
+}
+
+.tabSet.vertical.buttons .selected .button .wrap,
+.tabSet.vertical.buttons .selected .button.over .wrap,
+.tabSet.vertical.buttons .selected .button.pressed .wrap,
+.tabSet.vertical.buttons .button.over .wrap{
+	background-position: left -406px;
+}
+
+
+.tabSet.vertical.buttons .selected.last .button,
+.tabSet.vertical.buttons .selected.last .button.over,
+.tabSet.vertical.buttons .selected.last .button.pressed,
+.tabSet.vertical.buttons .last .button.over {
+	background-position: right -638px;
+}
+
+.tabSet.vertical.buttons .selected.last .button .wrap,
+.tabSet.vertical.buttons .selected.last .button.over .wrap,
+.tabSet.vertical.buttons .selected.last .button.pressed .wrap,
+.tabSet.vertical.buttons .last .button.over .wrap {
+	background-position: left -464px;
+}
+
+/* sprite positions .tabSet.vertical.buttons.pressed */
+
+.tabSet.vertical.buttons .first .button.pressed {
+	background-position: right -870px;
+}
+
+.tabSet.vertical.buttons .first .button.pressed .wrap {
+	background-position: left -694px;
+}
+
+/* .tabSet.vertical.buttons .button.up.pressed, */
+.tabSet.vertical.buttons .button.pressed  {
+	background-position: right -927px;
+}
+
+/* .tabSet.vertical.buttons .button.up.pressed .wrap */
+.tabSet.vertical.buttons .button.pressed .wrap {
+	background-position: left -753px;
+}
+
+
+.tabSet.vertical.buttons .last .button.pressed {
+	background-position: right -984px;
+}
+
+.tabSet.vertical.buttons .last .button.pressed .wrap {
+	background-position: left -812px;
+}
+
+.tabSet.vertical.buttons .button {
+	display: block;
+	float:none;
+}
+
+/*
+______________________________________________________________ 
+
+  BUTTONS.CSS 
+______________________________________________________________ 
+
+*/
+
+#globalSearch .button.search.up,
+#globalSearch .button.search.disabled {
+	background-position: 0px -76px;
+}
+
+.action.disabled,
+.action[disabled] {
+	background-position: right -52px; 
+	border-radius:0;
+}
+
+.button .wrap { 
+	position: relative;
+	display: block !important; 
+	white-space: nowrap;
+	background-image:inherit;
+	background-repeat: no-repeat;
+	background-color: inherit;
+}
+
+.action.jumbo { 
+	padding: 0 34px 0 0; 
+	margin-right:5px; 
+	text-align: center; 
+	background-image: url(images/button_action_jumbo_sprite.png);
+	background-position: right -240px; 
+	text-decoration:none;
+	background-color: transparent;}
+
+.action.jumbo>.wrap {
+	font-size:22px;
+	height:180px;
+	left:2px;
+	line-height:40px;
+	padding:0 0 0 25px;
+	background-position: left top;
+	min-width: 222px;
+	margin-top:0;
+}
+
+.action.jumbo.over {   
+	background-color: transparent !important;
+	background-position: right -711px; 
+}
+
+.action.jumbo.over>.wrap {
+	background-color: transparent !important;
+	background-position: left -471px;
+}
+
+.action.jumbo.pressed {
+	background-color: transparent !important;
+	background-position: right -1192px;
+}
+
+.action.jumbo.pressed>.wrap {
+	background-color: transparent !important;
+	background-position: left -952px;
+}
+
+.action.jumbo.disabled,
+.action.jumbo[disabled] {
+	background-position: right -240px; 
+}
+
+.action.jumbo.disabled>.wrap,
+.action.jumbo[disabled]>.wrap {
+	background-position: left 0px;
+}
+
+.action.primary { 
+	padding-right: 20px;
+	background-image: url(images/button_action_primary_sprite.png);
+}
+
+.action.primary>.wrap { 
+	padding-left: 20px;
+}
+
+#addResource_locateQuery .locationSelector .button.action {
+	background-color: transparent;
+}
+
+.action,
+.action.over,
+.action.pressed,
+.action.primary,
+.action.primary.over,
+.action.primary.pressed,
+.action.jumbo,
+.action.jumbo.over,
+.action.jumbo.pressed {
+	border-radius:0;
+	box-shadow:none;
+}
+
+.action { 
+	padding: 0 15px 0 0; 
+	margin-right:5px; 
+	text-align: center; 
+	background-image: url(images/button_action_sprite.png);
+	background-position: right -52px;  
+	display: inline-block;
+	text-decoration: none;
+	box-shadow:none;
+}
+
+.action>.wrap {
+	padding: 0 0 0 15px; 
+	line-height: 32px;
+	font-size: 11px;
+	background-position: left 0;
+	border:none;
+}
+
+.action.pressed {
+	background-position: right -260px; 
+}
+
+.action.pressed>.wrap {
+	background-position: left -208px;
+}
+
+.action.over {   
+	background-position: right -156px; 
+}
+
+.action.over>.wrap {
+	background-position: left -104px;
+}
+
+.action.square.over {   
+	background-position: right -156px; 
+}
+
+.action.square.over>.wrap {
+	background-position: left -104px;
+}
+
+.action.square.pressed {
+	background-position: right -260px; 
+}
+
+.action.square.pressed>.wrap {
+	background-position: left -208px;
+}
+
+
+#reportViewer .control.paging,
+#reportViewer #pagination .action,
+#reportViewer #pagination .action.square>.wrap {
+	height:30px;
+}
+
+#reportViewer #pagination .action.square {
+	border:transparent;
+	border:none;
+	background-position: right -364px;
+}
+
+#reportViewer #pagination .action.square>.wrap {
+	background-position: left -312px;
+}
+
+#reportViewer #pagination .action.square.over {
+	background-position: right -468px;
+}
+
+#reportViewer #pagination .action.square.over>.wrap {
+	background-position: left -416px;
+}
+
+#reportViewer #pagination .action.square.pressed {
+	background-position: right -572px ;
+}
+
+#reportViewer #pagination .action.square.pressed>.wrap {
+	background-position: left -520px;
+}
+
+.control.paging .input {
+	top: -12px;
+}
+
+#reportViewer #pagination .move.toLeft .icon {
+    background-position: 7px -100px !important;
+}
+
+#reportViewer #pagination .move.toLeft.over .icon,
+#reportViewer #pagination .move.toLeft.pressed .icon {
+    background-position: -47px -100px !important;
+}
+
+#reportViewer #pagination .move.left .icon {
+	background-position: 7px -47px !important;
+}
+
+#reportViewer #pagination .move.left.over .icon,
+#reportViewer #pagination .move.left.pressed .icon {
+    background-position: -47px -47px !important;
+}
+
+#reportViewer #pagination .move.right .icon {
+    background-position: 7px 6px !important;
+}
+
+#reportViewer #pagination .move.right.over .icon,
+#reportViewer #pagination .move.right.pressed .icon {
+    background-position: -47px 6px !important;
+}
+
+#reportViewer #pagination .move.toRight .icon {
+    background-position: 9px -153px !important;
+}
+
+#reportViewer #pagination .move.toRight.over .icon,
+#reportViewer #pagination .move.toRight.pressed .icon {
+    background-position: -44px -153px;
+}
+
+
+/* .button.options */
+
+
+.button.options { 
+  padding: 0 15px 0 0; 
+  margin-right:5px; 
+  text-align: center; 
+  background-image: url(images/button_options_sprite.png);
+  background-color:transparent;
+  background-position: right -41px; 
+}
+
+.button.options>.wrap {
+  padding: 0 0 0 15px; 
+  line-height: 21px;
+  background-position: left top;
+  border:none;
+}
+
+.button.options.over {   
+  background-position: right -123px; 
+  background-color:transparent;
+}
+
+.button.options.over>.wrap {
+  background-position: left -82px;
+}
+
+.button.options.pressed {
+  background-position: right -205px; 
+  background-color: transparent;
+}
+
+.button.options.pressed>.wrap {
+	background-position: left -164px;
+}
+
+.button.options.disabled {
+	background-position: right -41px; 
+}
+
+.button.options.disabled>.wrap {
+	background-position: left 0px;
+}
+
+.button.capsule { 
+  padding: 0 15px 0 0; 
+  margin:4px 5px 4px auto;   
+  text-align: center; 
+  background-image: url(images/button_capsule_sprite.png);
+  border:none;
+}
+
+.buttonSet .button.capsule.first {
+	padding-right: 0px; /* this should be either 5 or 0 */
+	margin-right:0;
+}
+
+.buttonSet .button.capsule.first .wrap {
+	border-left:none;
+	padding-left:15px;
+	padding-right:8px;
+}
+
+.buttonSet .button.capsule.middle {
+	margin-right:0;
+	padding-right:5px;
+}
+
+.buttonSet .button.capsule.last {
+	border-right: none;
+	padding-right:12px;
+}
+
+.button.capsule .wrap {
+  padding: 0 0 0 15px; 
+  line-height: 26px;
+  height: 26px;
+  min-width: 20px;
+}
+.button.capsule.up { 
+  background-position: right -46px; 
+}
+
+.button.capsule.up .wrap  {
+  background-position: left top;
+}
+
+.button.capsule.up.over {   
+	background-position: right -184px; 
+}
+
+.button.capsule.up.over .wrap {
+	background-position: left -138px;
+}
+
+.button.capsule.up.pressed {
+	background-position: right -322px; 
+}
+
+.button.capsule.up.pressed .wrap {
+	background-position: left -276px;
+}
+
+.button.capsule.down,
+.button.capsule.down.over {
+	background-position: right -322px; 
+	background-color:transparent;
+}
+
+.button.capsule.down .wrap,
+.button.capsule.down.over .wrap {
+	background-position: left -276px;
+}
+
+.button.capsule.disabled {
+	background-position: right -46px; 
+}
+
+.button.capsule.disabled .wrap {
+	background-position: left 0px;
+}
+
+.button.capsule.down.pressed {
+	background-position: right -460px; 
+}
+
+.button.capsule.down.pressed .wrap {
+	background-position: left -414px;
+}
+
+.button.capsule.up.first {
+	background-position: right -674px; 
+}
+
+.button.capsule.up.first.over {
+	background-position: right -729px; 
+}
+
+.button.capsule.up.middle, 
+.button.capsule.up.middle .wrap, 
+.button.capsule.up.last .wrap {
+	background-position: left -92px; 
+	background-repeat: repeat-x;
+}
+
+.button.capsule.up.middle.over,
+.button.capsule.up.middle.over .wrap,
+.button.capsule.up.last.over .wrap {   
+	background-position: 0px -230px; 
+}
+
+.button.capsule.up.middle.pressed .wrap,
+.button.capsule.up.last.pressed .wrap,
+.button.capsule.down.middle .wrap,
+.button.capsule.down.last .wrap,
+.button.capsule.down.middle.over .wrap,
+.button.capsule.down.last.over .wrap {   
+	background-position: 0px -368px; 
+}
+
+.button.capsule.up.first.pressed,
+.button.capsule.up.middle.pressed,
+.button.capsule.down.first,
+.button.capsule.down.first.over,
+.button.capsule.down.middle,
+.button.capsule.down.middle.over {   
+	background-position: right -567px; 
+}
+
+.button.capsule.down.middle.pressed .wrap,
+.button.capsule.down.last.pressed .wrap {   
+	background-position: 0px -506px; 
+}
+
+.button.capsule.down.first.pressed,
+.button.capsule.down.middle.pressed {   
+	background-position: right -627px; 
+}
+
+
+.button.capsule.up.first.pressed,
+.button.capsule.up.middle.pressed,
+.button.capsule.up.last.pressed,
+.button.capsule.up.pressed {
+	background-color:transparent;
+}
+
+.wrap.dragging.measure,
+.wrap.dragging.dimension {
+	color:#fff !important;
+}
