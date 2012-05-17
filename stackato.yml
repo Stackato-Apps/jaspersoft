@@ -1,0 +1,7 @@
+name: jaspersoft
+instances: 1
+framework:
+  type: java_web
+mem: 4096M
+services:
+  jrs-repo: mysql
