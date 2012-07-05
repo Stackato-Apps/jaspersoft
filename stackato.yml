@@ -2,6 +2,6 @@ name: jaspersoft
 instances: 1
 framework:
   type: java_web
-mem: 4096M
+mem: 3000M
 services:
   jrs-repo: mysql
