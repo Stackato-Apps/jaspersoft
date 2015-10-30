@@ -1,7 +1,7 @@
 applications:
 - name: jaspersoft
   instances: 1
-  mem: 3000M
+  memory: 3000M
   services:
     jrs-repo:
       type: mysql
