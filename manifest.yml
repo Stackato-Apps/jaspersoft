@@ -1,5 +1,6 @@
 applications:
 - name: jaspersoft
+  buildpack: https://github.com/cloudfoundry/java-buildpack#v2.4
   instances: 1
   memory: 3000M
   services:
